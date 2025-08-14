@@ -109,9 +109,9 @@ create_rs485(RS485, LEAF_SENSOR);
 create_rs485(RS485, SOIL_SENSOR);
 create_rs485(RS485, AIR_TPH_SENSOR);
 //create_rs485(RS485, RAIN_GAUGE_SENSOR);
-//create_rs485(RS485, PRESSURE);
+//create_rs485(RS485, PRESSURE); hi this is git change
 //create_rs485(RS485, GEMHO_SOIL_NPK);
-//create_rs485(RS485, GEMHO_SOIL_TH);
+//create_rs485(RS485, GEMHO_SOIL_TH); higit 2 change
 //create_rs485(RS485, GEMHO_LEAF);
 //create_rs485(RS485, GEMHO_ILLUMINOSITY);
 //create_rs485(RS485, GEMHO_4_1);

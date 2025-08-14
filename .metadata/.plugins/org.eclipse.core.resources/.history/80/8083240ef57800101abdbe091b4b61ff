@@ -1,0 +1,692 @@
+/* USER CODE BEGIN Header */
+/**
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ ******************************************************************************
+ */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "adc.h"
+#include "fatfs.h"
+#include "i2c.h"
+#include "iwdg.h"
+#include "usart.h"
+#include "rtc.h"
+#include "spi.h"
+#include "gpio.h"
+#include "string.h"
+#include "stdio.h"
+#include "fatfs_sd.h"
+#include "cstdio"
+#include "array"
+
+/**
+ * Un-comment for Various different functionalities
+ */
+
+//#define UB1_ON
+//#define UL1_ON
+//#define neo_cont_print
+//#define neo_print_resp_size
+#define PRINT_WAKEUP_TIME
+//#define ALWAYS_PRINT
+#define BLE_ON
+//#define BLE_PRINT
+// change clock configuration
+//#define OTA_ASK
+
+/**
+ * Include all header files through single header file
+ */
+#include "INCLUDER.h"
+//#include "sd_card_handler.h"
+/**
+ * @brief The Address App jumps to after BOOTLOADER
+ */
+float aht_temp,aht_hum;
+const uint32_t appadd = 0x801F000;
+
+uint16_t file_flag;
+uint16_t totalparse;
+DWORD offset = 0;
+
+/**
+ * @brief Pointer to reset handler
+ */
+
+typedef void (*ptrFapp)();
+
+//HAL_RTC_Init(&hrtc);
+/**
+ * @fn
+ * @brief Function to jump to application code
+ * @details This code is used to go to application code after bootloader
+ * @param[in] APP_ADDR
+ */
+void go2app(uint32_t APP_ADDR) {
+	uint32_t JumpAddress;
+	ptrFapp Jump_app;
+
+	both_debug.Print2("\r\nAPP ADDRESS = " + d_t_h_s(APP_ADDR));
+	if (((*(uint32_t*) APP_ADDR) & 0x2FFE0000) == 0x20000000) {
+		JumpAddress = *(uint32_t*) (APP_ADDR + 4);
+		both_debug.Print2("\tGoing to APP : " + d_t_h_s(JumpAddress));
+		Jump_app = (ptrFapp) JumpAddress;
+//		uint32_t MSP_ADD = *(uint32_t*) APP_ADDR;
+//		both_debug.Print2("\tChanging MSP to: " + d_t_h_s(MSP_ADD));
+//		__set_MSP(MSP_ADD);
+		Jump_app();
+	} else {
+		both_debug.Print2("\r\nNo APP : Reseting system");
+		NVIC_SystemReset();
+	}
+}
+
+bool check_ota = 0;
+
+void SystemClock_Config(void);
+
+// macro to define objects for classes to automatically add variable name for rs485 class
+#define create_rs485(class_name, obj_name) \
+		class_name obj_name( &huart2, vp, #obj_name, 1)
+#define add_to_rs485( obj_name) \
+		Rs485_ptr[rs485_ptr_itr++] = &obj_name
+
+#define create(class_name, obj_name) \
+		class_name obj_name(vp, #obj_name, 1)
+#define create_0(class_name, obj_name) \
+		class_name obj_name(vp, #obj_name, 0)
+
+create(VARIABLES, WS);
+create(VARIABLES, DEVICE_ID);
+#if defined(APP_CODE) or defined(RTK)
+create_0(VARIABLES, FIRMWARE_VERSION);
+//create_0(VARIABLES, LONG);
+create_0(VARIABLES, LAT);
+create(VARIABLES,AIR_HT);
+create_rs485(RS485, NPK_SENSOR);
+create_rs485(RS485, LEAF_SENSOR);
+create_rs485(RS485, SOIL_SENSOR);
+create_rs485(RS485, AIR_TPH_SENSOR);
+create_rs485(RS485, RAIN_GAUGE_SENSOR);
+//create_rs485(RS485, PRESSURE);
+//create_rs485(RS485, GEMHO_SOIL_NPK);
+create_rs485(RS485, GEMHO_SOIL_TH);
+//create_rs485(RS485, GEMHO_LEAF);
+//create_rs485(RS485, GEMHO_ILLUMINOSITY);
+//create_rs485(RS485, GEMHO_4_1);
+create_rs485(RS485, SENTEK_AIR_TP);//GEMHO_7_1 changed to SENTEK_AIR_TP Sentek Pressure
+//create_rs485(RS485, GEMHO_AIR_TPH);
+create_rs485(RS485, SENTEK_AIR_TPH);
+create_rs485(RS485, CHANGE_ADD);
+
+create(ANALOG, BATTERY);
+create(ANALOG, SOLAR_PANEL);
+create(WIND_DIR, WIND_DIRECTION_SENSOR);
+create(WIND_DIR, MISOL_DIR);
+create(IRROMETER, IRROMETER_PRIMARY);
+create(IRROMETER, IRROMETER_SECONDARY);
+create(WIND_SPEED, MISOL_SPEED);
+create(RAIN_GAUGE, MISOL_RAIN);
+create_0(VARIABLES, SENSOR_ONLY);
+#endif
+//create_0(VARIABLES, ALARM_TIME);
+create_0(VARIABLES, WAKEUP_INT);
+create_0(VARIABLES, CHECK_OTA);
+create_0(VARIABLES, PRINT);
+create_0(VARIABLES, PRINT_ESSENTIALS);
+create_0(VARIABLES, INSTALL_CERT);
+create_0(BUTTON_READ, BUTTON);
+create_0(VARIABLES, EXIT);
+
+JSON_HANDLER data_packet(variables_pointer);
+PWR_PIN V_12(EN_12V_GPIO_Port, EN_12V_Pin);
+
+
+#include "FUNCTIONS.h"
+
+char buffer[1024];
+string json;
+string json_sd;
+char buf[1024];
+UINT bytesRead;
+class SD1 {
+public :
+
+	FATFS fs;
+	FIL file;
+	FILINFO fno;
+	FRESULT fresult;// result
+	FRESULT fresult123;
+	FIL file123;
+	UINT br, bw;  // File read/write count
+//	char buffer[512];
+
+	SD1(){
+		fresult = f_mount(&fs, "/", 1);
+	}
+	~SD1(){
+	fresult = f_mount(NULL, "/", 1);
+	}
+
+void write(){
+		FIL file;
+		if(fresult == FR_OK){
+		    fresult = f_open(&file, "file121.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
+		          f_puts("This data is from the FILE111.txt. And it was written using ...f_puts... ", &file);
+		          fresult = f_close(&file); }
+		}
+void write2(const char* data){
+	// SD1();
+	fresult = f_mount(&fs, "/", 1);
+	if(this->fresult == FR_OK){
+		this->fresult = f_open(&(this->file), "file131.txt", FA_OPEN_APPEND | FA_READ | FA_WRITE);
+		f_write(&(this->file), data, strlen(data), &bw); // Write string data
+		f_write(&(this->file), "\n", strlen("\n"), &bw); // Adding new line
+		HAL_Delay(1000);
+		this->fresult = f_close(&(this->file));// Close file
+
+	}
+	fresult = f_mount(NULL, "/", 1);
+}
+void read(){
+	fresult = f_mount(&fs, "/", 1);
+	if (both_debug.Both_read_check("\n Enter 0 to skip Reading SD card data ", 15, "0") != $EXPECTED_RESPONSE){
+	if(this->fresult == FR_OK){
+		this->fresult = f_open(&(this->file), "file131.txt", FA_READ);
+		HAL_Delay(200);
+	    this->fresult = f_read(&(this->file), buffer, sizeof(buffer) , &br);
+	    HAL_Delay(1000);
+	    both_debug.Print2("\n ");
+	    both_debug.Print2(buffer);
+	    HAL_Delay(1000);
+	}
+	if(this->fresult!=FR_OK){
+
+		//HAL_UART_Transmit(&hlpuart1, (uint8_t*)("f_read error\r\n"), sizeof("f_read error\r\n")-1, 200);
+		both_debug.Print2("\n f_read error\n");// Ankit
+	}
+
+}
+	fresult = f_mount(NULL, "/", 1);
+	HAL_Delay(1000);
+}
+string readJsonFromSD(){ // read the entire file altogether
+	FRESULT fresult2;
+	this->fresult = f_mount(&fs, "/", 1);
+	if(this->fresult == FR_OK){
+    if (f_open(&(this->file), "file131.txt", FA_READ) != FR_OK) {
+    	both_debug.Print2("\n f_read SD EXISTING DATA error\n");
+    	this->fresult = f_mount(NULL, "/", 1);
+        return "";              // open error or no file
+    }
+     both_debug.Print2("\n FETCHING SD CARD STORED DATA. \n");
+     fresult2 = f_open(&(this->file), "file131.txt", FA_READ);
+    // keep reading until EOF
+    do {
+      fresult2 = f_read(&(this->file), buf, sizeof(buf)-1, &bytesRead);
+      buf[bytesRead] = '\0';
+      json += buf;
+      both_debug.Print2(json);
+      HAL_Delay(500);
+    } while (bytesRead == sizeof(buf)-1);
+    HAL_Delay(1000);
+    fresult2 = f_close(&(this->file));
+    HAL_Delay(500);
+    this->fresult = f_mount(NULL, "/", 1);
+    both_debug.Print2("\n SD CARD STORED DATA IS SHOWN BELOW \n");
+    both_debug.Print2(json);
+    return json;
+	}
+	else {
+		both_debug.Print2("\n f_read SD EXISTING DATA error\n");
+		this->fresult = f_mount(NULL, "/", 1);
+		 return "";
+	}
+}
+DWORD SDFileSize(){
+	FILINFO fileInfo1;
+	     DWORD sizeout1;
+	     FRESULT res1 = f_stat("file131.txt", &fileInfo1);
+	             if(res1 == FR_OK)
+	             	sizeout1 = fileInfo1.fsize;
+	             return sizeout1;
+}
+string readchunk(size_t chunksize){ // READ THE FILE IN CHUNKS
+    char buf1[chunksize + 1];
+    UINT bytesRead1;
+
+    this->fresult = f_mount(&fs, "/", 1);
+    if(this->fresult == FR_OK){
+        if (f_open(&(this->file), "file131.txt", FA_READ) != FR_OK) {
+        	both_debug.Print2("\n f_read SD EXISTING DATA error\n");
+        	this->fresult = f_mount(NULL, "/", 1);
+            return "";              // open error or no file
+        }
+
+        both_debug.Print2("\n FETCHING SD CARD STORED DATA IN CHUNKS. \n");
+        fresult123 = f_open(&(this->file123), "file131.txt", FA_READ);
+        if(fresult123 == FR_OK)
+        fresult123 = f_lseek(&(this->file123), offset);
+        if(fresult123 == FR_OK)
+        fresult123 = f_read(&(this->file123), buf1, chunksize, &bytesRead1);
+        buf1[bytesRead1] = '\0';
+    }
+
+    file_flag++;
+   fresult123 = f_close(&(this->file123));
+   this->fresult = f_mount(NULL, "/", 1);
+   both_debug.Print2("\n");
+   both_debug.Print2(string(buf1, bytesRead1));
+    return string(buf1, bytesRead1);
+}
+ bool isEmpty(){  // CHECK WHETHER FILE EXISTS OR NOT, OR BLANK FILE
+	 FILINFO finfo;
+	 FRESULT res;
+	 this->fresult = f_mount(&fs, "/", 1);
+	 if(this->fresult == FR_OK){
+		 res = f_stat("file131.txt", &finfo);
+		 if (res == FR_NO_FILE) {
+		         // File doesn’t exist → “empty”
+			 this->fresult = f_mount(NULL, "/", 1);
+		         return true;
+		     }
+		     else if (res != FR_OK) {
+		         // Other error: treat as empty or handle error
+		    	 this->fresult = f_mount(NULL, "/", 1);
+		    	 return true;
+		     }
+
+		     // finfo.fsize is file size in bytes
+		 this->fresult = f_mount(NULL, "/", 1);
+		     return (finfo.fsize == 0);
+
+	 }
+ }
+ void deletefile(){
+	 FIL file1;
+	 FRESULT fresult1;
+	 fresult = f_mount(&fs, "/", 1);
+	 if(this->fresult == FR_OK){
+	 fresult1 = f_open(&file1, "file131.txt",  FA_CREATE_ALWAYS | FA_WRITE);
+	 // Move current write pointer to start
+	    if(fresult1 == FR_OK){
+	    both_debug.Print2("\n SD CARD stored data is cleared and sd card is empty now. \n");
+	    	f_close(&file1);
+	    }
+	    else
+	    {
+	    	both_debug.Print2("\n Error in Deleting the file \n");
+	    }
+	fresult = f_mount(NULL, "/", 1);
+ }
+ }
+  };
+bool isLeap1(int yr1){
+	return (yr1 % 400 == 0) || ((yr1 % 4 == 0) && (yr1 % 100 != 0));
+}
+int daysInMonth1(int yr2, int mon1){
+	static constexpr array<int,13> monthDays1 =
+	        {0,31,28,31,30,31,30,31,31,30,31,30,31};
+	    if (mon1 == 2 && isLeap1(yr2)) return 29;
+	    return monthDays1[mon1];
+}
+string getTimestamp(uint32_t timer11, uint32_t t11) {
+	both_debug.Print2("\r\n Timer11 Value is : ");
+	both_debug.Print2(timer11);
+	both_debug.Print2("\n \n");
+  uint32_t timer_seconds11 = t11*timer11*60;
+  RTC_TimeTypeDef sTime_saved;
+  RTC_DateTypeDef sDate_saved;
+
+  HAL_RTC_GetTime(&hrtc, &sTime_saved, RTC_FORMAT_BIN);
+  HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BIN);
+
+  char timestamp[32];
+  uint32_t total_add = sTime_saved.Hours * 3600 + sTime_saved.Minutes * 60 + sTime_saved.Seconds + timer_seconds11;
+  int days_add = total_add/86400;
+  total_add %= 86400;
+  if (total_add < 0) total_add += 86400;
+  sDate_saved.Year += days_add;
+  while(true){
+	  int dim1 = daysInMonth1(sDate_saved.Date, sDate_saved.Month);
+	  if(sDate_saved.Year <= dim1) break;
+	  sDate_saved.Year -= dim1;
+	  sDate_saved.Month++;
+	  if(sDate_saved.Month > 12){
+		  sDate_saved.Month = 1;
+	  sDate_saved.Date++;
+  }
+  }
+
+  snprintf(timestamp, sizeof(timestamp), "%02d-%02d-%04d %02d:%02d:%02d",
+		    sDate_saved.Year, sDate_saved.Month, sDate_saved.Date,
+			total_add / 3600, (total_add % 3600) / 60 , total_add % 60);
+
+
+//    if((sTime_saved.Minutes + t_count*timer11) < 60){
+//    sprintf(timestamp, "%02d-%02d-%02d %02d:%02d:%02d",
+//    		sDate_saved.Date, sDate_saved.Month, sDate_saved.Year,
+//			sTime_saved.Hours, (sTime_saved.Minutes + (t_count * timer11)) , sTime_saved.Seconds);
+//    }
+//    else {
+//    sprintf(timestamp, "%02d-%02d-%02d %02d:%02d:%02d",
+//    	sDate_saved.Date, sDate_saved.Month, sDate_saved.Year,
+//    	(sTime_saved.Hours + (sTime_saved.Minutes + t_count * timer11)/60), (sTime_saved.Minutes + (t_count * timer11))%60 , sTime_saved.Seconds);
+//    }
+
+    return string(timestamp);
+}
+#if defined(APP_CODE)
+void storeCounter1(uint32_t val1){
+	HAL_PWR_EnableBkUpAccess();
+	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, val1);
+}
+uint32_t loadCounter1() {
+    HAL_PWR_EnableBkUpAccess();
+    return HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1);
+}
+static uint32_t t_count1;
+#endif
+//SD1 sd_card_1;
+/**
+ * @brief  The application entry point.
+ * @retval int
+ */
+int main(void) {
+	HAL_Init();
+
+	SystemClock_Config();
+
+	  MX_GPIO_Init();
+	  MX_ADC1_Init();
+	  MX_LPUART1_UART_Init();
+	  MX_USART1_UART_Init();
+	  MX_USART2_UART_Init();
+	  MX_FATFS_Init();
+	  MX_SPI2_Init();
+	  MX_RTC_Init();
+	  MX_IWDG_Init();
+	  MX_I2C1_Init();
+
+	if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 5, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK) {
+		Error_Handler();
+	}
+	object_setup();
+
+#if defined(UB1_ON)
+	BUTTON.SET_PIN(UB1_GPIO_Port, UB1_Pin);
+#endif
+
+	SD1 sd_card_1;
+	while (1) {
+
+#if defined(UL1_ON)
+		LED_1.SET(1, 500);
+#endif
+
+		ALL_POWER_ON();
+		neoway.POWER_ON();
+
+		config_file();
+
+#if defined(BLE_ON)
+		neoway.BLE_SETUP(d_t_s(WS.GET_VAR_VALUE_CONN()));
+#endif
+
+		if (PRINT.GET_VAR_VALUE_CONN() == 1) {
+			set_both_print(1);
+			both_debug.Print2("\r\nPRINT ON\r\n");
+			config_file();
+		}
+
+		neoway.INIT();
+		Get_save_time();
+
+		PassAuthen();
+
+#if defined(APP_CODE)
+		both_debug.Print2("\r\nIn APP CODE  " __TIME__ " - " __DATE__ "\r\n");
+
+#else
+		both_debug.Print2("\r\nIn OTA CODE  " __TIME__ " - " __DATE__ "\r\n");
+#endif
+
+		MENU_PRINT(is_any_print());
+//		I2CSensorREDE(&aht_temp,&aht_hum);
+#if defined(APP_CODE)
+		if (SENSOR_ONLY.GET_VAR_VALUE_CONN() == 1) {
+			SENSOR_ONLY_FUNC();
+		}
+#endif
+
+#if defined(APP_CODE)
+
+		SET_WAKEUP_INTERVAL(WAKEUP_INT.GET_VAR_VALUE_CONN());
+		if (check_ota == 1 || CHECK_OTA.GET_VAR_VALUE_CONN() == 1) {
+
+			CHECK_OTA.SET_VAR_VALUE_CONN(0);
+			save_meta_neoway();
+			ALL_POWER_OFF();
+			both_debug.Print2("Restarting to check OTA");
+			NVIC_SystemReset();
+
+		}
+		static uint8_t no_of_restart = 0;
+		if (WS.GET_VAR_VALUE_CONN() == -1) {
+			if (no_of_restart < 5) {
+				both_debug.Print2("Restarting app code");
+				ALL_POWER_OFF();
+				no_of_restart++;
+				continue;
+			} else {
+				both_debug.Print2("Restarting due to Neoway");
+				NVIC_SystemReset();
+			}
+		}
+		else {
+			no_of_restart = 0;
+		}
+#endif
+
+#if defined(UL1_ON)
+		LED_1.SET(0);
+#endif
+
+//#define TEST
+
+#if defined(APP_CODE) or defined(TEST)
+		if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED) != HAL_OK) {
+			Error_Handler();
+		}
+		//if(sd_card_1.isEmpty())
+	     // static int t_count;
+		fetch_reading();
+		if (both_debug.Both_read_check("Enter 0 to skip sending data", 15, "0") != $EXPECTED_RESPONSE) {
+			neoway.AWS_CON();
+			neoway_publish("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
+		}
+    	if(neo_control == $CONTINUE){
+				both_debug.Print2("\n No data saved in SD CARD.\n");
+				t_count1 = loadCounter1();
+	            t_count1 = 0;
+				offset = 0;
+				storeCounter1(t_count1);
+					}
+					else
+					{
+						t_count1 = loadCounter1();
+						t_count1++;
+						storeCounter1(t_count1);
+						both_debug.Print2("\n No NETWORK \n");
+						both_debug.Print2("\n t_count1 value : ");
+						both_debug.Print2(t_count1);
+						sd_card_1.write2(getTimestamp(WAKEUP_INT.GET_VAR_VALUE_CONN(),t_count1).c_str());
+						sd_card_1.write2(SD_Data);
+						HAL_Delay(200);
+						sd_card_1.read();
+						HAL_Delay(200);
+					    both_debug.Print2("\n Sd card data saved. Below is value stored in variable SD_DATA. \n");
+					    both_debug.Print2(SD_Data);
+
+					}
+				 if((neo_control == $CONTINUE)&&!(sd_card_1.isEmpty())){
+						both_debug.Print2("\nNETWORK Found\n");
+						file_flag = 1;
+						totalparse = (sd_card_1. SDFileSize())/2048;
+						both_debug.Print2("\n SD CARD FILE SIZE IS : ");
+						both_debug.Print2(totalparse);
+				//		json_sd = sd_card_1.readJsonFromSD();
+					while(file_flag <= totalparse && neo_control == $CONTINUE ){
+						json_sd = sd_card_1.readchunk(2048);
+						HAL_Delay(1000);
+					    offset += json_sd.length();
+						HAL_Delay(500);
+						if(json_sd != ""){
+							if(file_flag == 2 || file_flag % 5 == 0)
+						neoway.AWS_CON();
+						neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
+						both_debug.Print2("\r\nPublishing Stored SD CARD data\r\n");
+						save_ble_print(0);
+						HAL_Delay(500);
+						neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(json_sd.length()), { 5000 }, 1, { ">" });
+						neoway.SEND_RECIEVE(json_sd, { 5000, 5000 }, 1, { "OK", "PUB" });
+						HAL_Delay(500);
+						restore_ble_print();
+						}
+						else {
+							goto LABEL1;
+						}
+						}
+					LABEL1:
+					//int t_count = 0;
+						json_sd = "";
+						json = "";
+						HAL_Delay(500);
+					//	if(file_flag >= totalparse)
+						if(neo_control == $CONTINUE){
+						sd_card_1.deletefile();
+						t_count1 = loadCounter1();
+					    t_count1 = 0;
+					    storeCounter1(t_count1);
+						}
+						file_flag = 1;
+						HAL_Delay(500);
+
+					}
+
+		// if (neo_control == $CONTINUE)
+			GO_TO_SLEEP();
+
+
+#endif
+
+#if defined(OTA_CODE) and !defined(TEST)
+
+//		STOPPER("Enter \"1\" to go to OTA_FUCNTION", "1");
+		check_all_certificates();
+		OTA_FUNCTION();
+//		STOPPER("Enter \"1\" to go to application", "1");
+//		GO_TO_SLEEP();
+		go2app(appadd);
+//		STOPPER("Enter \"1\" to Exit", "1");
+		NVIC_SystemReset();
+
+#endif
+
+	}
+
+}
+
+/*
+ * @brief System Clock Configuration
+ * @retval None
+ */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Configure the main internal regulator output voltage
+  */
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure LSE Drive Capability
+  */
+  HAL_PWR_EnableBkUpAccess();
+  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI | RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ // RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+/* USER CODE BEGIN 4 */
+/* USER CODE END 4 */
+
+/**
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
+void Error_Handler(void) {
+	/* USER CODE BEGIN Error_Handler_Debug */
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
+	while (1) {
+	}
+	/* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
