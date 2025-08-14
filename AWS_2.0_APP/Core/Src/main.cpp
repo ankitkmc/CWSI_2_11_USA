@@ -114,7 +114,7 @@ create_rs485(RS485, AIR_TPH_SENSOR);
 //create_rs485(RS485, GEMHO_SOIL_TH); higit 2 change
 //create_rs485(RS485, GEMHO_LEAF);
 //create_rs485(RS485, GEMHO_ILLUMINOSITY);
-//create_rs485(RS485, GEMHO_4_1);
+//create_rs485(RS485, GEMHO_4_1);// final copy to the master
 create_rs485(RS485, SENTEK_AIR_TP);//GEMHO_7_1 changed to SENTEK_AIR_TP Sentek Pressure
 //create_rs485(RS485, GEMHO_AIR_TPH);
 create_rs485(RS485, SENTEK_AIR_TPH);
