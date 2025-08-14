@@ -1,0 +1,1913 @@
+/*
+ * FUNCTIONS.h
+ *
+ *  Created on: Aug 10, 2023
+ *      Author: dhanveer.singh
+ */
+/**
+ *
+ */
+
+#ifndef INC_CUSTOM_FUNCTIONS_H_
+#define INC_CUSTOM_FUNCTIONS_H_
+void STOPPER(string a, string exp_resp = "");
+string https_req(string link, uint16_t action_mode);
+void https_setup();
+void getcertificate(string *cert_string);
+static HAL_StatusTypeDef write_data_to_flash_app(string &data, bool address_reset);
+void FLASH_ERASE2(uint32_t Page_tmp, uint32_t NbPages_tmp);
+void check_neo_cont();
+void ota_break(bool cond, string a = "");
+bool check_cont_flags();
+void update_ota_cont();
+LOOP_CONT JSON_EXTRACTER(string *json_string, StaticJsonDocument<1200> *json_ret);
+uint32_t get_file_size(string &file_name);
+void write_file(string &file_name, string config_string);
+void cert_add();
+void fetch_reading();
+
+extern float aht_temp,aht_hum;
+//#define UB1_ON
+//#define RTK
+
+#if (defined(APP_CODE) or defined(OTA_CODE)) and defined(Rs485_ptr)
+void RS485_TEST() {
+	V_12.SET(1, 1 * us_s);
+	while (1) {
+		for (uint16_t var = 0; var < 8; ++var) {
+			for (int var2 = 0; var2 < 15; ++var2) {
+				Rs485_ptr[var2]->SET_REDE(var);
+			}
+			fetch_reading();
+			CHANGE_ADD.RS485_READ**();
+			CHANGE_ADD2.RS485_READ();
+
+			STOPPER("PRESS BUTTON");
+		}
+	}
+}
+#endif
+
+#if defined(APP_CODE)
+void check_analog() {
+	for (double iter = 0; iter < 4096; iter = iter + 1) {
+		double value = iter;
+		double converted_value = BATTERY.CONVERT_VALUE(value);
+		both_debug.Print2("\r\n" + d_t_s(iter, 0, 1) + "," + d_t_s(converted_value, 1, 1));
+	}
+	while (1)
+		refresh_counter();
+
+}
+
+/**
+ * @brief Used to change the address of individual RS485 sensor
+ * @details checks all ports on pcb asks address of sensor on each port
+ * @param[in] param
+ * @return param
+ */
+void change_address_rs485() {
+	if (CHANGE_ADD.GET_VAR_VALUE_CONN() == 1) {
+		V_12.SET(1, 5 * us_s);
+		/**
+		 *	Keep these for different sensors for reference
+		 *	FF 03 00 0F 00 00 60 17			query device address
+		 *	01 06 00 0F 00 09 79 CF			change device address
+		 *	CHANGE_ADD.CUSTOM_FRAME( { 0x01, 0x06, 0x00, 0x0F, 0x00, 0x05 }, 10 * us_ms);
+		 *	CHANGE_ADD.CUSTOM_FRAME( { 0xFF, 0x03, 0x00, 0x0F, 0x00, 0x00 }, 10 * us_ms);
+		 */
+		CHANGE_ADD.SET_manual_baud(9600);
+		for (int var = 1; var < 8; var++) {
+
+			CHANGE_ADD.SET_REDE(var);
+			CHANGE_ADD.RS485_READ();
+			int32_t got_add = CHANGE_ADD.GET_VALUE_DOUBLE(0);
+			if (got_add != -1) {
+				both_debug.Print2("\r\nCurrent address : " + d_t_s(got_add) + "\r\nEnter new address : ");
+				string address_str = both_debug.Both_Read(10);
+				if (address_str.empty()) {
+					both_debug.Print2("No Input\r\n");
+				} else {
+					both_debug.Print2(address_str + "\r\n");
+					uint8_t address_uint = s_t_d(address_str);
+					if (address_uint == 0) {
+						address_uint = 1;
+					}
+					CHANGE_ADD.CUSTOM_FRAME( { got_add, 0x06, 0x00, 0x0F, 0x00, address_uint });
+				}
+			}
+
+		}
+
+	}
+}
+#endif
+
+#if defined(MOHIT)
+
+void set_json_param(uint32_t send_id = 0) {
+	for (uint32_t iter_1 = 0; iter_1 < variables_pointer.size(); iter_1++) {
+		VARIABLES *temp_ptr = *(variables_pointer.at(iter_1));
+		bool set_bool = 0;
+		if (iter_1 == send_id) {
+			set_bool = 1;
+		}
+		temp_ptr->SET_add_to_json(set_bool);
+	}
+}
+
+void neoway_read2() {
+	string sub_rec = neoway.GET_SUB_RESP();
+both_debug.Print2("\r\nsub_rec -->" + sub_rec + "<--");
+	StaticJsonDocument < 1024 > ret_json;
+	if (JSON_EXTRACTER(sub_rec, ret_json) == $CONTINUE) {
+		if (ret_json.containsKey("status")) {
+			uint32_t json_param_no = ret_json["status"];
+			set_json_param(json_param_no);
+		}
+	}
+}
+
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief To take password input as a string from serial monitor and verify it and then enable or disable Print functionality.
+ */
+void PassAuthen() {
+	save_both_print(1);
+	both_debug.Print2("\r\nEnter Password\r\n");
+
+	int try_count = 5;
+	string entered_pass;
+	refresh_counter();
+	do {
+
+		int ble_ser = 0;
+		both_debug.Both_Get_pass(3, &ble_ser);
+
+		if (ble_ser == 1) {
+			restore_both_print();
+			set_both_print(0);
+			set_uart_print(1);
+			both_debug.Print2("\r\nUART PRINTING");
+			return;
+		}
+
+		if (ble_ser == 2) {
+			restore_both_print();
+			set_both_print(0);
+			set_ble_print(1);
+			both_debug.Print2("\r\nBLE PRINTING");
+			return;
+		}
+
+	} while (--try_count > 0);
+	both_debug.Print2("\r\n----------\r\n");
+	restore_both_print();
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Get the input from user for password
+ * @param[in] timeout
+ * @return double
+ */
+
+double Get_entered_value(uint16_t timeout = 10) {
+	string entered_value = both_debug.Both_Get_pass(timeout);
+	double entered_int = s_t_d(entered_value);
+	return entered_int;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief To display Device Configuration Menu- Index no, Variable name and Variable Value.
+ */
+void MENU_PRINT(bool take_input = 1) {
+#define try_count 5
+	volatile double entered_int = 0;
+	uint32_t try_times = try_count;
+
+	StaticJsonDocument < 1200 > saved_json;
+	data_packet.MAKE_META_JSON(data_packet.$CLEAR_STRING, 1);
+	deserializeJson(saved_json, data_packet.meta_json_string);
+	string entered = "";
+	do {
+		entered_int = 0;
+		if (try_times == try_count) {
+			both_debug.Print2("\r\n>>>>>>>>>>>>>> MENU <<<<<<<<<<<<<<\r\n");
+			both_debug.Print2("\r\nIn : Co : Js : Name");
+			//To dynamically print each variable's index number,name & value_conn
+			for (uint32_t i = 0; i < total_menu_index; i++) {
+				VARIABLES *tempi = *(variables_pointer.at(i));
+				/**
+				 *	Uncomment to print add_to_json along with variables in menu
+				 */
+
+//				both_debug.Print2("\r\n" + d_t_s(tempi->GET_index(), 0, 1) + " : " + d_t_s(tempi->GET_VAR_VALUE_CONN(), 0, 1) + " : " + d_t_s(tempi->IS_add_to_json(), 0, 1) + " : " + tempi->GET_VAR_NAME());
+				both_debug.Print2("\r\n" + d_t_s(tempi->GET_index(), 0, 1) + " : " + d_t_s(tempi->GET_VAR_VALUE_CONN(), 0, 1) + " : " + tempi->GET_VAR_NAME());
+			}
+			both_debug.Print2("\r\n\r\n>>>>>>>>>>>>>> MENU <<<<<<<<<<<<<<");
+			refresh_counter();
+		}
+		try_times--;
+		if (take_input) {
+			both_debug.Both_read_check("Enter index", 20, "", &entered);
+			entered_int = s_t_d(entered);
+			if (entered_int > 0) {
+				if (entered_int < variables_pointer.size()) {
+					entered.clear();
+					VARIABLES *tempi = *(variables_pointer.at(entered_int - 1));
+					/**
+					 *	Uncomment to print add_to_json along with variables in menu
+					 */
+
+//					both_debug.Print2("\r\n" + d_t_s(tempi->GET_index(), 0, 1) + " : " + d_t_s(tempi->GET_VAR_VALUE_CONN(), 0, 1) + " : " + d_t_s(tempi->IS_add_to_json(), 0, 1) + " : " + tempi->GET_VAR_NAME());
+					both_debug.Print2("\r\n" + d_t_s(tempi->GET_index(), 0, 1) + " : " + d_t_s(tempi->GET_VAR_VALUE_CONN(), 6, 1) + " : " + tempi->GET_VAR_NAME());
+					both_debug.Both_read_check("Enter Value", 20, "", &entered);
+					double entered_int_2 = s_t_d(entered);
+					if (entered_int_2 >= 0 && !entered.empty()) {
+						tempi->SET_VAR_VALUE_CONN(entered_int_2);
+//						both_debug.Print2("\r\n" + d_t_s(tempi->GET_index(), 0, 1) + " : " + d_t_s(tempi->GET_VAR_VALUE_CONN(), 5, 1) + " : " + d_t_s(tempi->IS_add_to_json(), 0, 1) + " : " + tempi->GET_VAR_NAME());
+						both_debug.Print2("\r\n" + d_t_s(tempi->GET_index(), 0, 1) + " : " + d_t_s(tempi->GET_VAR_VALUE_CONN(), 6, 1) + " : " + tempi->GET_VAR_NAME());
+					}
+				} else
+					if (entered_int == variables_pointer.size()) {
+						both_debug.Print2("\r\nExiting");
+						break;
+					} else {
+						both_debug.Print2("Invalid Input");
+					}
+				try_times = try_count;
+			} else {
+				if (try_times == try_count - 1) {
+					both_debug.Print2("\r\nExiting");
+					break;
+				};
+			}
+		}
+	} while (entered_int != EXIT.GET_index() && try_times > 0);
+	data_packet.MAKE_META_JSON(data_packet.$CLEAR_STRING, 1);
+	if (data_packet.COMPARE_META_DATA_JSON(saved_json)) {
+		both_debug.Print2("\r\nBoth Same JSON\r\n");
+	} else {
+		both_debug.Print2("\r\nNot Same JSON\r\n");
+
+		data_packet.MAKE_META_JSON(data_packet.$CLEAR_STRING, 1);
+		write_file(config_file_name, data_packet.GET_META_JSON_STRING());
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Saves configuration to neoway
+ */
+void save_meta_neoway() {
+	data_packet.MAKE_META_JSON(data_packet.$CLEAR_STRING, 1);
+	write_file(config_file_name, data_packet.GET_META_JSON_STRING());
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Updates the read configuration at startup to respective variables
+ * @param[in] config_json
+ */
+
+void UPDATE_CONFIG(const StaticJsonDocument<1200> &config_json) {
+	for (uint32_t i = 0; i < total_menu_index; i++) {
+		VARIABLES *tempi = *(variables_pointer.at(i));
+		if (config_json.containsKey(tempi->GET_VAR_NAME())) {
+			tempi->SET_VAR_VALUE_CONN(s_t_d(config_json[tempi->GET_VAR_NAME()]));
+		} else {
+			tempi->SET_VAR_VALUE_CONN(-1);
+		}
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Write configuration file to neoway
+ * @param[in] file_name
+ * @param[in] config_string
+ */
+void write_file(string &file_name, string config_string) {
+
+	ble_cont = $BREAK;
+	neoway.SEND_RECIEVE("AT+FSWF=\"" + file_name + "\",0," + d_t_s(config_string.size(), 0) + ",10000", { 10000 }, 2, { ">" });
+	neoway.SEND_RECIEVE(config_string, { 10000 }, 2, { "OK" });
+	ble_cont = $CONTINUE;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Read configuration file from neoway and update it to respective variables
+ */
+
+void config_file() {
+	uint32_t file_size = get_file_size(config_file_name);
+	if (file_size == not_found) {
+		neo_control = $CONTINUE;
+		both_debug.Print2("\r\nNo config file found\r\n");
+		return;
+	}
+	string json_rec = neoway.SEND_RECIEVE("AT+FSRF=\"" + config_file_name + "\",0," + d_t_s(file_size, 0), { 5000 }, 2, { "+FSRF:" });
+	JSON_EXTRACTER(&json_rec, &data_packet.meta_data_json);
+	UPDATE_CONFIG(data_packet.meta_data_json);
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Subscribe to AWS Topic
+ * @param[in] topic_to_subscribe
+ */
+
+void neoway_sub(string topic_to_subscribe = "topic/button") {
+	neoway.SEND_RECIEVE("AT+AWSSUB=" + topic_to_subscribe + ",0", { 5000 }, 2, { "OK" });
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Get latest message from subscribed topic
+ */
+
+void neoway_read() {
+	string sub_rec = neoway.GET_SUB_RESP();
+	StaticJsonDocument < 1200 > ret_json;
+	JSON_EXTRACTER(&sub_rec, &ret_json);
+	both_debug.Print2("\r\nsub_rec -->" + sub_rec + "<--");
+	neo_control = $CONTINUE;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Get OTA and Meta data links from server adn save them in respective variables
+ * @param[out] ota_link
+ * @param[out] meta_link
+ */
+void GET_LINKS(string &ota_link, string &meta_link) {
+
+	if (check_cont_flags()) {
+		string meta_json_link = "56wdo5bf42tt4luxym2rcvvy5e0vrpaq.lambda-url.us-west-2.on.aws/?ws=" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0);
+		string strdata = https_req(meta_json_link, 0);
+		ota_break(strdata.size() < 3);
+		update_ota_cont();
+		if (check_cont_flags()) {
+
+			int32_t json_start_index = strdata.find('{');
+			int32_t json_end_index = strdata.find_last_of('}');
+			strdata = strdata.substr(json_start_index, json_end_index - json_start_index + 1);
+			both_debug.Print2("\r\nFound Json-->" + strdata + "<--\r\n");
+			ota_break(strdata.size() < 3);
+			if (check_cont_flags()) {
+				StaticJsonDocument < 1024 > test_json;
+				deserializeJson(test_json, strdata);
+				string META_UPDATE = test_json["META"];
+				both_debug.Print2("\r\nMETA_UPDATE-->" + META_UPDATE + "<--\r\n");
+				string OTA = test_json["OTA"];
+				both_debug.Print2("OTA UPDATE -->" + OTA + "<--");
+				if (OTA == "1") {
+					if (test_json.containsKey("LINK")) {
+
+						string ota_link_temp = test_json["LINK"];
+						ota_link = ota_link_temp;
+						both_debug.Print2("\r\nFirmware url -->" + ota_link + "<--");
+						ota_cont = $CONTINUE;
+					} else {
+						ota_cont = $BREAK;
+					}
+				}
+				if (META_UPDATE == "1") {
+					if (test_json.containsKey("META_LINK")) {
+						string meta_link_temp = test_json["META_LINK"];
+						meta_link = meta_link_temp;
+						both_debug.Print2("\r\nMeta url -->" + meta_link + "<--");
+						ota_cont = $CONTINUE;
+					} else {
+						both_debug.Print2("\r\nMeta url -->NO KEY<--\r\n");
+						ota_cont = $BREAK;
+					}
+				}
+			} else {
+				both_debug.Print2("\r\nNO JSON FOUND\r\n");
+				ota_cont = $BREAK;
+			}
+		}
+	} else {
+		ota_cont = $BREAK;
+		ota_link = "NO LINK";
+		meta_link = "NO LINK";
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Add the certificate to neoway
+ * @param[in] cert_name
+ * @param[in] *certificate
+ */
+
+void add_certificate(string cert_name, string *certificate) {
+	both_debug.Print2("\r\nAdding Certificate-->" + cert_name + "<-- ");
+	save_ble_print(0);
+	neoway.SEND_RECIEVE("AT+CERTADD=" + cert_name + "," + d_t_s(certificate->length()), { 5000 }, 1, { "CONNECT" });
+	neoway.SEND_RECIEVE(*certificate, { 5000 }, 1, { "OK" });
+	restore_ble_print();
+	both_debug.Print2("DONE\r\n");
+	delay(1 * us_s);
+
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+
+/**
+ * @brief Delete the certificate from neoway
+ * @param[in] cert_name
+ * @return string
+ */
+string delete_certificate(string cert_name) {
+	return neoway.SEND_RECIEVE("AT+CERTDEL=" + cert_name, { 5000 }, 1, { "OK" });
+}
+#endif
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+
+/**
+ * @brief Check the certificate in neoway
+ * @param[in] cert_name
+ * @return string
+ */
+string check_certificate(string cert_name) {
+	string resp = neoway.SEND_RECIEVE("AT+CERTCHECK=" + cert_name, { 5000 }, 1, { cert_name });
+	neo_control = $CONTINUE;
+	return resp;
+}
+#endif
+
+/**
+ * @brief Check all the certificates in neoway
+ */
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+void check_all_certificates() {
+	if (INSTALL_CERT.GET_VAR_VALUE_CONN() == 1) {
+		string resp1 = "";
+		string resp2 = "";
+		string resp3 = "";
+
+		if (both_debug.Both_read_check("INSTALLL Certificates - Enter \"1\" to cont", 10, "1") == $EXPECTED_RESPONSE) {
+			if (both_debug.Both_read_check("Delete - Root CA - Enter \"1\" to cont", 10, "1") == $EXPECTED_RESPONSE) {
+				delete_certificate(neoway.rootca_name);
+				neo_control = $CONTINUE;
+			}
+
+			if (both_debug.Both_read_check("Delete - Client Cert - Enter \"1\" to cont", 10, "1") == $EXPECTED_RESPONSE) {
+				delete_certificate(neoway.clientcert_name);
+				neo_control = $CONTINUE;
+			}
+
+			if (both_debug.Both_read_check("Delete - Client Key - Enter \"1\" to cont", 10, "1") == $EXPECTED_RESPONSE) {
+				delete_certificate(neoway.clientkey_name);
+				neo_control = $CONTINUE;
+			}
+
+			if (both_debug.Both_read_check("INSTALLL NEW Certificates - Enter \"1\" to cont", 10, "1") == $EXPECTED_RESPONSE) {
+				cert_add();
+				neo_control = $CONTINUE;
+			}
+		}
+		neo_control = $CONTINUE;
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Extract json from string and save it to the json object
+ * @param[in] json_string
+ * @param[out] json_ret
+ * @return LOOP_CONT
+ */
+LOOP_CONT JSON_EXTRACTER(string *json_string, StaticJsonDocument<1200> *json_ret) {
+
+	uint32_t json_start_index = json_string->find('{');
+	uint32_t json_end_index = json_string->find('}');
+
+	if (json_start_index != not_found && json_end_index != not_found) {
+		*json_string = json_string->substr(json_start_index, json_end_index - json_start_index + 1);
+		deserializeJson(*json_ret, *json_string);
+
+		both_debug.Json_print(*json_string, "Extractor");
+
+		return $CONTINUE;
+	} else {
+		return $BREAK;
+	}
+}
+#endif
+
+#if (defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT))
+/**
+ * @brief Download and add certificates to neoway main function
+ */
+
+void cert_add() {
+
+	string certificate_url_query = "6jnwkt47x3djv46m3cvneftqoi0unzcs.lambda-url.us-west-2.on.aws/?farmID=" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0) + "&hardwareID=CWMS_1_1";
+
+	https_setup();
+	string json_string(1200, ' ');
+	json_string = https_req(certificate_url_query, 0);
+	StaticJsonDocument < 1200 > cert_json;
+	if (JSON_EXTRACTER(&json_string, &cert_json) == $CONTINUE) {
+		string device_cert = cert_json["device certificate"];
+		string ca_cert = cert_json["CA Certificate"];
+		string private_key = cert_json["private key"];
+
+		both_debug.Print2("\r\n" + neoway.rootca_name + ": " + ca_cert);
+		both_debug.Print2("\r\n" + neoway.clientcert_name + ": " + device_cert);
+		both_debug.Print2("\r\n" + neoway.clientkey_name + ": " + private_key);
+
+		string cert_str1 = https_req(ca_cert, 0);
+		getcertificate(&cert_str1);
+
+		string cert_str2 = https_req(device_cert, 0);
+		getcertificate(&cert_str2);
+
+		string cert_str3 = https_req(private_key, 0);
+		getcertificate(&cert_str3);
+
+		add_certificate(neoway.rootca_name, &cert_str1);
+		add_certificate(neoway.clientcert_name, &cert_str2);
+		add_certificate(neoway.clientkey_name, &cert_str3);
+
+	} else {
+		both_debug.Print2("\r\nNo Json Extracted");
+	}
+
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Extract certificate from string
+ * @param[in] cert_string
+ */
+
+void getcertificate(string *cert_string) {
+	string find_str = "---";
+	uint32_t start_index = cert_string->find(find_str);
+	uint32_t end_index = 2 + cert_string->find_last_of(find_str);
+	*cert_string = cert_string->substr(start_index, end_index - start_index);
+	both_debug.Print2("\r\nCertificate -->" + *cert_string + "<--\r\n");
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Configure HTTPS parameters
+ */
+
+void https_setup() {
+	neoway.SEND_RECIEVE("AT+HTTPSCFG=sslversion,3", { 5000 }, 5, { "OK" });
+	neoway.SEND_RECIEVE("AT+HTTPSCFG=authmode,0", { 5000 }, 5, { "OK" });
+	neoway.SEND_RECIEVE("AT+HTTPSCFG?", { 3000 }, 5, { "+HTTPSCFG:", "OK" });
+	neoway.SEND_RECIEVE("AT+HTTPSPARA=port,443", { 5000 }, 5, { "OK" });
+
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief http get request function
+ * makes http request to the link with choosable action mode
+ * @param string link - https link without https://
+ * @param uint action_mode - HTTPACTION mode choice
+ * @retval string
+ */
+string https_req(string link, uint16_t action_mode) {
+//	both_debug.Print2("\r\nHTTPS LINK :" + link + "\r\n");
+	neoway.SEND_RECIEVE("AT+HTTPSPARA=url," + link, { 5000 }, 1, { "OK" });
+	neoway.SEND_RECIEVE("AT+HTTPSSETUP", { 1000, 10000 }, 1, { "HTTPSSETUP", "OK" });
+	delay(1 * us_s);
+	string response = neoway.SEND_RECIEVE("AT+HTTPSACTION=" + d_t_s(action_mode, 0), { 5000, 5000, 1000 }, 1, { "OK", "HTTPSCLOSED", "" });
+//	both_debug.Print2("\r\nRaw Response-->\r\n" + response + "\r\n<--Raw Response\r\n\r\n");
+	return response;
+
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Clean neoway storage
+ */
+
+void neoway_flash_clean() {
+	neoway.SEND_RECIEVE("AT+FSFAT", { 5000 }, 5, { "OK" });
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Printing format for time
+ * @param[in] name_time name to print along time
+ * @param[in] name_time List of values in order { Hours, Minutes, Seconds, Date, Month, Year }
+ */
+
+void print_time(string name_time, initializer_list<uint8_t> list) {
+	both_debug.Print2("\r\n" + name_time + " - " + d_t_s(*(list.begin() + 0), 0, 1) + ":" + d_t_s(*(list.begin() + 1), 0, 1) + ":" + d_t_s(*(list.begin() + 2), 0, 1) + "  " + d_t_s(*(list.begin() + 3), 0, 1) + "/" + d_t_s(*(list.begin() + 4), 0, 1) + "/" + d_t_s(*(list.begin() + 5), 0, 1));
+}
+/**
+ * @brief Print date and time saved in RTC
+ */
+
+void Print_save_time() {
+	RTC_TimeTypeDef sTime_saved = { 0 };
+	RTC_DateTypeDef sDate_saved = { 0 };
+	HAL_RTC_GetTime(&hrtc, &sTime_saved, RTC_FORMAT_BIN);
+	HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BIN);
+	print_time("curtime", { sTime_saved.Hours, sTime_saved.Minutes, sTime_saved.Seconds, sDate_saved.Date, sDate_saved.Month, sDate_saved.Year });
+
+}
+
+/**
+ * @brief Fetch time from neoway and sync MCU with it
+ */
+
+void Get_save_time() {
+	/*
+	 Used to Set time to different servers
+	 Uncomment and use if neccessary
+	 neoway.SEND_RECIEVE("AT+UPDATETIME=1,time.windows.com,10,", { 1 * ms_s, 2 * ms_s, 10 * ms_s }, 2, { "OK", "Time Updating", "+UPDATETIME: Update To" });
+	 neoway.SEND_RECIEVE("AT+UPDATETIME=1,time.nist.gov,10", { 1 * ms_s, 2 * ms_s, 10 * ms_s }, 2, { "OK", "Time Updating", "+UPDATETIME: Update To" });
+	 neoway.SEND_RECIEVE("AT+SETTZ=22", { 10 * ms_s}, 2, { "OK" });
+	 neoway.SEND_RECIEVE("AT+SETTZ?", { 1 * ms_s,  }, 2, { "OK" });
+	// neoway.START();
+	 */
+
+	string neoway_time = neoway.SEND_RECIEVE("AT+CCLK?", { 1000 }, 10, { "+CCLK:" });
+	if (!neoway_time.empty() && neo_control == $CONTINUE) {
+		uint32_t indexes = neoway_time.find('"') + 1;
+		uint32_t indexes2 = neoway_time.find('/', indexes);
+		uint8_t temp_date = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+
+		indexes = indexes2 + 1;
+		indexes2 = neoway_time.find('/', indexes);
+		uint8_t temp_month = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+
+		indexes = indexes2 + 1;
+		indexes2 = neoway_time.find(',', indexes);
+		uint8_t temp_year = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+
+		indexes = indexes2 + 1;
+		indexes2 = neoway_time.find(':', indexes);
+		uint8_t temp_hr = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+
+		indexes = indexes2 + 1;
+		indexes2 = neoway_time.find(':', indexes);
+		uint8_t temp_min = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+
+		indexes = indexes2 + 1;
+		indexes2 = neoway_time.find('+', indexes);
+		uint8_t temp_sec = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+		/*
+		 Uncomment to print time
+		 both_debug.Print2("\r\nNeoway time - " + temp_hr + ":" + temp_min + ":" + temp_sec + "  " + temp_date + "/" + temp_month + "/" + temp_year);
+		 */
+
+		print_time("neotime", { temp_hr, temp_min, temp_sec, temp_date, temp_month, temp_year });
+
+		/** Initialize RTC and set the Time and Date
+		 */
+
+		RTC_TimeTypeDef sTime = { 0 };
+		RTC_DateTypeDef sDate = { 0 };
+		sTime.Hours = temp_hr;
+		sTime.Minutes = temp_min;
+		sTime.Seconds = temp_sec;
+		sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+		sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+		if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK) {
+			Error_Handler();
+		}
+		sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+		sDate.Month = temp_month;
+		sDate.Date = temp_date;
+		sDate.Year = temp_year;
+
+		if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK) {
+			Error_Handler();
+		}
+		Print_save_time();
+
+		RTC_AlarmTypeDef sAlarmA = { 0 };
+		RTC_AlarmTypeDef sAlarmB = { 0 };
+		HAL_RTC_GetAlarm(&hrtc, &sAlarmA, RTC_ALARM_A, RTC_FORMAT_BIN);
+		HAL_RTC_GetAlarm(&hrtc, &sAlarmB, RTC_ALARM_B, RTC_FORMAT_BIN);
+
+		RTC_TimeTypeDef sTime_alarmA = sAlarmA.AlarmTime;
+		RTC_TimeTypeDef sTime_alarmB = sAlarmB.AlarmTime;
+		print_time("AlAtime", { sTime_alarmA.Hours, sTime_alarmA.Minutes, sTime_alarmA.Seconds, 0, 0, 0 });
+		print_time("AlBtime", { sTime_alarmB.Hours, sTime_alarmB.Minutes, sTime_alarmB.Seconds, 0, 0, 0 });
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Set Alarm in RTC according to parameters
+ * @param[in] time_in 	Alarm time
+ * @param[in] alarmAB	Which RTC Alarm to set time in
+ * @return param
+ */
+
+void Set_RTC_ALARM(RTC_TimeTypeDef &time_in, uint32_t alarmAB) {
+	RTC_AlarmTypeDef sAlarm2 = { 0 };
+	sAlarm2.AlarmTime = time_in;
+	sAlarm2.AlarmTime.StoreOperation = RTC_STOREOPERATION_SET;
+	sAlarm2.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY | RTC_ALARMMASK_SECONDS;
+	sAlarm2.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
+	sAlarm2.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_WEEKDAY;
+	sAlarm2.AlarmDateWeekDay = 1;
+	sAlarm2.Alarm = alarmAB;
+	if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm2, RTC_FORMAT_BIN) != HAL_OK) {
+		Error_Handler();
+	}
+	HAL_RTC_GetAlarm(&hrtc, &sAlarm2, alarmAB, RTC_FORMAT_BIN);
+	print_time("Setting alarm time", { sAlarm2.AlarmTime.Hours, sAlarm2.AlarmTime.Minutes, sAlarm2.AlarmTime.Seconds, 1, 1, 1 });
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+
+/**
+ * @brief Set RTC time to given time string
+ * @param[in] time time in string format recieved from neoway
+ */
+
+void Set_RTC_TIME(string time) {
+
+	RTC_TimeTypeDef sTime = { 0 };
+	RTC_DateTypeDef sDate = { 0 };
+
+	RTC_TimeTypeDef sTime_saved = { 0 };
+	RTC_DateTypeDef sDate_saved = { 0 };
+
+	HAL_RTC_GetTime(&hrtc, &sTime_saved, RTC_FORMAT_BCD);
+	HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BCD);
+
+	/** Initialize RTC and set the Time and Date
+	 */
+	sTime.Hours = 0x0;
+	sTime.Minutes = 0x0;
+	sTime.Seconds = 0x0;
+	sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+	sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+	if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK) {
+		Error_Handler();
+	}
+	sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+	sDate.Month = RTC_MONTH_JANUARY;
+	sDate.Date = 0x1;
+	sDate.Year = 0x0;
+
+	if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK) {
+		Error_Handler();
+	}
+
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Download File to neoway storage
+ * @param[in] link	link to download file from
+ */
+
+void httpget(const string &link) {
+	neoway.SEND_RECIEVE("AT+HTTPSPARA=url," + link, { 5000 }, 5, { "OK" });
+	neoway.SEND_RECIEVE("AT+HTTPSSETUP", { 1000, 10000 }, 5, { "HTTPSSETUP", "OK" });
+	delay(1 * us_s);
+	neoway.SEND_RECIEVE("AT+HTTPSGET=0", { 5000, 15000 }, 5, { "OK", "+HTTPSGETRPT: 10" });
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief Extract the file name from download link
+ * @param[in] link download link
+ * @param[output] file_name_temp
+ * @return param
+ */
+void get_file_name(const string &link, string &file_name_temp) {
+	uint32_t file_name_start = link.find_last_of("/");
+	if (file_name_start != 0) {
+		file_name_temp = link.substr(file_name_start + 1);
+		both_debug.Print2("\r\nfile name = \'" + file_name_temp + "\'\r\n");
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief HTTPS file downloader to string conversion : downloads the file and saves it to a string
+ * @param string link - the link to file that has to be downloaded
+ * @retval string
+ */
+void https_file_download(string &link) {
+	delay(1 * us_s);
+	httpget(link);
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE) or defined(MOHIT)
+/**
+ * @brief neoway publish test function
+ * @retval string
+ */
+void neoway_publish(string topic) {
+	neoway.SET_data_pub_topic(topic);
+	both_debug.Print2("\r\nPublishing data\r\n");
+	save_ble_print(0);
+	data_packet.MAKE_DATA_JSON(data_packet.$CLEAR_ALL, 1);
+	neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(data_packet.GET_JSON_STRING_LEN()), { 5000 }, 1, { ">" });
+	neoway.SEND_RECIEVE(data_packet.GET_JSON_STRING(), { 5000, 5000 }, 1, { "OK", "PUB" });
+	restore_ble_print();
+	data_packet.CLEAR();
+}
+#endif
+
+#if defined(APP_CODE)
+/**
+ * @brief All sensor class objects configuration
+ */
+void object_setup() {
+	refresh_counter();
+
+	/** Sensor Configuration and frames
+	 *	NPK_SENSOR: 1 : 01 03 00 00 00 03 05 CB
+	 *	GEMHO_4_1: 4 : 01 03 00 00 00 05 85 C9
+	 *	GEMHO_AIR_TPH: 2 : 01 03 00 00 00 06 C5 C8
+	 *	GEMHO_SOIL_TH: 1 : 01 03 00 06 00 02 24 0A
+	 *	GEMHO_SOIL_NPK: 1 : 01 03 00 1E 00 03 65 CD
+	 *	GEMHO_7_1: 3 : 01 03 00 06 00 1B E5 C0
+	 *	NPK_SENSOR: 1 : 01 03 00 00 00 03 05 CB
+	 *	LEAF_SENSOR: 3 : 01 03 00 00 00 03 05 CB
+	 *	SOIL_SENSOR: 3 : 01 03 00 00 00 02 C4 0B
+	 *	AIR_TPH_SENSOR: 3 : 01 03 00 00 00 03 05 CB
+	 *	RAIN_GAUGE_SENSOR: 2 : 01 03 00 00 00 01 84 0A
+
+	 *	AWS 2.0 RS485 ports
+	 *	1 Air TPH
+	 *	2 SHT
+	 *	3 NPK
+	 *	4 LEAF WETNESS(GEMHO/RENKE)
+	 *	5 RG-R/GEM_ILLUMINOSITY
+	 *	6 7_1
+	 *	7 4_1
+
+	 *	AWS 2.0 ADC Pins
+	 *	ADC1_IN1 Solar panel converted input
+	 *	ADC1_IN3 Battery converted input
+	 */
+
+	both_debug.Print2("\r\nOBJ_SETUP : ");
+
+//	GEMHO_AIR_TPH.SET_REDE(1);
+	SENTEK_AIR_TPH.SET_REDE(1);
+//	GEMHO_SOIL_TH.SET_REDE(2);
+//	GEMHO_SOIL_NPK.SET_REDE(3);
+	LEAF_SENSOR.SET_REDE(4);
+//	RAIN_GAUGE_SENSOR.SET_REDE(5);
+//	PRESSURE.SET_REDE(6);//add
+	SENTEK_AIR_TP.SET_REDE(6);
+//	GEMHO_ILLUMINOSITY.SET_REDE(5);
+//	GEMHO_LEAF.SET_REDE(4);
+//	GEMHO_4_1.SET_REDE(7);
+	NPK_SENSOR.SET_REDE(3);
+	SOIL_SENSOR.SET_REDE(2);
+ 	AIR_TPH_SENSOR.SET_REDE(1);
+
+	/**
+	 *	For OBJ.ADD_PARA("Name to be sent in json packet", < Factor of multiplication after converting from hex >,< No of bytes to be recieved for parameter >) // For RS485 Address the parameter refers after starting from address mentioned in frame
+	 */
+
+	CHANGE_ADD.ADD_PARA("ADDRESS", 256.0);  // 0
+	CHANGE_ADD.SET_frame( { 0xFF, 0x03, 0x00, 0x0F });
+
+//	GEMHO_4_1.ADD_PARA("ATMOS_TEMPERATURE");  // 0
+//	GEMHO_4_1.ADD_PARA("ATMOS_HUMIDITY");  // 1
+//	GEMHO_4_1.ADD_PARA("SOLAR_RADIATION", 1.0, 2);  // 2
+//	GEMHO_4_1.ADD_PARA("CO2", 1.0);  // 4
+//	GEMHO_4_1.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
+
+//	GEMHO_AIR_TPH.ADD_PARA("ATMOS_HUMIDITY");  // 0
+//	GEMHO_AIR_TPH.ADD_PARA("ATMOS_TEMPERATURE");  // 1
+//	GEMHO_AIR_TPH.ADD_PARA("SKIP", 1, 3);  // 2
+//	GEMHO_AIR_TPH.ADD_PARA("ATMOS_PRESSURE", 1.0);  // 5
+//	GEMHO_AIR_TPH.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
+
+		AIR_HT.ADD_PARA("HT_LEF_HUM");
+		AIR_HT.ADD_PARA("LEAF_TEMP");
+		AIR_HT.SET_add_to_json(1);
+
+		SENTEK_AIR_TPH.SET_manual_baud(4800);
+		SENTEK_AIR_TPH.ADD_PARA("ATMOS_HUMIDITY");  // 0
+		SENTEK_AIR_TPH.ADD_PARA("ATMOS_TEMPERATURE");  // 1
+		SENTEK_AIR_TPH.ADD_PARA("SKIP", 1.0, 4);  // 2,3,4,5
+	//	SENTEK_AIR_TPH.ADD_PARA("ATMOS_PRESSURE", 1.0);  // 5
+		SENTEK_AIR_TPH.ADD_PARA("SOLAR_RADIATION", 1.0,2);  //6,7
+		SENTEK_AIR_TPH.SET_frame( { 0x01, 0x03, 0x01, 0xF4 });
+
+//	GEMHO_SOIL_TH.ADD_PARA("SOIL_TEMPERATURE", 100.0);
+//	GEMHO_SOIL_TH.ADD_PARA("SOIL_MOISTURE", 100.0);
+//	GEMHO_SOIL_TH.SET_frame( { 0x01, 0x03, 0x00, 0x06 });
+/*
+	GEMHO_SOIL_NPK.ADD_PARA("NITROGEN", 1.0);
+	GEMHO_SOIL_NPK.ADD_PARA("PHOSPHORUS", 1.0);
+	GEMHO_SOIL_NPK.ADD_PARA("POTASSIUM", 1.0);
+	GEMHO_SOIL_NPK.SET_frame( { 0x01, 0x03, 0x00, 0x1E });
+*/
+
+	SENTEK_AIR_TP.SET_manual_baud(4800);
+	SENTEK_AIR_TP.ADD_PARA("ATMOS_PRESSURE",1.0);  // 06
+//	GEMHO_7_1.ADD_PARA("SOIL_MOISTURE", 100.0);  // 07
+//	GEMHO_7_1.ADD_PARA("SOIL_CONDUC", 1.0);  // 08
+//	GEMHO_7_1.ADD_PARA("SOIL_PH", 100.0);  // 09
+//	GEMHO_7_1.ADD_PARA("SKIP", 1, 20);  // 0A
+//	GEMHO_7_1.ADD_PARA("NITROGEN", 1.0);  // 1E
+//	GEMHO_7_1.ADD_PARA("PHOSPHORUS", 1.0);  // 1F
+//	GEMHO_7_1.ADD_PARA("POTASSIUM", 1.0);  // 20
+//	GEMHO_7_1.SET_frame( { 0x01, 0x03, 0x00, 0x06, });
+	SENTEK_AIR_TP.SET_frame( { 0x06, 0x03, 0x00, 0x00 });
+
+/*	GEMHO_LEAF.ADD_PARA("LEAF_TEMP", 100.0);
+	GEMHO_LEAF.ADD_PARA("LEAF_HUM", 100.0);
+	GEMHO_LEAF.SET_frame( { 0x01, 0x03, 0x00, 0x41 });
+
+	GEMHO_ILLUMINOSITY.ADD_PARA("SOLAR_RADIATION", 1.0, 2);  // 2
+	GEMHO_ILLUMINOSITY.SET_frame( { 0x01, 0x03, 0x00, 0x02 });
+*/
+//	PRESSURE.ADD_PARA("ATMOS_PRESSURE");
+//	PRESSURE.SET_frame( { 0x01, 0x03, 0x00, 0x05 });
+
+	NPK_SENSOR.SET_manual_baud(4800);
+	NPK_SENSOR.ADD_PARA("NITROGEN");
+	NPK_SENSOR.ADD_PARA("PHOSPHORUS");
+	NPK_SENSOR.ADD_PARA("POTASSIUM");
+	NPK_SENSOR.SET_frame( { 0x03, 0x03, 0x00, 0x1E });
+
+	LEAF_SENSOR.SET_manual_baud(4800);
+	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
+//	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
+//	LEAF_SENSOR.ADD_PARA("LEAF_COND");
+	LEAF_SENSOR.SET_frame( { 0x04, 0x03, 0x00, 0x00 });
+
+	SOIL_SENSOR.SET_manual_baud(4800);
+	SOIL_SENSOR.ADD_PARA("SOIL_MOISTURE");
+	SOIL_SENSOR.ADD_PARA("SOIL_TEMPERATURE");
+	SOIL_SENSOR.SET_frame( { 0x02, 0x03, 0x00, 0x00 });
+
+	AIR_TPH_SENSOR.SET_manual_baud(9600);
+	AIR_TPH_SENSOR.ADD_PARA("ATMOS_TEMPERATURE");
+	AIR_TPH_SENSOR.ADD_PARA("ATMOS_HUMIDITY");
+	AIR_TPH_SENSOR.ADD_PARA("ATMOS_PRESSURE");
+	AIR_TPH_SENSOR.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
+
+//	RAIN_GAUGE_SENSOR.SET_manual_baud(9600);
+//	RAIN_GAUGE_SENSOR.ADD_PARA("RAIN_INTENSITY");
+//	RAIN_GAUGE_SENSOR.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
+
+	WIND_DIRECTION_SENSOR.ADD_PARA("WIND_DIRECTION");
+	WIND_DIRECTION_SENSOR.SET_channel(ADC_CHANNEL_3);
+	WIND_DIRECTION_SENSOR.SET_factor(360.0 / 3500);
+//	WIND_DIRECTION_SENSOR.SET_factor(3.3 / 4096);
+//	WIND_DIRECTION_SENSOR.SET_factor(360 / 4096);
+
+	BATTERY.ADD_PARA("BATTERY_VOLTAGE");
+	BATTERY.SET_channel(ADC_CHANNEL_3);
+	BATTERY.SET_factor((3.3 / 4095) * 6.000 * 1.0957);  // ((3.3/4095)*6.000*1.0957) = 0.0052978
+	BATTERY.SET_offset(0.1209);
+
+	SOLAR_PANEL.ADD_PARA("SOLAR_PANNEL_VOLTAGE");
+	SOLAR_PANEL.SET_channel(ADC_CHANNEL_1);
+	SOLAR_PANEL.SET_factor((3.3 / 4095) * 10.0908 * 1.06);
+	SOLAR_PANEL.SET_offset(-0.640);
+
+	MISOL_DIR.ADD_PARA("WIND_DIRECTION");
+	MISOL_DIR.SET_channel(ADC_CHANNEL_4);
+	MISOL_DIR.SET_factor(3.3 / 4095.0);
+
+	MISOL_SPEED.ADD_PARA("WIND_SPEED");
+	MISOL_SPEED.SET_PIN(WS_M_IN_GPIO_Port, WS_M_IN_Pin);
+
+	IRROMETER_PRIMARY.ADD_PARA("IRROMETER_CB_PRIMARY");
+	IRROMETER_PRIMARY.SET_channel(ADC_CHANNEL_10);
+	IRROMETER_PRIMARY.SET_PIN1(IRRO1_1_GPIO_Port, IRRO1_1_Pin);
+	IRROMETER_PRIMARY.SET_PIN2(IRRO1_2_GPIO_Port, IRRO1_2_Pin);
+	IRROMETER_PRIMARY.SET_factor(3.3 / 4095);
+	IRROMETER_PRIMARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());
+	IRROMETER_PRIMARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(1)->value_double);
+
+//	IRROMETER_PRIMARY.SET_soil_connected(GEMHO_SOIL_TH.GET_VAR_VALUE_CONN_PTR());
+//	IRROMETER_PRIMARY.SET_soil_temperature(&GEMHO_SOIL_TH.parameter.at(0)->value_double);
+
+	IRROMETER_SECONDARY.ADD_PARA("IRROMETER_CB_SECONDARY");
+	IRROMETER_SECONDARY.SET_channel(ADC_CHANNEL_11);
+	IRROMETER_SECONDARY.SET_PIN1(IRRO2_1_GPIO_Port, IRRO2_1_Pin);
+	IRROMETER_SECONDARY.SET_PIN2(IRRO2_2_GPIO_Port, IRRO2_2_Pin);
+	IRROMETER_SECONDARY.SET_factor(3.3 / 4095);
+
+	IRROMETER_PRIMARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());
+	IRROMETER_PRIMARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(1)->value_double);
+
+	//IRROMETER_SECONDARY.SET_soil_connected(GEMHO_SOIL_TH.GET_VAR_VALUE_CONN_PTR());
+	//IRROMETER_SECONDARY.SET_soil_temperature(&GEMHO_SOIL_TH.parameter.at(0)->value_double);
+
+	MISOL_RAIN.ADD_PARA("RAIN_INTENSITY");
+	both_debug.Print2("Done\r\n");
+	refresh_counter();
+}
+#else
+void object_setup() {
+}
+#endif
+
+#if defined(RTK)
+void rtk_obj_set() {
+	LAT_LONG.ADD_PARA("A");
+	LAT_LONG.ADD_PARA("AD");
+	LAT_LONG.ADD_PARA("O");
+	LAT_LONG.ADD_PARA("OD");
+
+	WS.SET_VAR_VALUE_CONN(1);
+	DEVICE_ID.SET_VAR_VALUE_CONN(35);
+
+	button.SET_PIN(WIND_SPEED_GPIO_Port, WIND_SPEED_Pin);
+	button.SET_add_to_json(1);
+	button.ADD_PARA("status");
+
+	speed.ADD_PARA("rpm");
+	speed.SET_channel(ADC_CHANNEL_4);
+	speed.SET_THRESHOLD(-100, 10000);
+	speed.SET_factor(100 / 3000);
+}
+#endif
+
+#if  defined(RTK)
+void rtk_json_config() {
+	WS.SET_add_to_json(0);
+	DEVICE_ID.SET_add_to_json(0);
+}
+#endif
+
+#if  defined(RTK)
+double lat_filt(double def) {
+	double latitude = 0;
+	double k_lat_deg = (def * 0.01);
+	unsigned int deg = (int) k_lat_deg;
+
+	if (deg > 8 && 37 > deg) {
+		double sec = (def - (double) deg * 100) / 60;
+		latitude = (double) deg + sec;
+	}
+
+	return latitude;
+}
+#endif
+
+#if  defined(RTK)
+double lng_filt(double kef) {
+	double longitude = 0;
+	double k_lng_deg = (kef * 0.01);
+	unsigned int deglng = (int) k_lng_deg;
+	if (deglng > 68 && 97 > deglng) {
+		double seclng = (kef - (double) deglng * 100) / 60;
+		longitude = (double) deglng + seclng;
+
+	}
+
+	return longitude;
+}
+#endif
+
+#if  defined(RTK)
+uint32_t find_loc(const string &gnss_string = "", uint32_t start_pos = 0, string name = "no name") {
+	uint32_t loc = gnss_string.find(',', start_pos);
+	both_debug.Print2("\r\n" + name + " : " + d_t_s(loc));
+	return loc;
+}
+#endif
+
+#if  defined(RTK)
+void rtk() {
+	string gnss_string = "";
+
+	gnss_string = gnss.GET_LAT_LONG( { 500 }, 15, { "GNGLL" });
+
+	uint32_t gnll_loc = gnss_string.find("$GNGLL");
+	if (gnll_loc == not_found) {
+//		NVIC_SystemReset();
+		return;
+	}
+	both_debug.Print2("\r\ngnll_loc : " + d_t_s(gnll_loc) + "");
+	gnss_string = gnss_string.substr(gnll_loc);
+	both_debug.Print2("\r\n&GNGLL -->" + gnss_string + "<--");
+
+	uint32_t lat_loc_start = 1 + find_loc(gnss_string, 0, "lat_loc_start");
+	uint32_t lat_loc_end = 1 + find_loc(gnss_string, lat_loc_start + 1, "lat_loc_end");
+	uint32_t lat_dir_end = 1 + find_loc(gnss_string, lat_loc_end + 1, "lat_dir_end");
+
+	uint32_t long_loc_end = 1 + find_loc(gnss_string, lat_dir_end + 1, "long_loc_end");
+	uint32_t long_dir_end = 1 + find_loc(gnss_string, long_loc_end + 1, "long_dir_end");
+
+	string lat_str = gnss_string.substr(lat_loc_start, lat_loc_end - lat_loc_start - 1);
+	both_debug.Print2("\r\nLAT -->" + lat_str + "<--\r\n");
+	double lat_db = lat_filt(s_t_d(lat_str));
+
+	both_debug.Print2("\r\nLAT CONVERTED -->" + d_t_s(lat_db, 7) + "<--\r\n");
+	string lat_dir_str = gnss_string.substr(lat_loc_end, lat_dir_end - lat_loc_end - 1);
+	both_debug.Print2("\r\nLATDIR -->" + lat_dir_str + "<--\r\n");
+
+	string long_str = gnss_string.substr(lat_dir_end, long_loc_end - lat_dir_end - 1);
+	both_debug.Print2("\r\nLONG -->" + long_str + "<--\r\n");
+	double long_db = lng_filt(s_t_d(long_str));
+	both_debug.Print2("\r\nLONG CONVERTED -->" + d_t_s(long_db, 7) + "<--\r\n");
+	string long_dir_str = gnss_string.substr(long_loc_end, long_dir_end - long_loc_end - 1);
+	both_debug.Print2("\r\nLONGDIR -->" + long_dir_str + "<--\r\n");
+
+	LAT_LONG.SET_PARA_VALUE(0, lat_db, 7);
+	LAT_LONG.SET_PARA_VALUE(1, lat_dir_str);
+	LAT_LONG.SET_PARA_VALUE(2, long_db, 7);
+	LAT_LONG.SET_PARA_VALUE(3, long_dir_str);
+	gnss_string = "";
+}
+#endif
+
+#if  defined(RTK)
+void rtk_other_reading() {
+	V_12.SET(1, 10);
+	double but_state = button.READ_STATE(1);
+	both_debug.Print2("\r\nbutton state - " + d_t_s(but_state));
+	if (but_state == 1) {
+		double vs_speed2 = speed.ANALOG_READ(1);
+		both_debug.Print2("\tVS speed direct - " + d_t_s(vs_speed2));
+	} else {
+		speed.SET_PARA_VALUE(0, 0, 0);
+	}
+}
+#endif
+
+#if  defined(RTK)
+void change_add_json(bool b_lat_long, bool b_button, bool b_speed) {
+	LAT_LONG.SET_add_to_json(b_lat_long);
+	button.SET_add_to_json(b_button);
+	speed.SET_add_to_json(b_speed);
+}
+#endif
+
+#if defined(APP_CODE)
+/**
+ * @brief infinite Loop to repeat sensor readings, used for testing device.
+ * @details Can be started by setting SENSOR_ONLY in Menu to 1
+ * 			Can be exited by entering 1 at end of loop
+ */
+void SENSOR_ONLY_FUNC() {
+	V_12.SET(1, 1 * us_s);
+	while (1) {
+		both_debug.Print2("\r\n_______");
+		refresh_counter();
+		change_address_rs485();
+		LEAF_SENSOR.RS485_READ();
+//		GEMHO_SOIL_NPK.RS485_READ();
+		SENTEK_AIR_TP.RS485_READ();
+//		GEMHO_4_1.RS485_READ();
+	//	GEMHO_AIR_TPH.RS485_READ();
+		SENTEK_AIR_TPH.RS485_READ();
+//		GEMHO_SOIL_TH.RS485_READ();
+//		GEMHO_ILLUMINOSITY.RS485_READ();
+//		GEMHO_LEAF.RS485_READ();
+//		PRESSURE.RS485_READ();
+		NPK_SENSOR.RS485_READ();
+		SOIL_SENSOR.RS485_READ();
+ 		AIR_TPH_SENSOR.RS485_READ();
+//		RAIN_GAUGE_SENSOR.RS485_READ();
+
+		BATTERY.ANALOG_CONVERT_AVERAGE(20, 1);
+
+		SOLAR_PANEL.ANALOG_CONVERT_AVERAGE(20, 1);
+
+		IRROMETER_PRIMARY.IRRO_READ(10, 1);
+		IRROMETER_SECONDARY.IRRO_READ(10, 1);
+//
+		MISOL_DIR.DIRECTION_READ(1, 1);
+		MISOL_SPEED.SPEED_READ(5000, 1);
+		MISOL_RAIN.GET_READING(1);
+		if (both_debug.Both_read_check("Enter 1 to exit", 5, "1") == $EXPECTED_RESPONSE) {
+			break;
+		}
+	}
+	V_12.SET(0);
+}
+#endif
+#if defined(APP_CODE)
+/**
+ * @brief Get reading from sensor and save it in respective parameters
+ */
+void fetch_reading() {
+	V_12.SET(1, 15 * us_s);
+
+	both_debug.Print2("\r\n_______");
+	change_address_rs485();
+	LEAF_SENSOR.RS485_READ();
+//	GEMHO_SOIL_NPK.RS485_READ();
+	SENTEK_AIR_TP.RS485_READ();
+//	GEMHO_4_1.RS485_READ();
+//	GEMHO_AIR_TPH.RS485_READ();
+	SENTEK_AIR_TPH.RS485_READ();
+//	GEMHO_SOIL_TH.RS485_READ();
+//	GEMHO_ILLUMINOSITY.RS485_READ();
+//	GEMHO_LEAF.RS485_READ();
+//	PRESSURE.RS485_READ();
+	NPK_SENSOR.RS485_READ();
+	SOIL_SENSOR.RS485_READ();
+ 	AIR_TPH_SENSOR.RS485_READ();
+//	RAIN_GAUGE_SENSOR.RS485_READ();
+
+	BATTERY.ANALOG_CONVERT_AVERAGE(50, 1);
+
+	SOLAR_PANEL.ANALOG_CONVERT_AVERAGE(50, 1);
+
+	IRROMETER_PRIMARY.IRRO_READ(10, 1);
+	IRROMETER_SECONDARY.IRRO_READ(10, 1);
+
+	MISOL_DIR.DIRECTION_READ(1, 1);
+	MISOL_SPEED.SPEED_READ(5000, 1);
+	MISOL_RAIN.GET_READING(1);
+
+	//AIR_HT.SET_VAR_VALUE_CONN(1);
+	I2CSensorREDE(&aht_temp,&aht_hum);
+	AIR_HT.SET_PARA_VALUE(0,aht_hum,3);
+	AIR_HT.SET_PARA_VALUE(1,aht_temp,3);
+
+	analog_index = 0;
+	V_12.SET(0);
+	MISOL_RAIN.CLEAR_TIP();//reset the rain gauge
+}
+#endif
+
+#if defined(APP_CODE)
+/**
+ * @brief HAL Callback for External interrupt
+ * @details Used for Misol Rain Gauge, increments the reading for rain gauge each time it recieves interrupt at rain gauge pin.
+ */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+
+	if (GPIO_Pin == RG_M_INT_Pin) {
+		if (HAL_GPIO_ReadPin(RG_M_INT_GPIO_Port, RG_M_INT_Pin) == GPIO_PIN_SET) {
+			MISOL_RAIN.ADD_TIP();
+		}
+	}
+#if defined(UB1_ON)
+	if (GPIO_Pin == UB1_Pin) {
+		HAL_PWR_DisableSleepOnExit();
+	}
+#if defined(UL1_ON)
+	LED_1.Toggle(10 * us_ms);
+	LED_1.Toggle();
+#endif
+#endif
+}
+#endif
+
+#if defined(APP_CODE)  or defined(OTA_CODE)
+/**
+ * @brief HAL Callback for RTC Alarm A
+ * @details Used to set the flag to restart the code to bootloader once a day to check any available OTA
+ */
+
+void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
+
+#if defined(OTA_CODE)
+	check_ota = 1;
+#endif
+#if defined(APP_CODE)
+	check_ota = 1;
+#endif
+}
+#endif
+
+#if defined(APP_CODE)  or defined(OTA_CODE)
+/**
+ * @brief HAL Callback for RTC Alarm B
+ * @details Used to Wake up from sleep
+ */
+
+void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef *hrtc) {
+	HAL_PWR_DisableSleepOnExit();
+}
+#endif
+
+#if defined(APP_CODE)  or defined(OTA_CODE)
+/**
+ * @brief HAL Callback for RTC Timer
+ * @details Used to refresh watchdog timer according to the flag, this is used to increase the time allowed by original watchdog timer
+ * @param[in] hrtc
+ */
+
+void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc) {
+	switch (watchdog_cont) {
+		case $CONTINUE:
+			HAL_IWDG_Refresh (&hiwdg);
+			watchdog_cont = $BREAK;
+			break;
+
+		case $REPEAT:
+			HAL_IWDG_Refresh(&hiwdg);
+			break;
+
+		case $BREAK:
+			break;
+	}
+}
+#endif
+
+#if defined(APP_CODE)  or defined(OTA_CODE)
+/**
+ * @brief Used for sleeping and waking functionality
+ * @details Helps in setting the next wakeup time exactly to multiple of provided interval starting from 12:00PM
+ * 			This also clears the Raingauge at night
+ * @param[in] sTime_saved
+ * @param[in] sDate_saved
+ * @param[in] seconds
+ * @return RTC_TimeTypeDef
+ */
+
+RTC_TimeTypeDef ADD_seconds(RTC_TimeTypeDef &sTime_saved, RTC_DateTypeDef &sDate_saved, uint32_t seconds) {
+	both_debug.Print2("\r\nCurrent Time - " + d_t_s(sTime_saved.Hours) + ":" + d_t_s(sTime_saved.Minutes, 0, 1) + ":" + d_t_s(sTime_saved.Seconds, 0, 1) + "  " + d_t_s(sDate_saved.Date, 0, 1) + "/" + d_t_s(sDate_saved.Month, 0, 1) + "/" + d_t_s(sDate_saved.Year, 0, 1));
+	RTC_TimeTypeDef ret_time = { 0 };
+	RTC_DateTypeDef ret_date = { 0 };
+	uint8_t temp_sec = (seconds % 60);
+	uint8_t temp_min = (seconds / 60);
+	uint8_t temp_hr = (seconds / 3600);
+	uint8_t month_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	ret_time.Seconds = sTime_saved.Seconds;
+	ret_time.Minutes = sTime_saved.Minutes;
+	ret_time.Hours = sTime_saved.Hours;
+
+	if (ret_time.Seconds + temp_sec > 59) {
+		ret_time.Minutes++;
+		ret_time.Seconds += temp_sec - 60;
+	} else {
+		ret_time.Seconds += temp_sec;
+	}
+
+	if (ret_time.Minutes + temp_min > 59) {
+		ret_time.Hours++;
+		ret_time.Minutes += temp_min - 60;
+	} else {
+		ret_time.Minutes += temp_min;
+	}
+
+	if (ret_time.Hours + temp_hr > 23) {
+		ret_date.Date++;
+//#if defined(APP_CODE)
+//		MISOL_RAIN.CLEAR_TIP();// uncomment for Accumulative reading for 10
+//#endif
+		ret_time.Hours += temp_hr - 24;
+	} else {
+		ret_time.Hours += temp_hr;
+	}
+
+	ret_date.Date += sDate_saved.Date;
+	ret_date.Month += sDate_saved.Month;
+	ret_date.Year += sDate_saved.Year;
+
+	if (ret_date.Date > month_days[sDate_saved.Month]) {
+		ret_date.Month++;
+		ret_date.Date -= month_days[sDate_saved.Month];
+	}
+
+	if (ret_date.Month > 12) {
+		ret_date.Year++;
+	}
+
+	both_debug.Print2("\r\nNext Wakeup Time - " + d_t_s(ret_time.Hours) + ":" + d_t_s(ret_time.Minutes, 0, 1) + ":" + d_t_s(ret_time.Seconds, 0, 1) + "  " + d_t_s(ret_date.Date, 0, 1) + "/" + d_t_s(ret_date.Month, 0, 1) + "/" + d_t_s(ret_date.Year, 0, 1));
+	return ret_time;
+}
+#endif
+
+#if defined(APP_CODE)  or defined(OTA_CODE)
+/**
+ * @brief Sets next time to wake up at Alarm B
+ * @details Takes in current second and sets next wakeup time on RTC Alarm B
+ * @param[in] uint32_t
+ */
+
+void SET_WAKEUP_INTERVAL(uint32_t timer) {
+	both_debug.Print2("\r\nGot timer: " + d_t_s(timer, 0, 1) + " Minutes\r\n");
+	timer = timer * 60;
+	RTC_TimeTypeDef sTime_saved = { 0 };
+	RTC_DateTypeDef sDate_saved = { 0 };
+	HAL_RTC_GetTime(&hrtc, &sTime_saved, RTC_FORMAT_BIN);
+	HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BIN);
+
+	uint32_t seconds_now = sTime_saved.Hours * 3600 + sTime_saved.Minutes * 60 + sTime_saved.Seconds;
+	uint32_t next_time = 0;
+
+	while (timer * next_time <= seconds_now) {
+		next_time++;
+	}
+	timer = timer * next_time - seconds_now;
+
+	RTC_AlarmTypeDef sAlarm = { 0 };
+	HAL_RTC_GetAlarm(&hrtc, &sAlarm, RTC_ALARM_B, RTC_FORMAT_BIN);
+	HAL_RTC_GetAlarm(&hrtc, &sAlarm, RTC_ALARM_B, RTC_FORMAT_BIN);
+	print_time("Alarm time", { sAlarm.AlarmTime.Hours, sAlarm.AlarmTime.Minutes, sAlarm.AlarmTime.Seconds, 1, 1, 1 });
+
+	RTC_TimeTypeDef sTime_next = ADD_seconds(sTime_saved, sDate_saved, timer);
+	Set_RTC_ALARM(sTime_next, RTC_ALARM_B);
+}
+#endif
+
+#if defined(APP_CODE)  or defined(OTA_CODE)
+/**
+ * @brief Used to check if RTC is set or not so as to prevent eternal sleep or undefined behaviour
+ */
+
+bool check_no_rtc() {
+	RTC_DateTypeDef sDate_saved = { 0 };
+	HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BIN);
+	print_time("RTC CHECK", { 1, 1, 1, sDate_saved.Date, sDate_saved.Month, sDate_saved.Year });
+	if (sDate_saved.Year == 1) {
+		return 1;
+	}
+	return 0;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief get size of file from neoway
+ * @param file_name name of file downloaded from the s3 bucket
+ * @retval uint32_t
+ */
+uint32_t get_file_size(string &file_name) {
+	if (check_cont_flags()) {
+		string response_string = neoway.SEND_RECIEVE("AT+FSLIST?", { 10000 }, 3, { "OK" });
+		ota_break(response_string.size() < 3, "FSLIST");
+		if (check_cont_flags()) {
+			uint32_t file_index = response_string.find(file_name.c_str());
+			if (file_index == not_found) {
+				both_debug.Print2("\r\nFILE NOT FOUND : " + file_name + "\r\n");
+				return not_found;
+			}
+			uint32_t n_index = response_string.find("\r", file_index);
+			uint32_t size_index = file_index + file_name.size() + 1;
+			string file_size = response_string.substr(size_index, n_index - size_index);
+			both_debug.Print2("\r\nFile size in = \'" + file_size + "\'\r\n");
+			return s_t_d(file_size);
+		}
+	}
+	return not_found;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief checks neo_control and ota_control flags to report it back
+ * @details details
+ * @return bool
+ */
+
+bool check_cont_flags() {
+	bool a = ota_cont == $CONTINUE && neo_control == $CONTINUE;
+	return a;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Used to stop OTA if conditions are not fulfiled, conditions are provided in OTA code
+ * @param[in] bool
+ * @param[in] string
+ */
+
+void ota_break(bool cond, string a) {
+	if (cond) {
+		ota_cont = $BREAK;
+		both_debug.Print2("\r\n\tOTA BREAK FUNC : " + a);
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Procedure of OTA
+ * @details Used by OTA_FUNCTION()
+ * Takes in file name and file size to copy the file from neoway to internal memory
+ * @param[in] string
+ * @param[in] uint32_t
+ */
+
+void ota_proc(string &file_name, uint32_t file_size) {
+	refresh_counter();
+	string write_string(5000, ' ');
+	string command, skip_size;
+	both_debug.Print2("\r\nSTARTING OTA");
+	save_ble_print(0);
+	uint32_t string_size = 2048 * 2;
+	uint32_t low_addr, no_of_bytes;
+
+	for (uint32_t var = 0; var < (file_size / string_size) + 1; var++) {
+		if (check_cont_flags()) {
+			low_addr = (var * string_size);
+			if (low_addr + string_size < file_size) {
+				no_of_bytes = string_size;
+			} else {
+				no_of_bytes = file_size - low_addr;
+			}
+			command = "AT+FSRF=\"" + file_name + "\",1," + d_t_s(no_of_bytes, 0) + "," + d_t_s(low_addr, 0);
+			skip_size = "\r\n+FSRF: " + d_t_s(no_of_bytes, 0) + ",";
+			write_string.clear();
+			neoway.SEND_RECIEVE_POINTER(command, { 5 * ms_s }, 1, { "OK" }, write_string);
+			if (check_cont_flags()) {
+				for (int var = 0; var < 6; var++) {
+					write_string.pop_back();
+				}
+				write_string.erase(0, skip_size.size());
+				ota_break(write_string.size() != no_of_bytes, "NO of bytes not equal");
+				if (check_cont_flags()) {
+					both_debug.Print2("Writing " + d_t_s(write_string.size(), 0) + " bytes");
+					write_data_to_flash_app(write_string, 1);
+					write_string.clear();
+				}
+			}
+		} else {
+			break;
+		}
+	}
+	restore_ble_print();
+
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Used to delete OTA file in Neoway
+ * @param[in] string
+ */
+
+void neoway_delete_file(string &file_name) {
+	neoway.SEND_RECIEVE("AT+FSLIST?", { 10000 }, 5, { "OK" });
+	neoway.SEND_RECIEVE("AT+FSDF=\"" + file_name + "\"", { 10000 }, 5, { "OK" });
+	neoway.SEND_RECIEVE("AT+FSLIST?", { 10000 }, 5, { "OK" });
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Used to sync ota_cont to neo_cont to stop ota function if neoway malfunctions
+ */
+
+void update_ota_cont() {
+	if (neo_control == $BREAK) {
+		ota_cont = $BREAK;
+	}
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Main OTA function
+ * @details checks and fetches link for meta and ota if available
+ * Downloads the file to neoway
+ * Erases the existing code from memory
+ * Reports to ota_proc() to copy it to memory
+ * Updates on cloud if OTA is done correctly
+ */
+void OTA_FUNCTION() {
+//#define OTA_ASK
+	if (both_debug.Both_read_check("Enter 0 to skip ota", 15, "0") != $EXPECTED_RESPONSE) {
+#if defined(OTA_ASK)
+		if (both_debug.Both_read_check("Perform OTA NEW - Enter \"0\" to cont", 10, "0") == $EXPECTED_RESPONSE) {
+#endif
+		if (check_cont_flags()) {
+			https_setup();
+			update_ota_cont();
+
+			string ota_link, meta_link;
+
+			GET_LINKS(ota_link, meta_link);
+			/**
+			 *	both_debug.Print2("\r\nLINK OTA - " + ota_link);
+			 *	both_debug.Print2("\r\nLINK META - " + meta_link);
+			 */
+
+			bool ota_bool = (ota_link.find("NO") == 0XFFFFFFFF) && (!ota_link.empty());  //if not found - true
+			bool meta_bool = (meta_link.find("NO") == 0XFFFFFFFF) && (!meta_link.empty());  //if not found - true
+
+			ota_break(!ota_bool && !meta_bool, "No link");  //if found cancel ota
+
+			if (check_cont_flags()) {
+				string meta_json_link = "56wdo5bf42tt4luxym2rcvvy5e0vrpaq.lambda-url.us-west-2.on.aws/?ws=" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0);
+				uint32_t start_length = meta_json_link.size();
+#if defined(OTA_ASK)
+					if (both_debug.Both_read_check("\r\nDownload New File? - Enter \"0\" to cont", 10, "0") == $EXPECTED_RESPONSE) {
+#endif
+				if (meta_bool) {
+					both_debug.Print2("\r\nDownloading Meta Data");
+					string meta_json = https_req(meta_link, 0);
+					if (!meta_json.empty()) {
+						if (JSON_EXTRACTER(&meta_json, &data_packet.meta_data_json) == $CONTINUE) {
+							UPDATE_CONFIG(data_packet.meta_data_json);
+							save_meta_neoway();
+						}
+						if (check_cont_flags()) {
+							meta_json_link += "&rm=1";
+						}
+						config_file();
+					}
+				}
+				if (ota_bool) {
+					both_debug.Print2("\r\nDownloading OTA Bin File");
+					https_file_download(ota_link);
+				}
+#if defined(OTA_ASK)
+					}
+#endif
+				if (check_cont_flags() && ota_bool) {
+					string file_name = "";
+					get_file_name(ota_link, file_name);
+					uint32_t file_size = get_file_size(file_name);
+					both_debug.Print2("\r\nFile size out = " + d_t_s(file_size));
+					if (check_cont_flags()) {
+						FLASH_ERASE2(62, 65);  // (start from, no of pages)
+						if (check_cont_flags()) {
+							ota_proc(file_name, file_size);
+#if defined(OTA_ASK)
+								if (both_debug.Both_read_check("\r\nDelete File? - Enter \"0\" to cont", 10, "0") == $EXPECTED_RESPONSE) {
+#endif
+							neoway_delete_file(file_name);
+							if (check_cont_flags()) {
+								meta_json_link += "&ro=1";
+							}
+#if defined(OTA_ASK)
+								}
+#endif
+							both_debug.Print2("\r\nOTA DONE");
+						}
+					}
+				}
+				if (meta_json_link.size() > start_length) {
+					https_req(meta_json_link, 0);
+				}
+			} else {
+				both_debug.Print2("\r\nLink not available");
+			}
+		}
+	}
+#if defined(OTA_ASK)
+	}
+#endif
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief check if index is in range of string  length
+ * @param data string to be converted
+ * @param index start from index of string
+ * @retval uint8_t
+ */
+uint8_t if_in_range(string &data, uint32_t index) {
+	if (index < data.size()) {
+		return data[index];
+	} else
+		return 0;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief convert 8 string char to 64 bit uint
+ * @param data string to be converted
+ * @param index start from index of string
+ * @retval uint64_t
+ */
+uint64_t str_to_64(string &data, uint32_t index) {
+	uint64_t ret2 = 0;
+	for (volatile uint32_t var = 0; var < 8; var++) {
+		uint64_t byte = if_in_range(data, index + var);
+		ret2 = ret2 + (byte << (8 * var));
+	}
+	return ret2;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+
+/**
+ * @brief Used by OTA_FUNCTION() to erase existing code in memory
+ * @details
+ * No need to erase every time. Erase only the first time.
+ * @param[in] uint32_t
+ * @param[in] uint32_t
+ */
+void FLASH_ERASE2(uint32_t Page_tmp, uint32_t NbPages_tmp) {
+
+	both_debug.Print2("Erasing the Flash memory...\r\n");
+//Erase the Flash
+	refresh_counter();
+	FLASH_EraseInitTypeDef EraseInitStruct;
+	uint32_t SectorError = 0;
+	EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
+	EraseInitStruct.Page = Page_tmp;  // 0x3E;
+	EraseInitStruct.NbPages = NbPages_tmp;  // 65; //erase 65 sectors(62->127)
+	EraseInitStruct.Banks = FLASH_BANK_1;
+	HAL_FLASH_Unlock();
+	HAL_FLASHEx_Erase(&EraseInitStruct, &SectorError);
+	HAL_FLASH_Lock();
+
+//	delay(1000);
+	ota_break(SectorError != 0xFFFFFFFF, "Sector error");
+	both_debug.Print2("Successfully Erased Memory\r\n");
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Write data to the Application's actual flash location.
+ * @param data data to be written
+ * @param data_len data length
+ * @is_first_block true - if this is first block, false - not first block
+ * @retval HAL_StatusTypeDef
+ */
+static HAL_StatusTypeDef write_data_to_flash_app(string &data, bool address_reset) {
+	refresh_counter();
+	HAL_StatusTypeDef ret;
+	static uint32_t current_addr_offset = 0;
+	static bool address_reset_2 = address_reset;
+	if (address_reset_2 == 1) {
+		current_addr_offset = 0;
+		address_reset_2 = 0;
+	}
+	both_debug.Print2("\r\nCurrent Address : " + d_t_h_s(appadd + current_addr_offset) + "\r\n");
+//	both_debug.Print2("\r\nwriting -->" + data + "<--\r\n");
+	do {
+		ret = HAL_FLASH_Unlock();
+		if (ret != HAL_OK) {
+			break;
+		}
+		for (uint32_t i = 0; i < data.size(); i = i + 8) {
+			ret = HAL_OK;
+			uint64_t write_data = str_to_64(data, i);
+			ret = HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, (appadd + current_addr_offset), write_data);
+			if (ret == HAL_OK) {
+				//update the data count
+				current_addr_offset += 8;
+			} else {
+				both_debug.Print2("Flash Write Error\r\n");
+				break;
+			}
+		}
+
+		if (ret != HAL_OK) {
+			break;
+		}
+
+		ret = HAL_FLASH_Lock();
+		if (ret != HAL_OK) {
+			break;
+		}
+	} while (false);
+	both_debug.Print2("\r\nWritten Correctly " + d_t_s(current_addr_offset - 8) + " Bytes\r\n");
+	return ret;
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Stop the code until expected response is recieved
+ * @param[in] print_message message to print while stopping code
+ * @param[in] exp_resp response needed to exit the stop condition
+ */
+void STOPPER(string print_message, string exp_resp) {
+	both_debug.Both_read_check("\r\n\r\n\tCODE STOPPED : " + print_message + " : Enter \"" + exp_resp + "\" to cont", 0, exp_resp);
+}
+/**
+ * @brief Stop the code
+ * @param[in] print_message message to print while stopping code
+ */
+void STOPPER_1(string print_message) {
+	static bool print_1 = 1;
+	if (print_1) {
+		both_debug.Print2("\r\n\r\n\tCODE STOPPED : " + print_message);
+		print_1 = 0;
+	}
+	while (1) {
+
+	}
+}
+#endif
+
+#if (defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)) and defined(IWDG_ON)
+HAL_StatusTypeDef IWDG_STDBY() {
+	FLASH_OBProgramInitTypeDef OB;
+	HAL_FLASHEx_OBGetConfig(&OB);
+
+	/* OB.USERConfig returns the FLASH_OPTR register */
+	// Use it to check if OB programming is necessary
+	if (OB.USERConfig & FLASH_OPTR_IWDG_STDBY || OB.USERConfig & FLASH_OPTR_IWDG_STOP) {
+
+		HAL_FLASH_Unlock();
+		HAL_FLASH_OB_Unlock();
+
+		OB.OptionType = OPTIONBYTE_USER;
+		OB.USERType = OB_USER_IWDG_STOP | OB_USER_IWDG_STDBY | OB_USER_IWDG_SW;
+		OB.USERConfig &= ~(FLASH_OPTR_IWDG_STDBY_Msk | FLASH_OPTR_IWDG_STOP_Msk);
+
+		both_debug.Print2("\r\nFlash stdby : " + d_t_b_s(OB.USERConfig, FLASH_OPTR_IWDG_STDBY_Pos, 32) + "\r\n");
+
+		if (HAL_FLASHEx_OBProgram(&OB) != HAL_OK) {
+			HAL_FLASH_OB_Lock();
+			HAL_FLASH_Lock();
+			return HAL_ERROR;
+		}
+//		FLASH_OBProgramInitTypeDef OB;
+		HAL_FLASHEx_OBGetConfig(&OB);
+		both_debug.Print2("\r\nFlash stdby : " + d_t_b_s(OB.USERConfig, FLASH_OPTR_IWDG_STDBY_Pos, 32) + "\r\n");
+
+		HAL_FLASH_OB_Launch();
+
+		/* We should not make it past the Launch, so lock
+		 * flash memory and return an error from function
+		 */
+		HAL_FLASH_OB_Lock();
+		HAL_FLASH_Lock();
+		return HAL_ERROR;
+	}
+
+	return HAL_OK;
+}
+
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief Power OFF all modules in PCB
+ */
+void ALL_POWER_OFF() {
+	neoway.POWER_OFF();
+	V_12.SET(0, 0);
+}
+/**
+ * @brief Power ON all modules in PCB
+ */
+void ALL_POWER_ON() {
+	neoway.POWER_ON();
+	V_12.SET(1, 1);
+}
+#endif
+
+#if defined(APP_CODE) or defined(RTK) or defined(OTA_CODE)
+/**
+ * @brief switch off everything and go to sleep, stop watchdog from restarting
+ */
+void GO_TO_SLEEP() {
+	static uint32_t start_sec = 0;
+	if (both_debug.Both_read_check("Enter 0 to skip sleep", 15, "0") != $EXPECTED_RESPONSE) {
+		if (PRINT_ESSENTIALS.GET_VAR_VALUE_CONN() == 1 || is_any_print()) {
+			save_both_print(1);
+		}
+
+		uint32_t slept_for = HAL_GetTick();
+		both_debug.Print2("\r\nSleeping, took " + d_t_s((slept_for - start_sec) / 1000) + " seconds\r\n");
+
+		if (PRINT_ESSENTIALS.GET_VAR_VALUE_CONN() == 1 || is_any_print()) {
+			restore_both_print();
+		}
+
+		ALL_POWER_OFF();
+		HAL_PWR_EnableSleepOnExit();
+		watchdog_cont = $REPEAT;
+		HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+		watchdog_cont = $CONTINUE;
+		both_debug.Print2("\r\nExiting, slept for " + d_t_s((HAL_GetTick() - slept_for) / 1000) + " seconds\r\n");
+		start_sec = HAL_GetTick();
+	}
+
+}
+#endif
+
+#endif /* INC_CUSTOM_FUNCTIONS_H_ */

@@ -1,0 +1,11 @@
+/*! \mainpage AWS 2.0
+ *
+ * \section intro_sec Introduction
+ *
+ * Automatic Weatherstation 2.0
+ *
+ * \section go_to Link To main.cpp
+ *
+ * [Go to main.cpp](\ref main)
+ * 
+ */

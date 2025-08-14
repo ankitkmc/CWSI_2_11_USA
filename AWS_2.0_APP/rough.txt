@@ -1,0 +1,2 @@
+S:"6jnwkt47x3djv46m3cvneftqoi0unzcs.lambda-url.us-west-2.on.aws/?farmID=995&hardwareID=CWMS_1_1"
+R:AT+HTTPPARA=url,"6jnwkt47x3djv46m3cvneftqoi0unzcs.lambda-url.us-west-2.on.aws/?farmID=995&ha

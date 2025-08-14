@@ -1,0 +1,169 @@
+../Drivers/CMSIS/Include/core_cm4.h:1933:34:void __NVIC_SystemReset()	0	static,ignoring_inline_asm
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:642:7:std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _CharT*, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	24	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:2201:7:std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::replace(size_type, size_type, const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	32	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:548:7:std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:29:34:typename TVisitor::result_type ArduinoJson::V6211HB::detail::VariantData::accept(TVisitor&) const [with TVisitor = ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200>, void>]	8	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:1347:7:std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator+=(const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	0	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:852:7:std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	24	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:822:7:std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:173:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::visitNull()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Memory/../Strings/../Strings/Adapters/../../Strings/Adapters/RamString.hpp:30:10:size_t ArduinoJson::V6211HB::detail::ZeroTerminatedRamString::size() const	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:180:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::accept(TComparer&) [with TComparer = ArduinoJson::V6211HB::detail::Comparer<const char*>]	24	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:678:7:std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:29:8:std::string d_t_s(double, int, bool)	72	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:61:8:double s_t_d(const std::string&)	56	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:108:8:std::string d_t_b_s(uint32_t, uint32_t, uint32_t)	64	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/M_USART.h:11:19:HAL_StatusTypeDef HAL_UARTEx_ReceiveToIdle(UART_HandleTypeDef*, std::string&, uint32_t)	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/M_USART.h:106:6:void UART_Init(UART_HandleTypeDef*, USART_TypeDef*, uint32_t)	8	static,ignoring_inline_asm
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/M_USART.h:123:6:void ADC1_CHANNEL_INIT(uint32_t)	32	static,ignoring_inline_asm
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Memory/../Variant/VariantSlot.hpp:40:16:ArduinoJson::V6211HB::detail::VariantSlot* ArduinoJson::V6211HB::detail::VariantSlot::next()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Object/../Object/../Object/../Object/JsonPair.hpp:45:3:ArduinoJson::V6211HB::JsonPairConst::JsonPairConst(const ArduinoJson::V6211HB::detail::VariantSlot*)	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Document/../Document/../Document/JsonDocument.hpp:42:8:void ArduinoJson::V6211HB::JsonDocument::clear()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Collection/CollectionImpl.hpp:14:21:ArduinoJson::V6211HB::detail::VariantSlot* ArduinoJson::V6211HB::detail::CollectionData::addSlot(ArduinoJson::V6211HB::detail::MemoryPool*)	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Numbers/parseNumber.hpp:21:13:bool ArduinoJson::V6211HB::detail::parseNumber(const char*, VariantData&)	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Deserialization/../StringStorage/../StringStorage/StringCopier.hpp:15:8:void ArduinoJson::V6211HB::detail::StringCopier::startString()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Deserialization/../StringStorage/../StringStorage/StringCopier.hpp:39:8:void ArduinoJson::V6211HB::detail::StringCopier::append(char)	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/INCLUDER.h:58:6:void delay(uint32_t)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h:43:3:VARIABLES::VARIABLES(DynamicArray<VARIABLES*>*, std::string, bool)	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h:34:8:void PWR_PIN::SET(bool, uint32_t)	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:19:6:void set_both_print(bool)	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:24:6:void set_uart_print(bool)	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:27:6:bool is_uart_print()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:31:6:void set_ble_print(bool)	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:34:6:bool is_ble_print()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:56:6:bool is_any_print()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h:47:10:std::string UART_PRINTER::Read(uint32_t)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h:73:8:void UART_PRINTER::Print(std::string)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:757:6:void Set_RTC_TIME(std::string)	56	static,ignoring_inline_asm
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1041:6:void object_setup()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1298:6:void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef*)	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1315:6:void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef*)	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1327:6:void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef*)	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1493:6:bool check_cont_flags()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1583:6:void update_ota_cont()	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1693:9:uint8_t if_in_range(std::string&, uint32_t)	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1708:10:uint64_t str_to_64(std::string&, uint32_t)	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1870:6:void ALL_POWER_OFF()	16	static
+../Core/Src/main.cpp:253:6:void SystemClock_Config()	104	static,ignoring_inline_asm
+../Core/Src/main.cpp:300:6:void Error_Handler()	0	static,ignoring_inline_asm
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.tcc:610:5:std::__cxx11::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, const __cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:11:8:std::string d_t_h_s(uint32_t)	88	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:3524:5:std::__cxx11::basic_string<_CharT, _Traits, _Alloc> std::operator+(__cxx11::basic_string<_CharT, _Traits, _Alloc>&&, __cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	24	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:3547:5:std::__cxx11::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, __cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Memory/MemoryPool.hpp:179:15:const char* ArduinoJson::V6211HB::detail::MemoryPool::findString(const TAdaptedString&) const [with TAdaptedString = ArduinoJson::V6211HB::detail::SizedRamString]	20	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Memory/MemoryPool.hpp:98:15:const char* ArduinoJson::V6211HB::detail::MemoryPool::saveStringFromFreeZone(size_t)	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:173:8:Tda* DynamicArray<Tda>::at(uint32_t) [with Tda = Parameter]	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:90:8:void DynamicArray<Tda>::push_back(Tda) [with Tda = bool]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:40:6:void save_ble_print(bool)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:48:6:void save_uart_print(bool)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:59:6:void save_both_print(bool)	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:104:7:Tda DynamicArray<Tda>::pop_back() [with Tda = bool]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:44:6:void restore_ble_print()	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:52:6:void restore_uart_print()	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:63:6:void restore_both_print()	8	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:3607:5:bool std::operator==(const __cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:288:17:NEOWAY_RETURN NEOWAY::CHECK_RESPONSE(std::string*, std::string*)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:89:10:std::string NEOWAY::SEND_RECIEVE(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >)	248	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:395:8:void NEOWAY::BLE_SEND(std::string)	224	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:29:8:void UART_DEBUG::Print2(std::string)	40	static
+../Core/Src/main.cpp:64:6:void go2app(uint32_t)	56	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:36:8:void UART_DEBUG::Json_print(std::string, std::string, bool)	88	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:566:6:void getcertificate(std::string*)	88	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:626:6:void print_time(std::string, std::initializer_list<unsigned char>)	480	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:633:6:void Print_save_time()	80	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:733:6:void Set_RTC_ALARM(RTC_TimeTypeDef&, uint32_t)	104	static,ignoring_inline_asm
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1448:6:bool check_no_rtc()	56	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:811:6:void get_file_name(const std::string&, std::string&)	64	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1355:17:RTC_TimeTypeDef ADD_seconds(RTC_TimeTypeDef&, RTC_DateTypeDef&, uint32_t)	456	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1417:6:void SET_WAKEUP_INTERVAL(uint32_t)	128	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1506:6:void ota_break(bool, std::string)	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1727:6:void FLASH_ERASE2(uint32_t, uint32_t)	64	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1812:6:void STOPPER_1(std::string)	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:198:8:void NEOWAY::SEND_RECIEVE_POINTER(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >, std::string&)	200	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1523:6:void ota_proc(std::string&, uint32_t)	328	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:379:10:std::string NEOWAY::BLE_READ(uint32_t)	144	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:137:10:std::string UART_DEBUG::Both_Read(uint32_t)	104	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:299:6:void write_file(std::string&, std::string)	248	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:332:6:void neoway_sub(std::string)	152	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:420:6:void add_certificate(std::string, std::string*)	224	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:439:8:std::string delete_certificate(std::string)	104	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:450:8:std::string check_certificate(std::string)	112	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:580:6:void https_setup()	224	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:597:8:std::string https_req(std::string, uint16_t)	240	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:614:6:void neoway_flash_clean()	128	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:646:6:void Get_save_time()	280	static,ignoring_inline_asm
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:796:6:void httpget(const std::string&)	208	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:826:6:void https_file_download(std::string&)	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1465:10:uint32_t get_file_size(std::string&)	152	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1571:6:void neoway_delete_file(std::string&)	208	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:411:8:void NEOWAY::POWER_ON()	168	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1877:6:void ALL_POWER_ON()	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:343:8:void NEOWAY::BLE_NAME(std::string)	200	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:352:8:void NEOWAY::BLE_SETUP(std::string)	240	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:429:8:void NEOWAY::INIT()	256	static
+C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.h:3592:5:typename __gnu_cxx::__enable_if<std::__is_char<_Tp>::__value, bool>::__type std::operator==(const __cxx11::basic_string<_CharT>&, const __cxx11::basic_string<_CharT>&) [with _CharT = char]	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:110:10:std::string UART_DEBUG::Both_Get_pass(uint32_t, int*)	120	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:137:6:void PassAuthen()	80	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:178:8:double Get_entered_value(uint16_t)	40	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:156:17:NEOWAY_RETURN UART_DEBUG::Both_read_check(std::string, uint32_t, std::string, std::string*)	112	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1805:6:void STOPPER(std::string, std::string)	136	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1887:6:void GO_TO_SLEEP()	96	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:173:8:Tda* DynamicArray<Tda>::at(uint32_t) [with Tda = VARIABLES*]	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Memory/MemoryPool.hpp:73:15:const char* ArduinoJson::V6211HB::detail::MemoryPool::saveString(TAdaptedString) [with TAdaptedString = ArduinoJson::V6211HB::detail::SizedRamString]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Collection/CollectionImpl.hpp:108:21:ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::CollectionData::getMember(TAdaptedString) const [with TAdaptedString = ArduinoJson::V6211HB::detail::StaticStringAdapter]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:266:16:ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::VariantData::getMember(TAdaptedString) const [with TAdaptedString = ArduinoJson::V6211HB::detail::StaticStringAdapter]	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Collection/CollectionImpl.hpp:78:21:ArduinoJson::V6211HB::detail::VariantSlot* ArduinoJson::V6211HB::detail::CollectionData::getSlot(TAdaptedString) const [with TAdaptedString = ArduinoJson::V6211HB::detail::SizedRamString]	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:266:16:ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::VariantData::getMember(TAdaptedString) const [with TAdaptedString = ArduinoJson::V6211HB::detail::SizedRamString]	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Numbers/arithmeticCompare.hpp:23:15:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::arithmeticCompare(const T&, const T&) [with T = double]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:143:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::visitFloat(ArduinoJson::V6211HB::JsonFloat)	40	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Numbers/arithmeticCompare.hpp:23:15:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::arithmeticCompare(const T&, const T&) [with T = long long unsigned int]	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:163:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::visitUnsignedInteger(ArduinoJson::V6211HB::JsonUInt)	40	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:29:34:typename TVisitor::result_type ArduinoJson::V6211HB::detail::VariantData::accept(TVisitor&) const [with TVisitor = ArduinoJson::V6211HB::detail::Comparer<bool>]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:168:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::visitBoolean(bool)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:29:34:typename TVisitor::result_type ArduinoJson::V6211HB::detail::VariantData::accept(TVisitor&) const [with TVisitor = ArduinoJson::V6211HB::detail::Comparer<long long int>]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:158:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::visitSignedInteger(ArduinoJson::V6211HB::JsonInteger)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:29:34:typename TVisitor::result_type ArduinoJson::V6211HB::detail::VariantData::accept(TVisitor&) const [with TVisitor = ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::JsonVariantConst, void>]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:138:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::visitObject(const ArduinoJson::V6211HB::detail::CollectionData&)	80	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/VariantCompare.hpp:133:17:ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::VariantComparer::visitArray(const ArduinoJson::V6211HB::detail::CollectionData&)	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:29:34:typename TVisitor::result_type ArduinoJson::V6211HB::detail::VariantData::accept(TVisitor&) const [with TVisitor = ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200>, void>]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:47:8:char ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::current() [with TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:583:30:ArduinoJson::V6211HB::DeserializationError::Code ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::skipSpacesAndComments() [with TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:649:30:ArduinoJson::V6211HB::DeserializationError::Code ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::skipKeyword(const char*) [with TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/../Json/../Numbers/FloatParts.hpp:20:3:ArduinoJson::V6211HB::detail::FloatParts<TFloat>::FloatParts(TFloat) [with TFloat = double]	40	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:55:8:bool ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::eat(char) [with TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/../Json/../Serialization/CountingDecorator.hpp:20:8:void ArduinoJson::V6211HB::detail::CountingDecorator<TWriter>::write(const uint8_t*, size_t) [with TWriter = ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char>, void>]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/../Json/TextFormatter.hpp:148:8:void ArduinoJson::V6211HB::detail::TextFormatter<TWriter>::writeRaw(const char*) [with TWriter = ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char>, void>]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/../Json/TextFormatter.hpp:116:51:typename ArduinoJson::V6211HB::detail::enable_if<ArduinoJson::V6211HB::detail::is_unsigned<TOut>::value>::type ArduinoJson::V6211HB::detail::TextFormatter<TWriter>::writeInteger(T) [with T = long long unsigned int; TWriter = ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char>, void>]	48	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/VariantFunctions.hpp:85:14:ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::variantGetOrAddMember(VariantData*, TAdaptedString, MemoryPool*) [with TAdaptedString = SizedRamString]	56	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Json/Utf8.hpp:13:13:void ArduinoJson::V6211HB::detail::Utf8::encodeCodepoint(uint32_t, TStringBuilder&) [with TStringBuilder = ArduinoJson::V6211HB::detail::StringCopier]	24	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:402:30:ArduinoJson::V6211HB::DeserializationError::Code ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::parseQuotedString() [with TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:567:22:static bool ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::canBeInNonQuotedString(char) [with TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	0	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:379:30:ArduinoJson::V6211HB::DeserializationError::Code ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::parseKey() [with TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/JsonDeserializer.hpp:63:30:ArduinoJson::V6211HB::DeserializationError::Code ArduinoJson::V6211HB::detail::JsonDeserializer<TReader, TStringStorage>::parseVariant(ArduinoJson::V6211HB::detail::VariantData&, TFilter, ArduinoJson::V6211HB::DeserializationOption::NestingLimit) [with TFilter = ArduinoJson::V6211HB::detail::AllowAllFilter; TReader = ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char>, void>; TStringStorage = ArduinoJson::V6211HB::detail::StringCopier]	40	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Deserialization/deserialize.hpp:39:22:) [with TDeserializer = JsonDeserializer; TStream = std::__cxx11::basic_string<char>&; Args = {}; <template-parameter-1-4> = void]	120	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:500:11:LOOP_CONT JSON_EXTRACTER(std::string*, ArduinoJson::V6211HB::StaticJsonDocument<1200>*)	64	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:342:6:void neoway_read()	1320	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/../Json/../Serialization/CountingDecorator.hpp:16:8:void ArduinoJson::V6211HB::detail::CountingDecorator<TWriter>::write(uint8_t) [with TWriter = ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char>, void>]	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/../Json/TextFormatter.hpp:68:8:void ArduinoJson::V6211HB::detail::TextFormatter<TWriter>::writeFloat(T) [with T = double; TWriter = ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char>, void>]	64	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/../Json/TextFormatter.hpp:55:8:void ArduinoJson::V6211HB::detail::TextFormatter<TWriter>::writeChar(char) [with TWriter = ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char>, void>]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Variant/../Variant/VariantData.hpp:29:34:typename TVisitor::result_type ArduinoJson::V6211HB::detail::VariantData::accept(TVisitor&) const [with TVisitor = ArduinoJson::V6211HB::detail::JsonSerializer<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char>, void> >]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/../Json/JsonSerializer.hpp:125:8:size_t ArduinoJson::V6211HB::serializeJson(JsonVariantConst, TDestination&) [with TDestination = std::__cxx11::basic_string<char>]	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h:50:8:void JSON_HANDLER::MAKE_DATA_JSON(clear_enum, bool)	152	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:837:6:void neoway_publish(std::string)	248	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Variant/ConverterImpl.hpp:283:13:void ArduinoJson::V6211HB::convertFromJson(JsonVariantConst, std::string&)	16	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:357:6:0(std::string&, std::string&)	1248	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:357:6:void GET_LINKS(std::string&, std::string&)	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:281:6:void UPDATE_CONFIG(const ArduinoJson::V6211HB::StaticJsonDocument<1200>&)	88	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:313:6:void config_file()	200	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:523:6:void cert_add()	1464	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:461:6:0()	144	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:461:6:void check_all_certificates()	8	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h:87:8:void JSON_HANDLER::MAKE_META_JSON(clear_enum, bool)	104	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:189:6:void MENU_PRINT(bool)	1488	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:269:6:void save_meta_neoway()	32	static
+D:/CWSI_2_10/LIBRARY/CUSTOM/FUNCTIONS.h:1599:6:void OTA_FUNCTION()	168	static
+../Core/Src/main.cpp:139:5:int main()	32	static,ignoring_inline_asm
+D:/CWSI_2_10/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:14:7:NEOWAY::~NEOWAY()	8	static
+../Core/Src/main.cpp:307:1:void __static_initialization_and_destruction_0(int, int)	88	static
+../Core/Src/main.cpp:307:1:cpp)	0	static
+../Core/Src/main.cpp:307:1:cpp)	8	static

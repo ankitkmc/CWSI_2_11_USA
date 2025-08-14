@@ -1,0 +1,10 @@
+11:10:01 **** Incremental Build of configuration Release for project AWS_2.0_APP ****
+make -j8 all 
+arm-none-eabi-size  AWS_2.0_APP.elf 
+   text	   data	    bss	    dec	    hex	filename
+  76368	    140	   9792	  86300	  1511c	AWS_2.0_APP.elf
+Finished building: default.size.stdout
+ 
+
+11:10:02 Build Finished. 0 errors, 0 warnings. (took 984ms)
+
