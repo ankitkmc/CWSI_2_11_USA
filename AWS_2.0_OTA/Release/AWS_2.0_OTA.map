@@ -225,6 +225,8 @@ Discarded input sections
                 0x00000000        0x2 ./Core/Src/main.o
  .text._Z13ALL_POWER_OFFv
                 0x00000000       0x44 ./Core/Src/main.o
+ .text._Z10timestringB5cxx11St16initializer_listIhE
+                0x00000000      0x178 ./Core/Src/main.o
  .text._ZN12DynamicArrayI9ParameterE2atEm
                 0x00000000       0x16 ./Core/Src/main.o
  .rodata._Z13Set_RTC_ALARMR15RTC_TimeTypeDefm.str1.1
@@ -3019,25 +3021,27 @@ LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                                   0x1 (size before relaxing)
  .rodata._Z7d_t_h_sB5cxx11m.str1.1
                 0x0800ab20       0x11 ./Core/Src/main.o
+ .rodata._Z10timestringB5cxx11St16initializer_listIhE.str1.1
+                0x0800ab31        0x5 ./Core/Src/main.o
+                                  0x7 (size before relaxing)
  .rodata._ZN6NEOWAY14CHECK_RESPONSEEPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_.isra.0.str1.1
-                0x0800ab31        0x6 ./Core/Src/main.o
+                0x0800ab36        0x6 ./Core/Src/main.o
  .rodata._ZN6NEOWAY12SEND_RECIEVEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt16initializer_listImEtS6_IS5_E.str1.1
-                0x0800ab37       0x65 ./Core/Src/main.o
+                0x0800ab3c       0x65 ./Core/Src/main.o
                                  0x68 (size before relaxing)
  .rodata._ZN6NEOWAY8BLE_SENDENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800ab9c       0x25 ./Core/Src/main.o
+                0x0800aba1       0x25 ./Core/Src/main.o
                                  0x27 (size before relaxing)
  .rodata._Z6go2appm.str1.1
-                0x0800abc1       0x3d ./Core/Src/main.o
+                0x0800abc6       0x3d ./Core/Src/main.o
  .rodata._ZN10UART_DEBUG10Json_printENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_b.str1.1
-                0x0800abfe        0x9 ./Core/Src/main.o
+                0x0800ac03        0x9 ./Core/Src/main.o
                                  0x13 (size before relaxing)
  .rodata._Z14getcertificatePNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800ac07       0x16 ./Core/Src/main.o
+                0x0800ac0c       0x16 ./Core/Src/main.o
                                  0x1c (size before relaxing)
  .rodata._Z10print_timeNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt16initializer_listIhE.str1.1
-                0x0800ac1d        0x9 ./Core/Src/main.o
-                                  0xb (size before relaxing)
+                0x0800ac22        0x4 ./Core/Src/main.o
  .rodata._Z15Print_save_timev.str1.1
                 0x0800ac26        0x8 ./Core/Src/main.o
  .rodata._Z13get_file_nameRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS4_.str1.1

@@ -14,7 +14,7 @@
 /**
  * total_menu_index.a static variable which stores total no of variables representing total no of sensors connected to stm32
  */
-
+extern uint8_t sample_count;
 static uint8_t total_menu_index = 0;
 /**
  * for definition of VARIABLES class used to define an object representing **a sensor** collected.
@@ -33,6 +33,7 @@ class VARIABLES {
 		 *@details a Dynamic Array - (Object) with pointer pointing to a dynamic array of parameter(structure).Parameter-Dynamic-array-object consisting of pointer pointing to a dynamic array of parameter (structure).Initially Pointing to null
 		 */
 		DynamicArray<Parameter> parameter;
+
 		/**
 		 *@brief Constructor for VARIABLES object with certain input parameters.
 		 *@details To expand variables_pointer -dynamic array size by one and passing value as VARIABLES* Setting.
@@ -67,11 +68,20 @@ class VARIABLES {
 		 *@return SENSOR_RETURN if(input index is within allowable range) return $OK enum else return $para_size_out enum.
 		 */
 		SENSOR_RETURN SET_PARA_VALUE(uint16_t para_index, double value, int decimals = 4) {
+			if(sample_count==0)parameter.at(para_index)->samples=0;
+
 			if (para_index < parameter.size()) {
+//				if(value<=parameter.at(para_index)->max_value){
 				parameter.at(para_index)->value_double = value;
 //			parameter.at(para_index)->value_string = "";
 				parameter.at(para_index)->value_string = d_t_s(value, decimals);
+				parameter.at(para_index)->samples+= value;
+				if(sample_count==5){
+					parameter.at(para_index)->value_double=(parameter.at(para_index)->samples/(sample_count+1));
+					parameter.at(para_index)->value_string = d_t_s(parameter.at(para_index)->value_double, decimals);
+				}
 				return $OK;
+//				}else{return $OUT_OF_THRESHOLD;}
 			} else {
 				return $PARA_SIZE_OUT;
 			}
@@ -93,6 +103,7 @@ class VARIABLES {
 				return $PARA_SIZE_OUT;
 			}
 		}
+
 		/**
 		 * @brief To get a pointer pointing to parameter structure corresponding to input para_index of this VARIABLES object.
 		 * @param [in] para_index uint8 dynamic parameter's array index no whose pointer is to be returned.

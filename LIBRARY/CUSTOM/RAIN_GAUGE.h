@@ -115,7 +115,7 @@ private:
 					return $SENSOR_ERROR;
 				} else {
 					// check if index out of bounds
-					if (SET_PARA_VALUE(index, *rain_mm) != $OK) {
+					if (SET_PARA_VALUE(index, d_t_s(*rain_mm)) != $OK) {
 						return $PARA_SIZE_OUT;
 					}
 					return $OK;

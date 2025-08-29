@@ -1,10 +1,21 @@
-13:19:02 **** Incremental Build of configuration Release for project AWS_2.0_OTA ****
+16:03:25 **** Incremental Build of configuration Release for project AWS_2.0_OTA ****
 make -j8 all 
+arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -DUSE_HAL_DRIVER -DSTM32L433xx -DOTA_CODE -DAWS_2_0 -c -I"D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM" -I"D:/New folder/CWSI_2_11_USA/AWS_2.0_OTA/ArduinoJson-6.x" -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -Os -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "AWS_2.0_OTA.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\New folder\CWSI_2_11_USA\AWS_2.0_OTA\STM32L433VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AWS_2.0_OTA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: AWS_2.0_OTA.elf has a LOAD segment with RWX permissions
+Finished building target: AWS_2.0_OTA.elf
+ 
 arm-none-eabi-size  AWS_2.0_OTA.elf 
+arm-none-eabi-objdump -h -S AWS_2.0_OTA.elf  > "AWS_2.0_OTA.list"
+arm-none-eabi-objcopy  -O binary AWS_2.0_OTA.elf  "AWS_2.0_OTA.bin"
    text	   data	    bss	    dec	    hex	filename
-  47172	    144	   6000	  53316	   d044	AWS_2.0_OTA.elf
+  47124	    144	   5976	  53244	   cffc	AWS_2.0_OTA.elf
 Finished building: default.size.stdout
  
+Finished building: AWS_2.0_OTA.bin
+Finished building: AWS_2.0_OTA.list
+ 
+ 
 
-13:19:03 Build Finished. 0 errors, 0 warnings. (took 762ms)
+16:03:30 Build Finished. 0 errors, 1 warnings. (took 4s.833ms)
 

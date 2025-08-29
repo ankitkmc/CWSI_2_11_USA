@@ -50,7 +50,7 @@
  */
 float aht_temp,aht_hum;
 const uint32_t appadd = 0x801F000;
-
+uint8_t sample_count=0;
 /**
  * @brief Pointer to reset handler
  */
@@ -82,7 +82,7 @@ void go2app(uint32_t APP_ADDR) {
 	}
 }
 
-bool check_ota = 0;
+volatile bool check_ota = 0;
 // check git
 void SystemClock_Config(void);
 
@@ -100,6 +100,7 @@ void SystemClock_Config(void);
 create(VARIABLES, WS);
 create(VARIABLES, DEVICE_ID);
 #if defined(APP_CODE) or defined(RTK)
+create(VARIABLES, U_TIME);
 create_0(VARIABLES, FIRMWARE_VERSION);
 create_0(VARIABLES, LONG);
 create_0(VARIABLES, LAT);
@@ -116,7 +117,7 @@ create_rs485(RS485, AIR_TPH_SENSOR);
 //create_rs485(RS485, GEMHO_ILLUMINOSITY);
 //create_rs485(RS485, GEMHO_4_1);// final copy to the master
 create_rs485(RS485, SENTEK_AIR_TP);//GEMHO_7_1 changed to SENTEK_AIR_TP Sentek Pressure
-//create_rs485(RS485, GEMHO_AIR_TPH);
+//create_rs485(RS485, GEMHO_AIR_TPH);// Added 3rd change
 create_rs485(RS485, SENTEK_AIR_TPH);
 create_rs485(RS485, CHANGE_ADD);
 
@@ -177,6 +178,7 @@ int main(void) {
 #endif
 
 		ALL_POWER_ON();
+
 		neoway.POWER_ON();
 
 		config_file();
@@ -191,7 +193,7 @@ int main(void) {
 			config_file();
 		}
 
-		neoway.INIT();
+		if(sample_count==5)neoway.INIT();
 		Get_save_time();
 
 		PassAuthen();
@@ -251,10 +253,16 @@ int main(void) {
 		}
 
 		fetch_reading();
+		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
+		sample_count++;
+		if(sample_count==6){
 		if (both_debug.Both_read_check("Enter 0 to skip sending data", 15, "0") != $EXPECTED_RESPONSE) {
 			neoway.AWS_CON();
 			neoway_publish("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
 		}
+		sample_count=0;
+		}
+
 		if (neo_control == $CONTINUE) {
 			GO_TO_SLEEP();
 		}
