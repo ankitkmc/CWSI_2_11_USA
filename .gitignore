@@ -1,0 +1,14 @@
+.metadata/
+.metadata/
+LIBRARY/Release/
+*.o
+*.d
+*.su
+*.cyclo
+.metadata/
+.metadata/
+Debug/
+Release/
+*.o
+*.log
+*.pdom

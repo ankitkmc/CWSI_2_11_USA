@@ -145,6 +145,8 @@ PWR_PIN V_12(EN_12V_GPIO_Port, EN_12V_Pin);
 
 #include "FUNCTIONS.h"
 
+char *SD_data = NULL;
+
 /**
  * @brief  The application entry point.
  * @retval int
@@ -253,6 +255,12 @@ int main(void) {
 		}
 
 		fetch_reading();
+
+		SD_data = (char*)calloc(1024, sizeof(char));
+	    if (!SD_data) {
+	        // handle allocation failure
+	    	uart_send("\n************Memory allocation failed*****************\n");
+	    }
 		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
 		sample_count++;
 		if(sample_count==6){
@@ -262,6 +270,17 @@ int main(void) {
 		}
 		sample_count=0;
 		}
+
+	    if (!SD_data) {
+	        // handle allocation failure
+	    	uart_send("\n************Memory allocation failed*****************\n");
+	    }
+	    else{
+			main_encrypt_and_send(SD_data);
+			uart_send(encrypted_data);
+			neoway_publish_app("ASSET/CWMS");
+	    }
+	    free(SD_data);
 
 		if (neo_control == $CONTINUE) {
 			GO_TO_SLEEP();

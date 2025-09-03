@@ -27,6 +27,8 @@ void cert_add();
 void fetch_reading();
 
 extern float aht_temp,aht_hum;
+
+extern char *SD_data;
 //#define UB1_ON
 //#define RTK
 
@@ -842,10 +844,25 @@ void neoway_publish(string topic) {
 	both_debug.Print2("\r\nPublishing data\r\n");
 	save_ble_print(0);
 	data_packet.MAKE_DATA_JSON(data_packet.$CLEAR_ALL, 1);
+	string jsonstring = data_packet.GET_JSON_STRING();
+	if(SD_data!=NULL){
+		strcpy(SD_data,jsonstring.c_str());
+	}
 	neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(data_packet.GET_JSON_STRING_LEN()), { 5000 }, 1, { ">" });
 	neoway.SEND_RECIEVE(data_packet.GET_JSON_STRING(), { 5000, 5000 }, 1, { "OK", "PUB" });
 	restore_ble_print();
 	data_packet.CLEAR();
+}
+#endif
+
+#if defined(APP_CODE)
+void neoway_publish_app(string topic) {
+	neoway.SET_data_pub_topic(topic);
+	neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(strlen(encrypted_data)), { 5000 }, 1, { ">" });
+	neoway.SEND_RECIEVE(encrypted_data, { 5000, 5000 }, 1, { "OK", "PUB" });
+	restore_ble_print();
+	data_packet.CLEAR();
+
 }
 #endif
 
