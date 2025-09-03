@@ -47,6 +47,12 @@ void MX_USART1_UART_Init(void);
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void main_encrypt_and_send(char* msg);
+void base64_and_uart_send(uint8_t* input, size_t input_len) ;
+void uart_send(char* msg);
+
+#define MAX_BUFFER_LEN 1023
+extern char encrypted_data[MAX_BUFFER_LEN];
 
 /* USER CODE END Prototypes */
 
