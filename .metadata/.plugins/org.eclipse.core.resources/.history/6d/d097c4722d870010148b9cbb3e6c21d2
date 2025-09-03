@@ -92,7 +92,7 @@ class RS485: public VARIABLES {
 					// rede HIGH to avoid interference from other sensors, can be disabled/commented if not needed
 					both_debug.Print2("\t\tREC: ");
 					both_debug.Print2(read_frame);
-					if(COMPARE_CRC(&read_frame)!=$OK)read_frame.clean();
+				//	if(COMPARE_CRC(&read_frame)!=$OK)read_frame.clean();
 					WRITE_REDE(GPIO_PIN_SET, 1);
 
 					// de-initialise uart
@@ -316,7 +316,6 @@ class RS485: public VARIABLES {
 					return $ERROR;
 				}
 			}
-			return $ERROR;
 		}
 		/**
 		 * @fn uint16_t GET_CRC(DynamicArray<size_type> *temp_frame, bool calculate = 0)

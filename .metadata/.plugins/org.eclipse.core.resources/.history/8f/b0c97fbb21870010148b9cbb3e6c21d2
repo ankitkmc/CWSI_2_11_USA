@@ -1307,7 +1307,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
  */
 
 void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
-//	both_debug.Print2("\r\n check_ota "+d_t_s((double)check_ota));
+
 #if defined(OTA_CODE)
 	check_ota = 1;
 #endif
@@ -1324,7 +1324,6 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
  */
 
 void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef *hrtc) {
-	both_debug.Print2("\r\n SleepOnExit CALL ");
 	HAL_PWR_DisableSleepOnExit();
 }
 #endif
@@ -1337,7 +1336,6 @@ void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef *hrtc) {
  */
 
 void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc) {
-//	both_debug.Print2("\r\nwatchdog_cont: "+d_t_s((double)watchdog_cont));
 	switch (watchdog_cont) {
 		case $CONTINUE:
 			HAL_IWDG_Refresh (&hiwdg);

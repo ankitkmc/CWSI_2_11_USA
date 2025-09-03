@@ -316,7 +316,6 @@ class RS485: public VARIABLES {
 					return $ERROR;
 				}
 			}
-			return $ERROR;
 		}
 		/**
 		 * @fn uint16_t GET_CRC(DynamicArray<size_type> *temp_frame, bool calculate = 0)

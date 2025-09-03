@@ -37,13 +37,12 @@ D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h:73:8:void UA
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:760:6:void Set_RTC_TIME(std::string)	3
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1046:6:void object_setup()	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1309:6:void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef*)	1
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1326:6:void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef*)	1
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1338:6:void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef*)	3
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1504:6:bool check_cont_flags()	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1594:6:void update_ota_cont()	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1704:9:uint8_t if_in_range(std::string&, uint32_t)	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1719:10:uint64_t str_to_64(std::string&, uint32_t)	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1881:6:void ALL_POWER_OFF()	1
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1339:6:void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef*)	3
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1506:6:bool check_cont_flags()	2
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1596:6:void update_ota_cont()	2
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1706:9:uint8_t if_in_range(std::string&, uint32_t)	2
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1721:10:uint64_t str_to_64(std::string&, uint32_t)	2
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1883:6:void ALL_POWER_OFF()	1
 ../Core/Src/main.cpp:253:6:void SystemClock_Config()	4
 ../Core/Src/main.cpp:300:6:void Error_Handler()	1
 C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.tcc:610:5:std::__cxx11::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, const __cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	1
@@ -73,15 +72,16 @@ D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:566:6:void getcertificate
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:626:6:void print_time(std::string, std::initializer_list<unsigned char>)	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:637:6:void Print_save_time()	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:736:6:void Set_RTC_ALARM(RTC_TimeTypeDef&, uint32_t)	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1459:6:bool check_no_rtc()	1
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1461:6:bool check_no_rtc()	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:814:6:void get_file_name(const std::string&, std::string&)	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1366:17:RTC_TimeTypeDef ADD_seconds(RTC_TimeTypeDef&, RTC_DateTypeDef&, uint32_t)	6
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1428:6:void SET_WAKEUP_INTERVAL(uint32_t)	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1517:6:void ota_break(bool, std::string)	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1738:6:void FLASH_ERASE2(uint32_t, uint32_t)	1
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1823:6:void STOPPER_1(std::string)	2
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1326:6:void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef*)	1
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1368:17:RTC_TimeTypeDef ADD_seconds(RTC_TimeTypeDef&, RTC_DateTypeDef&, uint32_t)	6
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1430:6:void SET_WAKEUP_INTERVAL(uint32_t)	2
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1519:6:void ota_break(bool, std::string)	2
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1740:6:void FLASH_ERASE2(uint32_t, uint32_t)	1
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1825:6:void STOPPER_1(std::string)	2
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:198:8:void NEOWAY::SEND_RECIEVE_POINTER(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >, std::string&)	11
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1534:6:void ota_proc(std::string&, uint32_t)	15
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1536:6:void ota_proc(std::string&, uint32_t)	15
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:379:10:std::string NEOWAY::BLE_READ(uint32_t)	4
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:137:10:std::string UART_DEBUG::Both_Read(uint32_t)	5
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:299:6:void write_file(std::string&, std::string)	1
@@ -95,10 +95,10 @@ D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:614:6:void neoway_flash_c
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:649:6:void Get_save_time()	5
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:799:6:void httpget(const std::string&)	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:829:6:void https_file_download(std::string&)	1
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1476:10:uint32_t get_file_size(std::string&)	4
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1582:6:void neoway_delete_file(std::string&)	1
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1478:10:uint32_t get_file_size(std::string&)	4
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1584:6:void neoway_delete_file(std::string&)	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:411:8:void NEOWAY::POWER_ON()	2
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1888:6:void ALL_POWER_ON()	1
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1890:6:void ALL_POWER_ON()	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:343:8:void NEOWAY::BLE_NAME(std::string)	2
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:352:8:void NEOWAY::BLE_SETUP(std::string)	3
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:429:8:void NEOWAY::INIT()	1
@@ -107,8 +107,8 @@ D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:110:10:std::st
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:137:6:void PassAuthen()	4
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:178:8:double Get_entered_value(uint16_t)	1
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:156:17:NEOWAY_RETURN UART_DEBUG::Both_read_check(std::string, uint32_t, std::string, std::string*)	10
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1816:6:void STOPPER(std::string, std::string)	1
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1898:6:void GO_TO_SLEEP()	6
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1818:6:void STOPPER(std::string, std::string)	1
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1900:6:void GO_TO_SLEEP()	6
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:173:8:Tda* DynamicArray<Tda>::at(uint32_t) [with Tda = VARIABLES*]	2
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Array/../Variant/../Variant/../Memory/MemoryPool.hpp:73:15:const char* ArduinoJson::V6211HB::detail::MemoryPool::saveString(TAdaptedString) [with TAdaptedString = ArduinoJson::V6211HB::detail::SizedRamString]	6
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Collection/CollectionImpl.hpp:108:21:ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::CollectionData::getMember(TAdaptedString) const [with TAdaptedString = ArduinoJson::V6211HB::detail::StaticStringAdapter]	6
@@ -162,7 +162,7 @@ D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:461:6:void check_all_cert
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h:87:8:void JSON_HANDLER::MAKE_META_JSON(clear_enum, bool)	8
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:189:6:void MENU_PRINT(bool)	13
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:269:6:void save_meta_neoway()	1
-D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1610:6:void OTA_FUNCTION()	18
+D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1612:6:void OTA_FUNCTION()	18
 ../Core/Src/main.cpp:139:5:int main()	2
 D:/New folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:14:7:NEOWAY::~NEOWAY()	1
 ../Core/Src/main.cpp:307:1:void __static_initialization_and_destruction_0(int, int)	2
