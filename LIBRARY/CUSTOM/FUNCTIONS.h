@@ -626,6 +626,10 @@ void neoway_flash_clean() {
 void print_time(string name_time, initializer_list<uint8_t> list) {
 	both_debug.Print2("\r\n" + name_time + " - " + d_t_s(*(list.begin() + 0), 0, 1) + ":" + d_t_s(*(list.begin() + 1), 0, 1) + ":" + d_t_s(*(list.begin() + 2), 0, 1) + "  " + d_t_s(*(list.begin() + 3), 0, 1) + "/" + d_t_s(*(list.begin() + 4), 0, 1) + "/" + d_t_s(*(list.begin() + 5), 0, 1));
 }
+
+string timestring(initializer_list<uint8_t> list) {
+	return(d_t_s(*(list.begin() + 0), 0, 1) + ":" + d_t_s(*(list.begin() + 1), 0, 1) + ":" + d_t_s(*(list.begin() + 2), 0, 1) + "  " + d_t_s(*(list.begin() + 3), 0, 1) + "/" + d_t_s(*(list.begin() + 4), 0, 1) + "/" + d_t_s(*(list.begin() + 5), 0, 1));
+}
 /**
  * @brief Print date and time saved in RTC
  */
@@ -642,7 +646,6 @@ void Print_save_time() {
 /**
  * @brief Fetch time from neoway and sync MCU with it
  */
-
 void Get_save_time() {
 	/*
 	 Used to Set time to different servers
@@ -850,9 +853,11 @@ void neoway_publish(string topic) {
 /**
  * @brief All sensor class objects configuration
  */
+
 void object_setup() {
 	refresh_counter();
-
+	U_TIME.ADD_PARA("TIME");
+	U_TIME.SET_add_to_json(1);
 	/** Sensor Configuration and frames
 	 *	NPK_SENSOR: 1 : 01 03 00 00 00 03 05 CB
 	 *	GEMHO_4_1: 4 : 01 03 00 00 00 05 85 C9
@@ -883,7 +888,7 @@ void object_setup() {
 	both_debug.Print2("\r\nOBJ_SETUP : ");
 
 //	GEMHO_AIR_TPH.SET_REDE(1);
-	SENTEK_AIR_TPH.SET_REDE(1);
+	SENTEK_AIR_TPH.SET_REDE(7);
 //	GEMHO_SOIL_TH.SET_REDE(2);
 //	GEMHO_SOIL_NPK.SET_REDE(3);
 	LEAF_SENSOR.SET_REDE(4);
@@ -1261,7 +1266,13 @@ void fetch_reading() {
 
 	analog_index = 0;
 	V_12.SET(0);
-	MISOL_RAIN.CLEAR_TIP();//reset the rain gauge
+	if(sample_count==5)MISOL_RAIN.CLEAR_TIP();//reset the rain gauge
+	RTC_TimeTypeDef sTime = { 0 };/*adding time into json frame*/
+	RTC_DateTypeDef sDate = { 0 };
+	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+	U_TIME.SET_PARA_VALUE(0,timestring({ sTime.Hours, sTime.Minutes, sTime.Seconds, sDate.Date, sDate.Month, sDate.Year }));
+
 }
 #endif
 
@@ -1296,7 +1307,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
  */
 
 void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
-
+//	both_debug.Print2("\r\n check_ota "+d_t_s((double)check_ota));
 #if defined(OTA_CODE)
 	check_ota = 1;
 #endif
@@ -1313,6 +1324,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
  */
 
 void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef *hrtc) {
+	both_debug.Print2("\r\n SleepOnExit CALL ");
 	HAL_PWR_DisableSleepOnExit();
 }
 #endif
@@ -1325,6 +1337,7 @@ void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef *hrtc) {
  */
 
 void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc) {
+//	both_debug.Print2("\r\nwatchdog_cont: "+d_t_s((double)watchdog_cont));
 	switch (watchdog_cont) {
 		case $CONTINUE:
 			HAL_IWDG_Refresh (&hiwdg);

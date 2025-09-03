@@ -43,6 +43,8 @@ struct Parameter {
 		double value_double;
 		string value_string;
 		string name = "";
+		double samples;
+//		double max_value;
 };
 
 string config_file_name = "config.json";

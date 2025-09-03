@@ -1,5 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
- ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
+Core/Src/usart.o: ../Core/Src/usart.c ../Core/Inc/usart.h \
+ ../Core/Inc/main.h ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h \
@@ -30,28 +30,8 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
- ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/iwdg.h \
- ../Core/Inc/adc.h ../Core/Inc/gpio.h ../Core/Inc/rtc.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/M_USART.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/ArduinoJson.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.hpp \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Configuration.hpp \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/MUX.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/BUTTON_READ.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h \
- D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h
+ ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
+../Core/Inc/usart.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -85,28 +65,3 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-../Core/Inc/usart.h:
-../Core/Inc/main.h:
-../Core/Inc/iwdg.h:
-../Core/Inc/adc.h:
-../Core/Inc/gpio.h:
-../Core/Inc/rtc.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/M_USART.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/ArduinoJson.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.hpp:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Configuration.hpp:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/MUX.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/BUTTON_READ.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h:
-D:/New\ folder/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:

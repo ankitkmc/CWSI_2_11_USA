@@ -92,7 +92,7 @@ class RS485: public VARIABLES {
 					// rede HIGH to avoid interference from other sensors, can be disabled/commented if not needed
 					both_debug.Print2("\t\tREC: ");
 					both_debug.Print2(read_frame);
-					//COMPARE_CRC(&read_frame);
+					if(COMPARE_CRC(&read_frame)!=$OK)read_frame.clean();
 					WRITE_REDE(GPIO_PIN_SET, 1);
 
 					// de-initialise uart
@@ -148,7 +148,7 @@ class RS485: public VARIABLES {
 					// rede HIGH to avoid interference from other sensors, can be disabled/commented if not needed
 					both_debug.Print2("\t\tREC: ");
 					both_debug.Print2(read_frame);
-					//COMPARE_CRC(&read_frame);
+				//	if(COMPARE_CRC(&read_frame)!=$OK)read_frame.clean();
 					WRITE_REDE(GPIO_PIN_SET, 1);
 					// de-initialise uart
 					HAL_UART_MspDeInit(RS485_USART);
@@ -302,7 +302,7 @@ class RS485: public VARIABLES {
 		 * @param [in] temp_frame a pointer pointing to dynamic array object designating a frame.
 		 */
 
-		void COMPARE_CRC(DynamicArray<size_type> *temp_frame) {
+	SENSOR_RETURN COMPARE_CRC(DynamicArray<size_type> *temp_frame) {
 			if (!temp_frame->is_empty()) {
 				uint16_t crc = GET_CRC(temp_frame, 1);
 				DynamicArray<uint8_t> check_frame;
@@ -310,10 +310,13 @@ class RS485: public VARIABLES {
 				check_frame.push_back(crc >> 8);
 				if (*temp_frame->at(temp_frame->size() - 2) == *check_frame.at(0) && *temp_frame->at(temp_frame->size() - 1) == *check_frame.at(1)) {
 					both_debug.Print2("\t\tCRC CORRECT\n\r");
+					return $OK;
 				} else {
 					both_debug.Print2("\t\tCRC INCORRECT\n\r");
+					return $ERROR;
 				}
 			}
+			return $ERROR;
 		}
 		/**
 		 * @fn uint16_t GET_CRC(DynamicArray<size_type> *temp_frame, bool calculate = 0)
