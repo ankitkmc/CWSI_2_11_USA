@@ -25,6 +25,15 @@
 #include "gpio.h"
 #include "rtc.h"
 #include "i2c.h"
+#include "fatfs.h"
+#include "fatfs_sd.h"
+#include "spi.h"
+#include "iwdg.h"
+#include "cstdio"
+#include "array"
+#include "string.h"
+#include "stdio.h"
+#include "Sandisk.h"
 /**
  * Un-comment for Various different functionalities
  */
@@ -51,6 +60,11 @@
 float aht_temp,aht_hum;
 const uint32_t appadd = 0x801F000;
 uint8_t sample_count=0;
+string coln = " : ";
+string quot = "\"";
+string curlybrace1 = "{";
+string curlybrace2 = "}";
+string newline1 = "\n";
 /**
  * @brief Pointer to reset handler
  */
@@ -102,7 +116,7 @@ create(VARIABLES, DEVICE_ID);
 #if defined(APP_CODE) or defined(RTK)
 create(VARIABLES, U_TIME);
 create_0(VARIABLES, FIRMWARE_VERSION);
-create_0(VARIABLES, LONG);
+//create_0(VARIABLES, LONG);
 create_0(VARIABLES, LAT);
 create(VARIABLES,AIR_HT);
 create_rs485(RS485, NPK_SENSOR);
@@ -144,7 +158,62 @@ JSON_HANDLER data_packet(variables_pointer);
 PWR_PIN V_12(EN_12V_GPIO_Port, EN_12V_Pin);
 
 #include "FUNCTIONS.h"
+bool isLeap1(int yr1){
+	return (yr1 % 400 == 0) || ((yr1 % 4 == 0) && (yr1 % 100 != 0));
+}
+int daysInMonth1(int yr2, int mon1){
+	static constexpr array<int,13> monthDays1 =
+	        {0,31,28,31,30,31,30,31,31,30,31,30,31};
+	    if (mon1 == 2 && isLeap1(yr2)) return 29;
+	    return monthDays1[mon1];
+}
 
+string getTimestamp(uint32_t timer11, uint32_t t11) {
+	both_debug.Print2("\r\n Timer11 Value is : ");
+	both_debug.Print2(timer11);
+	both_debug.Print2("\n \n");
+  uint32_t timer_seconds11 = t11*timer11*60;
+  RTC_TimeTypeDef sTime_saved;
+  RTC_DateTypeDef sDate_saved;
+
+  HAL_RTC_GetTime(&hrtc, &sTime_saved, RTC_FORMAT_BIN);
+  HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BIN);
+
+  char timestamp[32];
+  uint32_t total_add = sTime_saved.Hours * 3600 + sTime_saved.Minutes * 60 + sTime_saved.Seconds + timer_seconds11;
+  int days_add = total_add/86400;
+  total_add %= 86400;
+  if (total_add < 0) total_add += 86400;
+  sDate_saved.Year += days_add;
+  while(true){
+	  int dim1 = daysInMonth1(sDate_saved.Date, sDate_saved.Month);
+	  if(sDate_saved.Year <= dim1) break;
+	  sDate_saved.Year -= dim1;
+	  sDate_saved.Month++;
+	  if(sDate_saved.Month > 12){
+		  sDate_saved.Month = 1;
+	  sDate_saved.Date++;
+  }
+  }
+
+  snprintf(timestamp, sizeof(timestamp), "%02d-%02d-%04d %02d:%02d:%02d",
+		    sDate_saved.Year, sDate_saved.Month, sDate_saved.Date,
+			total_add / 3600, (total_add % 3600) / 60 , total_add % 60);
+
+    return string(timestamp);
+}
+
+#if defined(APP_CODE)
+void storeCounter1(uint32_t val1){
+	HAL_PWR_EnableBkUpAccess();
+	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, val1);
+}
+uint32_t loadCounter1() {
+    HAL_PWR_EnableBkUpAccess();
+    return HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1);
+}
+static uint32_t t_count1;
+#endif
 /**
  * @brief  The application entry point.
  * @retval int
@@ -161,7 +230,9 @@ int main(void) {
 	MX_USART1_UART_Init();
 	MX_RTC_Init();
 	MX_IWDG_Init();
-	 MX_I2C1_Init();
+	MX_I2C1_Init();
+	MX_SPI2_Init();
+	MX_FATFS_Init();
 	if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 5, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK) {
 		Error_Handler();
 	}
@@ -170,7 +241,7 @@ int main(void) {
 #if defined(UB1_ON)
 	BUTTON.SET_PIN(UB1_GPIO_Port, UB1_Pin);
 #endif
-
+	SD2 sd_card_2;
 	while (1) {
 
 #if defined(UL1_ON)
@@ -251,6 +322,52 @@ int main(void) {
 		if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED) != HAL_OK) {
 			Error_Handler();
 		}
+		if((neo_control == $CONTINUE)&& !(sd_card_2.isEmpty2()) && sample_count==5){
+										both_debug.Print2("\nNETWORK Found\n");
+										file_flag = 1;
+										totalparse = (sd_card_2.SDFileSize2())/2048;
+										both_debug.Print2("\n SD CARD FILE SIZE IS : ");
+										both_debug.Print2(sd_card_2.SDFileSize2());
+								//		json_sd = sd_card_1.readJsonFromSD();
+									while(file_flag <= (totalparse+j1) && neo_control == $CONTINUE ){
+										//json_sd = sd_card_1.readchunk(2048); // new change
+										json_sd = sd_card_2.readJsonchunk2(2048);
+										HAL_Delay(1000);
+									    offset3 += json_sd.length(); // new change
+										HAL_Delay(500);
+										if(json_sd != ""){
+											if(file_flag == 2 || file_flag % 5 == 0)
+										neoway.AWS_CON();
+										neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
+										both_debug.Print2("\r\nPublishing Stored SD CARD data\r\n");
+										save_ble_print(0);
+										HAL_Delay(500);
+										neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(json_sd.length()), { 5000 }, 1, { ">" });
+										neoway.SEND_RECIEVE(json_sd, { 5000, 5000 }, 1, { "OK", "PUB" });
+										HAL_Delay(500);
+										restore_ble_print();
+										json3 = "";
+										}
+										else {
+											goto LABEL1;
+										}
+										}
+									LABEL1:
+									//int t_count = 0;
+										json_sd = "";
+										json = "";
+										HAL_Delay(500);
+									//	if(file_flag >= totalparse)
+										if(neo_control == $CONTINUE){
+										sd_card_2.deletefile2();
+										t_count1 = loadCounter1();
+									    t_count1 = 0;
+									    storeCounter1(t_count1);
+										}
+										file_flag = 1;
+										HAL_Delay(500);
+
+									}
 
 		fetch_reading();
 		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
@@ -262,10 +379,46 @@ int main(void) {
 		}
 		sample_count=0;
 		}
+		if(neo_control == $CONTINUE && sample_count==0){
+						both_debug.Print2("\n No data saved in SD CARD.\n");
+						t_count1 = loadCounter1();
 
-		if (neo_control == $CONTINUE) {
+			            both_debug.Print2("\n t_count1 value : ");
+			            both_debug.Print2(t_count1);
+			            t_count1 = 0;
+			            storeCounter1(t_count1);
+						offset = 0;
+						offset3 = 0;
+						//sample_count=0;
+							}
+							else if(neo_control != $CONTINUE && sample_count==0)
+							{
+								t_count1 = loadCounter1();
+								both_debug.Print2("\n No NETWORK \n");
+								both_debug.Print2("\n t_count1 value : ");
+								both_debug.Print2(t_count1);
+								sd_card_2.write4(curlybrace1.c_str());
+								sd_card_2.write4(quot.c_str());
+								sd_card_2.write4(getTimestamp(WAKEUP_INT.GET_VAR_VALUE_CONN(),t_count1).c_str());
+								sd_card_2.write4(quot.c_str());
+								sd_card_2.write4(coln.c_str());
+								sd_card_2.write4(SD_Data);
+								sd_card_2.write4(curlybrace2.c_str());
+								sd_card_2.write4(newline1.c_str());
+								HAL_Delay(200);
+								sd_card_2.read2();
+								HAL_Delay(200);
+							    both_debug.Print2("\n Sd card data saved. Below is value stored in variable SD_DATA. \n");
+							    both_debug.Print2(SD_Data);
+							    t_count1 = loadCounter1();
+							    t_count1++;
+					            storeCounter1(t_count1);
+							 //   sample_count=0;
+							}
+
+         if(neo_control == $CONTINUE)
 			GO_TO_SLEEP();
-		}
+
 
 #endif
 

@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (11.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -9,6 +9,10 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include Middlewares/Third_Party/FatFs/src/option/subdir.mk
+-include Middlewares/Third_Party/FatFs/src/subdir.mk
+-include FATFS/Target/subdir.mk
+-include FATFS/App/subdir.mk
 -include Drivers/STM32L4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
@@ -87,8 +91,8 @@ all: main-build
 main-build: AWS_2.0_APP.elf secondary-outputs
 
 # Tool invocations
-AWS_2.0_APP.elf AWS_2.0_APP.map: $(OBJS) $(USER_OBJS) D:\New\ folder\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "AWS_2.0_APP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\New folder\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AWS_2.0_APP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+AWS_2.0_APP.elf AWS_2.0_APP.map: $(OBJS) $(USER_OBJS) E:\CWSI_2_10_USA\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "AWS_2.0_APP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\CWSI_2_10_USA\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AWS_2.0_APP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
