@@ -259,7 +259,7 @@ int main(void) {
 		SD_data = (char*)calloc(1024, sizeof(char));
 	    if (!SD_data) {
 	        // handle allocation failure
-	    	uart_send("\n************Memory allocation failed*****************\n");
+	    	both_debug.Print2("\n************Memory allocation failed*****************\n");
 	    }
 		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
 		sample_count++;
@@ -273,7 +273,7 @@ int main(void) {
 
 	    if (!SD_data) {
 	        // handle allocation failure
-	    	uart_send("\n************Memory allocation failed*****************\n");
+	    	both_debug.Print2("\n************Memory allocation failed*****************\n");
 	    }
 	    else{
 			main_encrypt_and_send(SD_data);
