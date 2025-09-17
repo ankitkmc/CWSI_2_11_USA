@@ -16,7 +16,7 @@ OBJS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Startup/%.o: ../Core/Startup/%.s Core/Startup/subdir.mk
-	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -DOTA_CODE -DAWS_2_0 -c -I"E:/repositories 2/AWS_2.0_OTA/ArduinoJson-6.x" -I"E:/repositories 2/LIBRARY/CUSTOM" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -DOTA_CODE -DAWS_2_0 -c -I"E:/CWSI_2_10_USA/CWSI_2_11_USA/AWS_2.0_OTA/ArduinoJson-6.x" -I"E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 
 clean: clean-Core-2f-Startup
 

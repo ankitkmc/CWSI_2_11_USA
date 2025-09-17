@@ -33,25 +33,25 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/iwdg.h \
  ../Core/Inc/adc.h ../Core/Inc/gpio.h ../Core/Inc/rtc.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/INCLUDER.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/M_USART.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/ArduinoJson.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.hpp \
- E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Configuration.hpp \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/MUX.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/BUTTON_READ.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h \
- E:/repositories\ 2/LIBRARY/CUSTOM/FUNCTIONS.h
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/M_USART.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/ArduinoJson.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.hpp \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Configuration.hpp \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/MUX.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/BUTTON_READ.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h \
+ E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -91,22 +91,22 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Core/Inc/adc.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/rtc.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/INCLUDER.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/M_USART.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/ArduinoJson.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.hpp:
-E:/repositories\ 2/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Configuration.hpp:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/MUX.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/BUTTON_READ.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h:
-E:/repositories\ 2/LIBRARY/CUSTOM/FUNCTIONS.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/DYNAMIC_ARRAY.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/M_USART.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/ArduinoJson.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson.hpp:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Configuration.hpp:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/MUX.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PRINT_CONTROL.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_PRINTER.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/BUTTON_READ.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h:
+E:/CWSI_2_10_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:

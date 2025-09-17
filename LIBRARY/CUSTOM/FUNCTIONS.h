@@ -10,6 +10,7 @@
 
 #ifndef INC_CUSTOM_FUNCTIONS_H_
 #define INC_CUSTOM_FUNCTIONS_H_
+#include "array"
 void STOPPER(string a, string exp_resp = "");
 string https_req(string link, uint16_t action_mode);
 void https_setup();
@@ -28,6 +29,7 @@ void fetch_reading();
 
 extern float aht_temp,aht_hum;
 const char* SD_Data = nullptr;
+
 string jsonstring1;
 //#define UB1_ON
 //#define RTK
@@ -628,6 +630,50 @@ void neoway_flash_clean() {
 void print_time(string name_time, initializer_list<uint8_t> list) {
 	both_debug.Print2("\r\n" + name_time + " - " + d_t_s(*(list.begin() + 0), 0, 1) + ":" + d_t_s(*(list.begin() + 1), 0, 1) + ":" + d_t_s(*(list.begin() + 2), 0, 1) + "  " + d_t_s(*(list.begin() + 3), 0, 1) + "/" + d_t_s(*(list.begin() + 4), 0, 1) + "/" + d_t_s(*(list.begin() + 5), 0, 1));
 }
+bool isLeap2(int yr1){
+	return (yr1 % 400 == 0) || ((yr1 % 4 == 0) && (yr1 % 100 != 0));
+}
+int daysInMonth2(int yr2, int mon1){
+	static constexpr array<int,13> monthDays1 =
+	        {0,31,28,31,30,31,30,31,31,30,31,30,31};
+	    if (mon1 == 2 && isLeap2(yr2)) return 29;
+	    return monthDays1[mon1];
+}
+
+string getTimestamp2(uint32_t timer11, uint32_t t11) {
+	both_debug.Print2("\r\n Timer11 Value is : ");
+	both_debug.Print2(timer11);
+	both_debug.Print2("\n \n");
+  uint32_t timer_seconds11 = t11*timer11*60;
+  RTC_TimeTypeDef sTime_saved;
+  RTC_DateTypeDef sDate_saved;
+
+  HAL_RTC_GetTime(&hrtc, &sTime_saved, RTC_FORMAT_BIN);
+  HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BIN);
+
+  char timestamp[32];
+  uint32_t total_add = sTime_saved.Hours * 3600 + sTime_saved.Minutes * 60 + sTime_saved.Seconds + timer_seconds11;
+  int days_add = total_add/86400;
+  total_add %= 86400;
+  if (total_add < 0) total_add += 86400;
+  sDate_saved.Year += days_add;
+  while(true){
+	  int dim1 = daysInMonth2(sDate_saved.Date, sDate_saved.Month);
+	  if(sDate_saved.Year <= dim1) break;
+	  sDate_saved.Year -= dim1;
+	  sDate_saved.Month++;
+	  if(sDate_saved.Month > 12){
+		  sDate_saved.Month = 1;
+	  sDate_saved.Date++;
+  }
+  }
+
+  snprintf(timestamp, sizeof(timestamp), "%02d-%02d-%04d %02d:%02d:%02d",
+		    sDate_saved.Year, sDate_saved.Month, sDate_saved.Date,
+			total_add / 3600, (total_add % 3600) / 60 , total_add % 60);
+
+    return string(timestamp);
+}
 
 string timestring(initializer_list<uint8_t> list) {
 	return(d_t_s(*(list.begin() + 0), 0, 1) + ":" + d_t_s(*(list.begin() + 1), 0, 1) + ":" + d_t_s(*(list.begin() + 2), 0, 1) + "  " + d_t_s(*(list.begin() + 3), 0, 1) + "/" + d_t_s(*(list.begin() + 4), 0, 1) + "/" + d_t_s(*(list.begin() + 5), 0, 1));
@@ -658,9 +704,12 @@ void Get_save_time() {
 	 neoway.SEND_RECIEVE("AT+SETTZ?", { 1 * ms_s,  }, 2, { "OK" });
 	// neoway.START();
 	 */
+	LOOP_CONT temp=neo_control; //change 1
+		if(temp != $CONTINUE)neo_control = $CONTINUE; // CONTROL CHANGE (change 1)
 
 	string neoway_time = neoway.SEND_RECIEVE("AT+CCLK?", { 1000 }, 10, { "+CCLK:" });
 	if (!neoway_time.empty() && neo_control == $CONTINUE) {
+		neo_control=temp;// CONTROL RESTORED (change 1)
 		uint32_t indexes = neoway_time.find('"') + 1;
 		uint32_t indexes2 = neoway_time.find('/', indexes);
 		uint8_t temp_date = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
@@ -977,9 +1026,9 @@ void object_setup() {
 
 	LEAF_SENSOR.SET_manual_baud(4800);
 	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
-//	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
+	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
 //	LEAF_SENSOR.ADD_PARA("LEAF_COND");
-	LEAF_SENSOR.SET_frame( { 0x04, 0x03, 0x00, 0x00 });
+	LEAF_SENSOR.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
 
 	SOIL_SENSOR.SET_manual_baud(4800);
 	SOIL_SENSOR.ADD_PARA("SOIL_MOISTURE");
@@ -1229,6 +1278,15 @@ void SENSOR_ONLY_FUNC() {
 }
 #endif
 #if defined(APP_CODE)
+static uint32_t t_count7;
+void storeCounter2(uint32_t val1){
+	HAL_PWR_EnableBkUpAccess();
+	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR2, val1);
+}
+ uint32_t loadCounter2() {
+    HAL_PWR_EnableBkUpAccess();
+    return HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR2);
+}
 /**
  * @brief Get reading from sensor and save it in respective parameters
  */
@@ -1271,12 +1329,14 @@ void fetch_reading() {
 	analog_index = 0;
 	V_12.SET(0);
 	if(sample_count==5)MISOL_RAIN.CLEAR_TIP();//reset the rain gauge
-	RTC_TimeTypeDef sTime = { 0 };/*adding time into json frame*/
-	RTC_DateTypeDef sDate = { 0 };
-	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-	U_TIME.SET_PARA_VALUE(0,timestring({ sTime.Hours, sTime.Minutes, sTime.Seconds, sDate.Date, sDate.Month, sDate.Year }));
+//	RTC_TimeTypeDef sTime = { 0 };/*adding time into json frame*/
+//	RTC_DateTypeDef sDate = { 0 };
 
+	 t_count7 = loadCounter2();
+//	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+//	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+	U_TIME.SET_PARA_VALUE(0,getTimestamp2(WAKEUP_INT.GET_VAR_VALUE_CONN(),t_count7*6));
+	storeCounter2(t_count7);
 }
 #endif
 
@@ -1328,7 +1388,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
  */
 
 void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef *hrtc) {
-	both_debug.Print2("\r\n SleepOnExit CALL ");
+//	both_debug.Print2("\r\n SleepOnExit CALL ");
 	HAL_PWR_DisableSleepOnExit();
 }
 #endif

@@ -167,7 +167,7 @@ int daysInMonth1(int yr2, int mon1){
 	    if (mon1 == 2 && isLeap1(yr2)) return 29;
 	    return monthDays1[mon1];
 }
-
+/*
 string getTimestamp(uint32_t timer11, uint32_t t11) {
 	both_debug.Print2("\r\n Timer11 Value is : ");
 	both_debug.Print2(timer11);
@@ -202,17 +202,26 @@ string getTimestamp(uint32_t timer11, uint32_t t11) {
 
     return string(timestamp);
 }
-
+*/
 #if defined(APP_CODE)
-void storeCounter1(uint32_t val1){
+ void storeCounter1(uint32_t val1){
 	HAL_PWR_EnableBkUpAccess();
 	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, val1);
 }
-uint32_t loadCounter1() {
+ uint32_t loadCounter1() {
     HAL_PWR_EnableBkUpAccess();
     return HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1);
 }
-static uint32_t t_count1;
+static uint32_t t_count1,t_count2;
+
+uint32_t getCounter1() {
+    return t_count1;
+}
+
+void setCounter1(uint32_t val) {
+    t_count1 = val;
+}
+
 #endif
 /**
  * @brief  The application entry point.
@@ -264,8 +273,11 @@ int main(void) {
 			config_file();
 		}
 
-		if(sample_count==5)neoway.INIT();
+		if(sample_count==5||sample_count==0)
+		{
+		neoway.INIT();
 		Get_save_time();
+		}
 
 		PassAuthen();
 
@@ -362,13 +374,29 @@ int main(void) {
 										sd_card_2.deletefile2();
 										t_count1 = loadCounter1();
 									    t_count1 = 0;
+									    t_count7 = 0;
+									    storeCounter2(t_count7);
 									    storeCounter1(t_count1);
 										}
 										file_flag = 1;
 										HAL_Delay(500);
 
 									}
-
+		if(sample_count==5)
+				{
+				t_count1 = loadCounter1();
+				storeCounter1(t_count1);
+				t_count7 = loadCounter2();
+				t_count7 = t_count1;
+				if(neo_control == $CONTINUE) t_count7 = 0;
+				if(neo_control != $CONTINUE && sd_card_2.isEmpty2()) t_count7++;
+				storeCounter2(t_count7);
+				t_count2 = t_count1;
+				}
+		both_debug.Print2("\n t_count1 value : ");
+		both_debug.Print2(t_count1);
+		both_debug.Print2("\n t_count7 value : ");
+		both_debug.Print2(t_count7);
 		fetch_reading();
 		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
 		sample_count++;
@@ -379,44 +407,51 @@ int main(void) {
 		}
 		sample_count=0;
 		}
-		if(neo_control == $CONTINUE && sample_count==0){
+		if(neo_control == $CONTINUE && (sample_count==0)){
 						both_debug.Print2("\n No data saved in SD CARD.\n");
 						t_count1 = loadCounter1();
-
+						t_count1 = 0;
 			            both_debug.Print2("\n t_count1 value : ");
 			            both_debug.Print2(t_count1);
-			            t_count1 = 0;
 			            storeCounter1(t_count1);
 						offset = 0;
 						offset3 = 0;
-						//sample_count=0;
 							}
 							else if(neo_control != $CONTINUE && sample_count==0)
 							{
-								t_count1 = loadCounter1();
+
+								t_count2++;
+								t_count1 = t_count2;
+								storeCounter1(t_count1);
+								t_count7 = t_count1;
+								storeCounter2(t_count7);
 								both_debug.Print2("\n No NETWORK \n");
 								both_debug.Print2("\n t_count1 value : ");
 								both_debug.Print2(t_count1);
-								sd_card_2.write4(curlybrace1.c_str());
-								sd_card_2.write4(quot.c_str());
-								sd_card_2.write4(getTimestamp(WAKEUP_INT.GET_VAR_VALUE_CONN(),t_count1).c_str());
-								sd_card_2.write4(quot.c_str());
-								sd_card_2.write4(coln.c_str());
+						//		sd_card_2.write4(curlybrace1.c_str());
+						//		sd_card_2.write4(quot.c_str());
+						//		sd_card_2.write4(getTimestamp(WAKEUP_INT.GET_VAR_VALUE_CONN(),t_count1*6).c_str());
+						//		sd_card_2.write4(quot.c_str());
+						//		sd_card_2.write4(coln.c_str());
 								sd_card_2.write4(SD_Data);
-								sd_card_2.write4(curlybrace2.c_str());
+						//		sd_card_2.write4(curlybrace2.c_str());
 								sd_card_2.write4(newline1.c_str());
 								HAL_Delay(200);
 								sd_card_2.read2();
 								HAL_Delay(200);
 							    both_debug.Print2("\n Sd card data saved. Below is value stored in variable SD_DATA. \n");
 							    both_debug.Print2(SD_Data);
-							    t_count1 = loadCounter1();
-							    t_count1++;
-					            storeCounter1(t_count1);
 							 //   sample_count=0;
 							}
+		if(sample_count==1 || sample_count==2 || sample_count==3 || sample_count==4 || sample_count==5)
+		{
+			t_count1 = loadCounter1();
+			storeCounter1(t_count1);
+			t_count7 = loadCounter2();
+			storeCounter2(t_count7);
+		}
 
-         if(neo_control == $CONTINUE)
+         if(neo_control == $CONTINUE || !(sd_card_2.isEmpty2()))
 			GO_TO_SLEEP();
 
 

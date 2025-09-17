@@ -61,6 +61,7 @@ class SD2 {
 			          fresult = f_close(&file); }
 			}
 	void write4(const char* data){
+		refresh_counter();
 		// SD1();
 		fresult = f_mount(&fs, "/", 1);
 		if(this->fresult == FR_OK){
@@ -74,6 +75,7 @@ class SD2 {
 		fresult = f_mount(NULL, "/", 1);
 	}
 	void read2(){
+		refresh_counter();
 		fresult = f_mount(&fs, "/", 1);
 		if (both_debug.Both_read_check("\n Enter 0 to skip Reading SD card data ", 15, "0") != $EXPECTED_RESPONSE){
 		if(this->fresult == FR_OK){
@@ -96,6 +98,7 @@ class SD2 {
 		HAL_Delay(1000);
 	}
 	string readJsonFromSD2(){ // read the entire file altogether
+
 		FRESULT fresult2;
 		this->fresult = f_mount(&fs, "/", 1);
 		if(this->fresult == FR_OK){
@@ -129,6 +132,7 @@ class SD2 {
 		}
 	}
 	string readJsonchunk2(size_t chunksize){
+		refresh_counter();
 		char buf3[chunksize + 1];
 		FRESULT fresult3;
 		UINT bytesRead3;
@@ -150,7 +154,8 @@ class SD2 {
 		             json3 += buf3;
 		        	  i++;
 		        	  if(json3.length()>(chunksize/2)){
-		        		  if(json3[json3.length()-2] == '}' && json3[json3.length()-1]== '}')
+		        		 // if(json3[json3.length()-2] == '}' && json3[json3.length()-1]== '}')
+		        		  if(json3[json3.length()-1]== '}')
 		        		if(json3.length() < chunksize)
 		        			{ j1++; }
 		        		goto LABEL2;
@@ -158,7 +163,8 @@ class SD2 {
 		        	  HAL_Delay(500);
 		         } while(bytesRead3 == chunksize);
 		       LABEL2 :
-			   while(json3.size() >2 && !(json3[json3.size()-2] == '}' && json3.back() == '}')){
+			//   while(json3.size() >2 && !(json3[json3.size()-2] == '}' && json3.back() == '}')){
+			   while(json3.size() >2 && !(json3.back() == '}')){
 			   json3.pop_back();
 			   }
 		       both_debug.Print2(json3);
@@ -176,6 +182,7 @@ class SD2 {
 
 	}
 	DWORD SDFileSize2(){
+		refresh_counter();
 		FILINFO fileInfo1;
 		     DWORD sizeout1;
 		     FRESULT res1 = f_stat("file131.txt", &fileInfo1);
@@ -212,6 +219,7 @@ class SD2 {
 	    return string(buf1, bytesRead1);
 	}
 	 bool isEmpty2(){  // CHECK WHETHER FILE EXISTS OR NOT, OR BLANK FILE
+		 refresh_counter();
 		 FILINFO finfo;
 		 FRESULT res;
 		 this->fresult = f_mount(&fs, "/", 1);
@@ -235,6 +243,7 @@ class SD2 {
 		 }
 	 }
 	 void deletefile2(){
+		 refresh_counter();
 		 FIL file1;
 		 FRESULT fresult1;
 		 fresult = f_mount(&fs, "/", 1);
