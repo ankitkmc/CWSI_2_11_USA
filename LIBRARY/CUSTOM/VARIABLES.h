@@ -72,6 +72,9 @@ class VARIABLES {
 
 			if (para_index < parameter.size()) {
 //				if(value<=parameter.at(para_index)->max_value){
+				if (parameter.at(para_index)->name.find("TEMPERATURE") != std::string::npos || (((int)value >> 8) == 0xFF)) {
+				    value = ((~(int)value) + 1) * (-1);
+				}
 				parameter.at(para_index)->value_double = value;
 //			parameter.at(para_index)->value_string = "";
 				parameter.at(para_index)->value_string = d_t_s(value, decimals);

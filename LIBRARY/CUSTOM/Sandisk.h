@@ -61,7 +61,7 @@ class SD2 {
 			          fresult = f_close(&file); }
 			}
 	void write4(const char* data){
-		// SD1();
+		refresh_counter();
 		fresult = f_mount(&fs, "/", 1);
 		if(this->fresult == FR_OK){
 			this->fresult = f_open(&(this->file), "file131.txt", FA_OPEN_APPEND | FA_READ | FA_WRITE);
@@ -73,28 +73,33 @@ class SD2 {
 		}
 		fresult = f_mount(NULL, "/", 1);
 	}
-	void read2(){
+	string read2(const string& filename){
+		string str="";
 		fresult = f_mount(&fs, "/", 1);
 		if (both_debug.Both_read_check("\n Enter 0 to skip Reading SD card data ", 15, "0") != $EXPECTED_RESPONSE){
+
 		if(this->fresult == FR_OK){
-			this->fresult = f_open(&(this->file), "file131.txt", FA_READ);
-			HAL_Delay(200);
+			this->fresult = f_open(&(this->file), filename.c_str(), FA_READ);
+//			HAL_Delay(200);
 		    this->fresult = f_read(&(this->file), buffer, sizeof(buffer) , &br);
-		    HAL_Delay(1000);
+//		    HAL_Delay(1000);
 		    both_debug.Print2("\n ");
 		    both_debug.Print2(buffer);
-		    HAL_Delay(1000);
+//		    HAL_Delay(1000);
 		}
 		if(this->fresult!=FR_OK){
 
 			//HAL_UART_Transmit(&hlpuart1, (uint8_t*)("f_read error\r\n"), sizeof("f_read error\r\n")-1, 200);
 			both_debug.Print2("\n f_read error\n");// Ankit
+			return "";
 		}
 
 	}
 		fresult = f_mount(NULL, "/", 1); // unmount the sd card.
-		HAL_Delay(1000);
+//		HAL_Delay(1000);
+		return buffer;
 	}
+
 	string readJsonFromSD2(){ // read the entire file altogether
 		FRESULT fresult2;
 		this->fresult = f_mount(&fs, "/", 1);
@@ -129,6 +134,7 @@ class SD2 {
 		}
 	}
 	string readJsonchunk2(size_t chunksize){
+		refresh_counter();
 		char buf3[chunksize + 1];
 		FRESULT fresult3;
 		UINT bytesRead3;
@@ -151,7 +157,7 @@ class SD2 {
 		        	  i++;
 		        	  if(json3.length()>(chunksize/2)){
 		        		  if(json3[json3.length()-2] == '}' && json3[json3.length()-1]== '}')
-		        		if(json3.length() < chunksize)
+		        		if(json3.length() <= chunksize)
 		        			{ j1++; }
 		        		goto LABEL2;
 		        	  }
@@ -177,11 +183,30 @@ class SD2 {
 	}
 	DWORD SDFileSize2(){
 		FILINFO fileInfo1;
-		     DWORD sizeout1;
 		     FRESULT res1 = f_stat("file131.txt", &fileInfo1);
 		             if(res1 == FR_OK)
-		             	sizeout1 = fileInfo1.fsize;
-		             return sizeout1;
+		            	 return fileInfo1.fsize;
+//		             else
+//		            	 	 return 0;
+	}
+
+	DWORD FileSize(const string& filename) {
+	    FILINFO fileInfo1;
+	    FRESULT res1;
+	    res1 = f_mount(&fs, "/", 1); // Mount the filesystem before accessing the file
+	    if (res1 != FR_OK) {
+	        both_debug.Print2("\n 2f_mount error in SDFileSize\n");
+	        return 0;
+	    }
+	    res1 = f_stat("file131.txt", &fileInfo1); // Get file info
+	    if (res1 == FR_OK) {
+	        f_mount(NULL, "/", 1); // Unmount after use
+	        return fileInfo1.fsize;
+	    } else {
+	        both_debug.Print2("\n f_stat error in SDFileSize2\n");
+	        f_mount(NULL, "/", 1); // Unmount even on error
+	        return 0;
+	    }
 	}
 	string readchunk2(size_t chunksize){ // READ THE FILE IN CHUNKS
 	    char buf1[chunksize + 1];
@@ -252,6 +277,53 @@ class SD2 {
 		fresult = f_mount(NULL, "/", 1);
 	 }
 	 }
+
+
+
+	 string readJsonLine2k(const string& filename) {
+	     string buffer = "";
+	     DWORD totalSize = 0;
+
+	     while (true) {
+	         string line = readJsonLine(filename);  // Read one JSON line
+	         if (line.empty()) break;            // Stop if no more lines
+
+	         DWORD lineSize = line.length();
+	         if (totalSize + lineSize > 2048) break;  // Prevent overflow
+
+	         buffer += line;
+	         totalSize += lineSize;
+	     }
+
+	     return buffer;
+	 }
+
+	 string readJsonLine(const string& filename) {
+		 refresh_counter();
+	     char line[512];
+	     string jsonLine = "";
+	     if(f_open(&(this->file), filename.c_str(), FA_READ) == FR_OK) {
+	         if(f_gets(line, sizeof(line), &(this->file))) {
+	             jsonLine = string(line);
+	             both_debug.Print2("\r\n-->"+jsonLine);
+	         }
+	         f_close(&(this->file));
+	     }
+	     return jsonLine;
+	 }
+	 void write4(const string& data,const string& filename) {
+		 refresh_counter();
+		 fresult = f_mount(&fs, "/", 1);
+	     if (this->fresult == FR_OK) {
+	    	 string withNewline = data + "\n";   // append newline inside data
+	         this->fresult = f_open(&(this->file), filename.c_str(), FA_OPEN_APPEND | FA_WRITE);
+	         f_write(&(this->file), withNewline.c_str(), withNewline.size(), &bw);
+
+	         f_close(&(this->file));
+	     }
+	     fresult = f_mount(NULL, "/", 1);
+	 }
+
 
 };
 extern SD2 sd_card2;

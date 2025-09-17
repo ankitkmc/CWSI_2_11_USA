@@ -39,4 +39,16 @@ enum SENSOR_RETURN {
 	$OUT_OF_THRESHOLD  //!<Designates out of threshold status of parameter
 };
 
+/* to identify the sensor parameter unit
+ * */
+typedef enum{
+	$TEMPERATURE=1,
+	$PRESSURE,
+	$HUMIDITY,
+	$LUMINOCITY,
+	$CENTEBAR,
+	$VOLTAGE,
+}UNIT_T ;
+
+
 #endif /* ENUMS_H_ */
