@@ -52,14 +52,14 @@
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:3542:19:UART_WaitOnFlagUntilTimeout	32	static
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:1156:19:HAL_UART_Transmit	40	static
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:1246:19:HAL_UART_Receive	40	static
-../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:3465:19:UART_CheckIdleState	32	static,ignoring_inline_asm
+../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:3465:19:UART_CheckIdleState	24	static,ignoring_inline_asm
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:327:19:HAL_UART_Init	8	static
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:402:19:HAL_HalfDuplex_Init	8	static
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:477:19:HAL_LIN_Init	16	static
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:576:19:HAL_MultiProcessor_Init	16	static
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:2930:19:HAL_MultiProcessor_EnableMuteMode	0	static,ignoring_inline_asm
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:2950:19:HAL_MultiProcessor_DisableMuteMode	0	static,ignoring_inline_asm
-../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:3610:19:UART_Start_Receive_IT	8	static,ignoring_inline_asm
+../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:3610:19:UART_Start_Receive_IT	0	static,ignoring_inline_asm
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:1413:19:HAL_UART_Receive_IT	8	static,ignoring_inline_asm
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:3704:19:UART_Start_Receive_DMA	16	static,ignoring_inline_asm
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c:1524:19:HAL_UART_Receive_DMA	8	static,ignoring_inline_asm

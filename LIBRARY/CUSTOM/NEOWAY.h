@@ -11,6 +11,7 @@
 /**
  * for definition of NEOWAY class used to define NEOWAY module used in AWS 2.0.
  */
+StatusFlags Network;
 class NEOWAY {
 
 	public:
@@ -427,8 +428,9 @@ class NEOWAY {
 		}
 
 		void INIT() {
-
-			SEND_RECIEVE("AT+CPIN?", { 5000 }, 5, { "OK" });
+			Network.GPRS_ON=0;
+			Network.SIM_IN=0;
+			Network.SIM_IN = (SEND_RECIEVE("AT+CPIN?", { 5000 }, 5, { "OK" }).find("OK") != string::npos);
 			SEND_RECIEVE("AT+CSQ", { 5000 }, 5, { "OK" });
 			SEND_RECIEVE("AT+CREG=2", { 5000 }, 5, { "OK" });
 			SEND_RECIEVE("AT+CREG?", { 5000 }, 5, { "2," });
@@ -437,7 +439,7 @@ class NEOWAY {
 //	neoway.SEND_RECIEVE("AT$MYSYSINFO", { 5000 }, 1, { "+CGATT: 1" }); 	//	SEND_RECIEVE("AT+NETAPN=\"move.dataxs.mobi\",\"\",\"\"", { 5000 }, 5, { "OK" });
 
 			SEND_RECIEVE("AT+XIIC=1", { 5000 }, 5, { "OK" });
-			SEND_RECIEVE("AT+XIIC?", { 5000 }, 5, { "+XIIC:    1" });
+			Network.GPRS_ON = (SEND_RECIEVE("AT+XIIC?", { 5000 }, 5, { "+XIIC:    1" }).find("+XIIC:    1") != string::npos);
 			delay(2 * ms_s);
 		}
 
@@ -470,7 +472,7 @@ class NEOWAY {
 			//	neoway.SET_data_pub_topic("AWS/EKL/GEMHO/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
 			//	string publish_topic = Test.value_1 ? "AWS/EKL/CWMS/TEST/" + WS.GET_VALUE(0) : "AWS/EKL/CWMS/" + WS.GET_VALUE(0);
 			//	string metadata_publish_topic = Test.value_1 ? "AWS/EKL/CWMS/TESTMETA/" + WS.GET_VALUE(0) : "AWS/EKL/CWMSMETA/" + WS.GET_VALUE(0);
-
+			Network.AWS_PUSH=0;
 			SEND_RECIEVE("AT+AWSTLSCFG=authmode,1", { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSTLSCFG=rootca," + rootca_name, { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSTLSCFG=clientcert," + clientcert_name, { 5000 }, 2, { "OK" });
@@ -478,7 +480,7 @@ class NEOWAY {
 			SEND_RECIEVE("AT+AWSCONNPARAM=a1q2r34gpscepz-ats.iot.us-west-2.amazonaws.com:8883,1", { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSTLSCFG?", { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSAUTHPARAM=AWS_EKL,test,test", { 5000 }, 2, { "OK"});
-			SEND_RECIEVE("AT+AWSCONN=60,1,4", { 30000 }, 2, { "OK" });
+			Network.AWS_PUSH=(SEND_RECIEVE("AT+AWSCONN=60,1,4", { 30000 }, 4, { "OK" }).find("OK") != string::npos);
 
 		}
 

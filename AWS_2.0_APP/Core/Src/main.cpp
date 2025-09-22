@@ -60,8 +60,8 @@
 float aht_temp,aht_hum;
 const uint32_t appadd = 0x801F000;
 uint8_t sample_count=0;
-string coln = " : ";
-string quot = "\"";
+string filename = "file131.txt";
+string count = "count.txt";
 string curlybrace1 = "{";
 string curlybrace2 = "}";
 string newline1 = "\n";
@@ -158,6 +158,7 @@ JSON_HANDLER data_packet(variables_pointer);
 PWR_PIN V_12(EN_12V_GPIO_Port, EN_12V_Pin);
 
 #include "FUNCTIONS.h"
+/*
 bool isLeap1(int yr1){
 	return (yr1 % 400 == 0) || ((yr1 % 4 == 0) && (yr1 % 100 != 0));
 }
@@ -167,7 +168,7 @@ int daysInMonth1(int yr2, int mon1){
 	    if (mon1 == 2 && isLeap1(yr2)) return 29;
 	    return monthDays1[mon1];
 }
-/*
+
 string getTimestamp(uint32_t timer11, uint32_t t11) {
 	both_debug.Print2("\r\n Timer11 Value is : ");
 	both_debug.Print2(timer11);
@@ -212,7 +213,7 @@ string getTimestamp(uint32_t timer11, uint32_t t11) {
     HAL_PWR_EnableBkUpAccess();
     return HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1);
 }
-static uint32_t t_count1,t_count2;
+static uint32_t t_count1,t_count2, COUNT3;
 
 uint32_t getCounter1() {
     return t_count1;
@@ -273,14 +274,15 @@ int main(void) {
 			config_file();
 		}
 
-		if(sample_count==5||sample_count==0)
-		{
+
 		neoway.INIT();
-		Get_save_time();
-		}
-
 		PassAuthen();
+		if(Network.GPRS_ON && sample_count==5)Get_save_time();
+		both_debug.Print2("\r\nNetwork.GPRS_ON:\t"+d_t_s((double)Network.GPRS_ON));
+		both_debug.Print2(sd_card_2.readJsonLine2k(filename));
 
+//		sd_card_2.write4("\r\n COUNT3 value is:"+d_t_s(COUNT3)+"\n", count);
+//		sd_card_2.readJsonLine(count);
 #if defined(APP_CODE)
 		both_debug.Print2("\r\nIn APP CODE  " __TIME__ " - " __DATE__ "\r\n");
 
@@ -334,69 +336,55 @@ int main(void) {
 		if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED) != HAL_OK) {
 			Error_Handler();
 		}
-		if((neo_control == $CONTINUE)&& !(sd_card_2.isEmpty2()) && sample_count==5){
-										both_debug.Print2("\nNETWORK Found\n");
-										file_flag = 1;
-										totalparse = (sd_card_2.SDFileSize2())/2048;
-										both_debug.Print2("\n SD CARD FILE SIZE IS : ");
-										both_debug.Print2(sd_card_2.SDFileSize2());
-								//		json_sd = sd_card_1.readJsonFromSD();
-									while(file_flag <= (totalparse+j1) && neo_control == $CONTINUE ){
-										//json_sd = sd_card_1.readchunk(2048); // new change
-										json_sd = sd_card_2.readJsonchunk2(2048);
-										HAL_Delay(1000);
-									    offset3 += json_sd.length(); // new change
-										HAL_Delay(500);
-										if(json_sd != ""){
-											if(file_flag == 2 || file_flag % 5 == 0)
+		sample_count=5;
+	//	sd_card_2.readJsonLine(filename,0);
+		if(Network.GPRS_ON && sample_count==5){
+			neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
+			uint8_t retry=3;
+			DWORD updateline=0;
+									while(Network.isDataAvailable){//while(file_flag <= (totalparse+j1) && neo_control == $CONTINUE ){
+										json_sd = sd_card_2.readJsonLine2k(filename);
+
+							connect:	if(Network.isDataAvailable){
+											if(Network.isDataPushed)neoway.INIT();
 										neoway.AWS_CON();
-										neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
-										both_debug.Print2("\r\nPublishing Stored SD CARD data\r\n");
-										save_ble_print(0);
-										HAL_Delay(500);
 										neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(json_sd.length()), { 5000 }, 1, { ">" });
-										neoway.SEND_RECIEVE(json_sd, { 5000, 5000 }, 1, { "OK", "PUB" });
-										HAL_Delay(500);
+										Network.isDataPushed=(neoway.SEND_RECIEVE(json_sd, { 5000, 5000 }, 1, { "OK", "PUB" }).find("+AWSPUB: OK") != string::npos);
 										restore_ble_print();
-										json3 = "";
 										}
-										else {
-											goto LABEL1;
+										else if(!Network.isDataAvailable){
+											//sd_card_2.deletefile2(filename);
+											both_debug.Print2("\r\n sd_card_2.deletefile2(filename)\r\n");
 										}
+										else if(Network.isDataPushed){
+													retry--;
+												if(!retry){
+												    updateline =((DWORD)json_sd.length()-(sd_card_2.linecount()+1));
+												    sd_card_2.readJsonLine(filename,updateline);//update the pointer
+													break;   //Exit after 3 retry
+												}
+
+										goto connect;
+
 										}
-									LABEL1:
-									//int t_count = 0;
-										json_sd = "";
-										json = "";
-										HAL_Delay(500);
-									//	if(file_flag >= totalparse)
-										if(neo_control == $CONTINUE){
-										sd_card_2.deletefile2();
-										t_count1 = loadCounter1();
-									    t_count1 = 0;
-									    t_count7 = 0;
-									    storeCounter2(t_count7);
-									    storeCounter1(t_count1);
-										}
-										file_flag = 1;
-										HAL_Delay(500);
 
 									}
-		if(sample_count==5)
-				{
-				t_count1 = loadCounter1();
-				storeCounter1(t_count1);
-				t_count7 = loadCounter2();
-				t_count7 = t_count1;
-				if(neo_control == $CONTINUE) t_count7 = 0;
-				if(neo_control != $CONTINUE && sd_card_2.isEmpty2()) t_count7++;
-				storeCounter2(t_count7);
-				t_count2 = t_count1;
-				}
-		both_debug.Print2("\n t_count1 value : ");
-		both_debug.Print2(t_count1);
-		both_debug.Print2("\n t_count7 value : ");
-		both_debug.Print2(t_count7);
+		}
+//		if(sample_count==5)
+//				{
+//				t_count1 = loadCounter1();
+//				storeCounter1(t_count1);
+//				t_count7 = loadCounter2();
+//				t_count7 = t_count1;
+//				if(neo_control == $CONTINUE) t_count7 = 0;
+//				if(neo_control != $CONTINUE && sd_card_2.isEmpty2()) t_count7++;
+//				storeCounter2(t_count7);
+//				t_count2 = t_count1;
+//				}
+//		both_debug.Print2("\n t_count1 value : ");
+//		both_debug.Print2(t_count1);
+//		both_debug.Print2("\n t_count7 value : ");
+//		both_debug.Print2(t_count7);
 		fetch_reading();
 		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
 		sample_count++;
@@ -407,7 +395,11 @@ int main(void) {
 		}
 		sample_count=0;
 		}
-		if(neo_control == $CONTINUE && (sample_count==0)){
+		if(neo_control != $CONTINUE && sample_count==0)
+			sd_card_2.write4(SD_Data,filename);
+
+		/*
+		 * if(neo_control == $CONTINUE && (sample_count==0)){
 						both_debug.Print2("\n No data saved in SD CARD.\n");
 						t_count1 = loadCounter1();
 						t_count1 = 0;
@@ -417,7 +409,7 @@ int main(void) {
 						offset = 0;
 						offset3 = 0;
 							}
-							else if(neo_control != $CONTINUE && sample_count==0)
+						else if(neo_control != $CONTINUE && sample_count==0)
 							{
 
 								t_count2++;
@@ -428,16 +420,10 @@ int main(void) {
 								both_debug.Print2("\n No NETWORK \n");
 								both_debug.Print2("\n t_count1 value : ");
 								both_debug.Print2(t_count1);
-						//		sd_card_2.write4(curlybrace1.c_str());
-						//		sd_card_2.write4(quot.c_str());
-						//		sd_card_2.write4(getTimestamp(WAKEUP_INT.GET_VAR_VALUE_CONN(),t_count1*6).c_str());
-						//		sd_card_2.write4(quot.c_str());
-						//		sd_card_2.write4(coln.c_str());
 								sd_card_2.write4(SD_Data);
-						//		sd_card_2.write4(curlybrace2.c_str());
 								sd_card_2.write4(newline1.c_str());
 								HAL_Delay(200);
-								sd_card_2.read2();
+//								sd_card_2.read2();
 								HAL_Delay(200);
 							    both_debug.Print2("\n Sd card data saved. Below is value stored in variable SD_DATA. \n");
 							    both_debug.Print2(SD_Data);
@@ -445,12 +431,13 @@ int main(void) {
 							}
 		if(sample_count==1 || sample_count==2 || sample_count==3 || sample_count==4 || sample_count==5)
 		{
+
 			t_count1 = loadCounter1();
 			storeCounter1(t_count1);
 			t_count7 = loadCounter2();
 			storeCounter2(t_count7);
 		}
-
+*/
          if(neo_control == $CONTINUE || !(sd_card_2.isEmpty2()))
 			GO_TO_SLEEP();
 
