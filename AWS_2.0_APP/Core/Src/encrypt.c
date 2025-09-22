@@ -62,6 +62,7 @@ void main_encrypt_and_send(char* msg) {
     uart_send("Encrypted Base64:\r\n");
     base64_and_uart_send(encrypted, encrypted_len);
     uart_send("\r\n");
+    free(encrypted_ptr);
 
 }
 
