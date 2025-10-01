@@ -53,7 +53,7 @@ typedef struct {
 	uint8_t isDataAvailable	: 1; // Flag for data transmission status
 	uint8_t isAWSConnected 	: 1; // reserved
 	uint8_t isDataPushed  	: 1; // reserved
-	uint8_t RES4	 		: 1; // reserved
+	uint8_t isSDcardInsrted	: 1; // reserved
 	uint8_t RES5	 		: 1; // reserved
 
 } StatusFlags;
@@ -81,6 +81,7 @@ const uint32_t refresh_value = 300;  // 500 = 1 second
 inline void refresh_counter() {
 	watchdog_cont = $CONTINUE;
 }
+
 
 #include "../CUSTOM/VARIABLES.h"
 DynamicArray<VARIABLES*> variables_pointer;

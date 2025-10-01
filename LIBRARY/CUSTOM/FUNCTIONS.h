@@ -26,11 +26,9 @@ uint32_t get_file_size(string &file_name);
 void write_file(string &file_name, string config_string);
 void cert_add();
 void fetch_reading();
-
-extern float aht_temp,aht_hum;
-const char* SD_Data = nullptr;
-
-string jsonstring1;
+void SER_Print( const string &message);
+//extern float aht_temp,aht_hum;
+string SD_Data = "";
 //#define UB1_ON
 //#define RTK
 
@@ -141,7 +139,7 @@ both_debug.Print2("\r\nsub_rec -->" + sub_rec + "<--");
 void PassAuthen() {
 	save_both_print(1);
 	both_debug.Print2("\r\nEnter Password\r\n");
-
+	SER_Print("is_ble_print:\t"+to_string(is_ble_print()));
 	int try_count = 5;
 	string entered_pass;
 	refresh_counter();
@@ -149,6 +147,7 @@ void PassAuthen() {
 
 		int ble_ser = 0;
 		both_debug.Both_Get_pass(3, &ble_ser);
+		both_debug.Print2("\r\nPRINTING"+to_string(ble_ser));
 
 		if (ble_ser == 1) {
 			restore_both_print();
@@ -630,6 +629,8 @@ void neoway_flash_clean() {
 void print_time(string name_time, initializer_list<uint8_t> list) {
 	both_debug.Print2("\r\n" + name_time + " - " + d_t_s(*(list.begin() + 0), 0, 1) + ":" + d_t_s(*(list.begin() + 1), 0, 1) + ":" + d_t_s(*(list.begin() + 2), 0, 1) + "  " + d_t_s(*(list.begin() + 3), 0, 1) + "/" + d_t_s(*(list.begin() + 4), 0, 1) + "/" + d_t_s(*(list.begin() + 5), 0, 1));
 }
+/*
+ * this section of code is written by "Rahul Wadhwa"
 bool isLeap2(int yr1){
 	return (yr1 % 400 == 0) || ((yr1 % 4 == 0) && (yr1 % 100 != 0));
 }
@@ -674,6 +675,7 @@ string getTimestamp2(uint32_t timer11, uint32_t t11) {
 
     return string(timestamp);
 }
+*/
 
 string timestring(initializer_list<uint8_t> list) {
 	return(d_t_s(*(list.begin() + 0), 0, 1) + ":" + d_t_s(*(list.begin() + 1), 0, 1) + ":" + d_t_s(*(list.begin() + 2), 0, 1) + "  " + d_t_s(*(list.begin() + 3), 0, 1) + "/" + d_t_s(*(list.begin() + 4), 0, 1) + "/" + d_t_s(*(list.begin() + 5), 0, 1));
@@ -687,8 +689,12 @@ void Print_save_time() {
 	RTC_DateTypeDef sDate_saved = { 0 };
 	HAL_RTC_GetTime(&hrtc, &sTime_saved, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, &sDate_saved, RTC_FORMAT_BIN);
-	print_time("curtime", { sTime_saved.Hours, sTime_saved.Minutes, sTime_saved.Seconds, sDate_saved.Date, sDate_saved.Month, sDate_saved.Year });
+	print_time("curtime", { sTime_saved.Hours, sTime_saved.Minutes, sTime_saved.Seconds,sDate_saved.Date, sDate_saved.Month,sDate_saved.Year });
 
+}
+
+void SER_Print( const string &message) {
+    HAL_UART_Transmit(&hlpuart1, (uint8_t *)message.c_str(), message.length(), HAL_MAX_DELAY);
 }
 
 /**
@@ -712,7 +718,7 @@ void Get_save_time() {
 		neo_control=temp;// CONTROL RESTORED (change 1)
 		uint32_t indexes = neoway_time.find('"') + 1;
 		uint32_t indexes2 = neoway_time.find('/', indexes);
-		uint8_t temp_date = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+		uint8_t temp_year = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
 
 		indexes = indexes2 + 1;
 		indexes2 = neoway_time.find('/', indexes);
@@ -720,7 +726,7 @@ void Get_save_time() {
 
 		indexes = indexes2 + 1;
 		indexes2 = neoway_time.find(',', indexes);
-		uint8_t temp_year = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+		uint8_t temp_date = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
 
 		indexes = indexes2 + 1;
 		indexes2 = neoway_time.find(':', indexes);
@@ -893,8 +899,7 @@ void neoway_publish(string topic) {
 	both_debug.Print2("\r\nPublishing data\r\n");
 	save_ble_print(0);
 	data_packet.MAKE_DATA_JSON(data_packet.$CLEAR_ALL, 1);
-	jsonstring1 = data_packet.GET_JSON_STRING();
-	SD_Data = jsonstring1.c_str();
+	SD_Data = data_packet.GET_JSON_STRING();
 	neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(data_packet.GET_JSON_STRING_LEN()), { 5000 }, 1, { ">" });
 	neoway.SEND_RECIEVE(data_packet.GET_JSON_STRING(), { 5000, 5000 }, 1, { "OK", "PUB" });
 	restore_ble_print();
@@ -974,9 +979,9 @@ void object_setup() {
 //	GEMHO_AIR_TPH.ADD_PARA("ATMOS_PRESSURE", 1.0);  // 5
 //	GEMHO_AIR_TPH.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
 
-		AIR_HT.ADD_PARA("HT_LEF_HUM");
-		AIR_HT.ADD_PARA("LEAF_TEMP");
-		AIR_HT.SET_add_to_json(1);
+//		AIR_HT.ADD_PARA("HT_LEF_HUM");
+//		AIR_HT.ADD_PARA("LEAF_TEMP");
+//		AIR_HT.SET_add_to_json(1);
 
 		SENTEK_AIR_TPH.SET_manual_baud(4800);
 		SENTEK_AIR_TPH.ADD_PARA("ATMOS_HUMIDITY");  // 0
@@ -1278,15 +1283,7 @@ void SENSOR_ONLY_FUNC() {
 }
 #endif
 #if defined(APP_CODE)
-static uint32_t t_count7;
-void storeCounter2(uint32_t val1){
-	HAL_PWR_EnableBkUpAccess();
-	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR2, val1);
-}
- uint32_t loadCounter2() {
-    HAL_PWR_EnableBkUpAccess();
-    return HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR2);
-}
+
 /**
  * @brief Get reading from sensor and save it in respective parameters
  */
@@ -1322,21 +1319,18 @@ void fetch_reading() {
 	MISOL_RAIN.GET_READING(1);
 
 	//AIR_HT.SET_VAR_VALUE_CONN(1);
-	I2CSensorREDE(&aht_temp,&aht_hum);
-	AIR_HT.SET_PARA_VALUE(0,aht_hum,3);
-	AIR_HT.SET_PARA_VALUE(1,aht_temp,3);
+//	I2CSensorREDE(&aht_temp,&aht_hum);
+//	AIR_HT.SET_PARA_VALUE(0,aht_hum,3);
+//	AIR_HT.SET_PARA_VALUE(1,aht_temp,3);
 
 	analog_index = 0;
 	V_12.SET(0);
 	if(sample_count==5)MISOL_RAIN.CLEAR_TIP();//reset the rain gauge
-//	RTC_TimeTypeDef sTime = { 0 };/*adding time into json frame*/
-//	RTC_DateTypeDef sDate = { 0 };
-
-	 t_count7 = loadCounter2();
-//	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-//	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-	U_TIME.SET_PARA_VALUE(0,getTimestamp2(WAKEUP_INT.GET_VAR_VALUE_CONN(),t_count7*6));
-	storeCounter2(t_count7);
+		RTC_TimeTypeDef sTime = { 0 };/*adding time into json frame*/
+		RTC_DateTypeDef sDate = { 0 };
+		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+		U_TIME.SET_PARA_VALUE(0,timestring({ sTime.Hours, sTime.Minutes, sTime.Seconds, sDate.Date, sDate.Month, sDate.Year }));
 }
 #endif
 

@@ -213,9 +213,9 @@ int main(void) {
 		}
 
 		neoway.INIT();
-		Get_save_time();
+		if(Network.GPRS_ON)Get_save_time();
 
-		PassAuthen();
+ 		PassAuthen();
 
 		both_debug.Print2("\r\nIn OTA CODE  " __TIME__ " - " __DATE__ "\r\n");
 
