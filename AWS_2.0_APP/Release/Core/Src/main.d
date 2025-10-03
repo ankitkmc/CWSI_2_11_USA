@@ -31,10 +31,22 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc_ex.h \
+ ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h \
+ ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/iwdg.h \
- ../Core/Inc/adc.h ../Core/Inc/gpio.h ../Core/Inc/rtc.h ../Core/Inc/i2c.h \
+ ../Core/Inc/adc.h ../Core/Inc/main.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/FATFS/App/fatfs.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/ff.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/integer.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/FATFS/Target/ffconf.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/diskio.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/ff.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/FATFS/Target/user_diskio.h \
+ ../Core/Inc/i2c.h ../Core/Inc/iwdg.h ../Core/Inc/usart.h \
+ ../Core/Inc/rtc.h ../Core/Inc/spi.h ../Core/Inc/gpio.h \
+ ../Core/Inc/fatfs_sd.h \
  C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h \
  C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h \
  C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h \
@@ -61,6 +73,7 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/RAIN_GAUGE.h \
  C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/GNSS.h \
  C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h \
+ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h \
  C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
@@ -95,15 +108,27 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc_ex.h:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-../Core/Inc/usart.h:
-../Core/Inc/main.h:
-../Core/Inc/iwdg.h:
 ../Core/Inc/adc.h:
-../Core/Inc/gpio.h:
-../Core/Inc/rtc.h:
+../Core/Inc/main.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/FATFS/App/fatfs.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/ff.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/integer.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/FATFS/Target/ffconf.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/diskio.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/Middlewares/Third_Party/FatFs/src/ff.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/AWS_2.0_APP/FATFS/Target/user_diskio.h:
 ../Core/Inc/i2c.h:
+../Core/Inc/iwdg.h:
+../Core/Inc/usart.h:
+../Core/Inc/rtc.h:
+../Core/Inc/spi.h:
+../Core/Inc/gpio.h:
+../Core/Inc/fatfs_sd.h:
 C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:
 C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/ENUMS.h:
 C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/double_to_string.h:
@@ -130,4 +155,5 @@ C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/WIND_SPEED.h:
 C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/RAIN_GAUGE.h:
 C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/GNSS.h:
 C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/JSON_HANDLER.h:
+C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h:
 C:/CWS/CWSI_2_1/CWS_USA/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:

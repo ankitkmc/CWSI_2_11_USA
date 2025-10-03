@@ -47,6 +47,18 @@ struct Parameter {
 //		double max_value;
 };
 
+typedef struct {
+	uint8_t SIM_IN          : 1; // Flag for SIM card insertion
+	uint8_t GPRS_ON         : 1; // Flag for GPRS connection status
+	uint8_t AWS_PUSH		: 1; // Flag for AWS data push status
+	uint8_t isDataAvailable	: 1; // Flag for data transmission status
+	uint8_t isAWSConnected 	: 1; // reserved
+	uint8_t isDataPushed  	: 1; // reserved
+	uint8_t isSDcardInsrted	: 1; // reserved
+	uint8_t RES5	 		: 1; // reserved
+
+} StatusFlags;
+
 string config_file_name = "config.json";
 
 #define not_found 0xFFFFFFFF

@@ -19,12 +19,16 @@
 
 #include <main.h>
 //#include "dma.h"
-#include "usart.h"
-#include "iwdg.h"
 #include "adc.h"
-#include "gpio.h"
-#include "rtc.h"
+#include "fatfs.h"
 #include "i2c.h"
+#include "iwdg.h"
+#include "usart.h"
+#include "rtc.h"
+#include "spi.h"
+#include "gpio.h"
+#include "fatfs_sd.h"
+
 /**
  * Un-comment for Various different functionalities
  */
@@ -45,12 +49,14 @@
  */
 #include "INCLUDER.h"
 
+#include "Sandisk.h"
 /**
  * @brief The Address App jumps to after BOOTLOADER
  */
 float aht_temp,aht_hum;
 const uint32_t appadd = 0x801F000;
 uint8_t sample_count=0;
+string filename = "file131.txt"; // new added
 /**
  * @brief Pointer to reset handler
  */
@@ -102,7 +108,7 @@ create(VARIABLES, DEVICE_ID);
 #if defined(APP_CODE) or defined(RTK)
 create(VARIABLES, U_TIME);
 create_0(VARIABLES, FIRMWARE_VERSION);
-create_0(VARIABLES, LONG);
+create_0(VARIABLES, LON);
 create_0(VARIABLES, LAT);
 create(VARIABLES,AIR_HT);
 create_rs485(RS485, NPK_SENSOR);
@@ -143,9 +149,54 @@ create_0(VARIABLES, EXIT);
 JSON_HANDLER data_packet(variables_pointer);
 PWR_PIN V_12(EN_12V_GPIO_Port, EN_12V_Pin);
 
+SD2 sd_card_2;
+
+//void initSDCard() {
+//	uint8_t retries = 0;
+//	bool hasRetried = false;
+//Retry: 		char path[] = "0:";
+//     // Optional: Unlink in case it's already linked
+//    FATFS_UnLinkDriver(path);
+//    HAL_Delay(100); // Give SD card time to stabilize
+//    // Link the SD driver
+//       if (FATFS_LinkDriver(&SD_Driver, path) != 0) {
+//           both_debug.Print2("Driver link failed\n");
+//           return;
+//       }
+//       HAL_Delay(100); // Give SD card time to stabilize
+//
+//       FRESULT res;
+//
+//          do {
+//              res = f_mount(&sd_card_2.fs, path, 1);
+//              if (res == FR_OK) break;
+//              HAL_Delay(10);
+//              retries++;
+//          } while (retries < 5);
+//
+//          if (retries == 5 && res != FR_OK && !hasRetried) goto Retry;
+//
+//
+////    	  both_debug.Print2("SD card mounted successfully\n");
+//
+//    // Mount the SD card
+//     res = f_mount(&sd_card_2.fs, path, 1);
+//
+//    if (res != FR_OK) {
+//        both_debug.Print2("Mount failed with error: " + to_string(res));
+//        Network.isSDcardInsrted=1;
+//    } else {
+//        both_debug.Print2("SD card mounted successfully\n");
+//        sd_card_2.offsetPos=sd_card_2.handleOffset(sd_offset,"");
+//        Network.isSDcardInsrted=1;
+//    }
+//
+//
+//}
+
 #include "FUNCTIONS.h"
 
-char *SD_data = NULL;
+//char *SD_data = NULL; // AES
 
 /**
  * @brief  The application entry point.
@@ -156,18 +207,24 @@ int main(void) {
 
 	SystemClock_Config();
 
-	MX_GPIO_Init();
-	MX_USART2_UART_Init();
-	MX_ADC1_Init();
-	MX_LPUART1_UART_Init();
-	MX_USART1_UART_Init();
-	MX_RTC_Init();
-	MX_IWDG_Init();
-	 MX_I2C1_Init();
+	  MX_GPIO_Init();
+	  MX_ADC1_Init();
+	  MX_LPUART1_UART_Init();
+	  MX_USART1_UART_Init();
+	  MX_USART2_UART_Init();
+	  MX_RTC_Init();
+	  MX_IWDG_Init();
+	  MX_I2C1_Init();
+	  MX_SPI2_Init();
+	  MX_FATFS_Init();
+
+//	  initSDCard();
+
 	if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 5, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK) {
 		Error_Handler();
 	}
 	object_setup();
+
 
 #if defined(UB1_ON)
 	BUTTON.SET_PIN(UB1_GPIO_Port, UB1_Pin);
@@ -195,10 +252,26 @@ int main(void) {
 			config_file();
 		}
 
-		if(sample_count==5)neoway.INIT();
-		Get_save_time();
-
+		neoway.INIT();
+//		Get_save_time();
 		PassAuthen();
+
+		initSDCard();
+/*
+		for(int i=0;i<300;i++){
+		string	data=   "{\"WS\":537,\"DEVICE_ID\":" + to_string(i) +
+			        ",\"TIME\":\"29-09-0025 08:"+to_string(i)+":"+to_string(i)+"\",\"HT_LEF_HUM\":\"-1.000\",\"LEAF_TEMP\":\"-1.000\","
+			        "\"LEAF_HUM\":\"20.369\",\"SOIL_MOISTURE\":\"65.3125\",\"SOIL_TEMPERATURE\":\"26.2000\",\"ATMOS_PRESSURE\":\"950.6478\","
+			        "\"ATMOS_HUMIDITY\":\"76.000\",\"ATMOS_TEMPERATURE\":\"26.3561\",\"SOLAR_RADIATION\":\"56035.2310\",\"BATTERY_VOLTAGE\":\"13.4737\","
+			        "\"SOLAR_PANNEL_VOLTAGE\":\"20.3694\",\"WIND_DIRECTION\":\"W\",\"IRROMETER_CB_PRIMARY\":\"6.3564\",\"IRROMETER_CB_SECONDARY\":\"4.3561\","
+			        "\"WIND_SPEED\":\"5.3645\",\"RAIN_INTENSITY\":\"0\"}";
+
+			    sd_card_2.write4(data, filename);
+			}
+			*/
+
+		if(Network.GPRS_ON)Get_save_time();
+		both_debug.Print2("\r\nNetwork.GPRS_ON:\t"+d_t_s((double)Network.GPRS_ON));
 
 #if defined(APP_CODE)
 		both_debug.Print2("\r\nIn APP CODE  " __TIME__ " - " __DATE__ "\r\n");
@@ -254,13 +327,63 @@ int main(void) {
 			Error_Handler();
 		}
 
+		sample_count=5;
+		if(Network.GPRS_ON && sample_count==5 &&  Network.isSDcardInsrted==1){
+			Network.isDataAvailable=1;
+			neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
+			uint8_t retry=2;
+			DWORD updateline=0;
+			neoway.AWS_CON();
+			both_debug.Print2("\r\n Network.AWS_PUSH:\t"+d_t_s(Network.AWS_PUSH)+ "\r\n");
+			//sd_card_2.offsetPos=sd_card_2.handleOffset(sd_offset, "");
+									while(Network.isDataAvailable){
+
+										json_sd = sd_card_2.readJsonLine2k(filename);
+
+								if(Network.isDataAvailable && (sd_card_2.linecount()!=0)){
+
+					CONNECT:		  if(!Network.AWS_PUSH){
+											neo_control = $CONTINUE;
+											Network.AWS_PUSH=(neoway.SEND_RECIEVE("AT+AWSCONN=120,1,4", { 30000 }, 3, { "OK" }).find("OK") != string::npos);
+										}
+										ble_cont = $BREAK;
+										neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(json_sd.length()), { 5000 }, 1, { ">" });
+										Network.isDataPushed=(neoway.SEND_RECIEVE(json_sd, { 5000, 5000 }, 1, { "OK", "PUB" }).find("+AWSPUB: OK") != string::npos);
+										ble_cont = $CONTINUE;
+										both_debug.Print2("\r\n Network.isDataPushed:\t"+d_t_s(Network.isDataPushed)+ "\r\n");
+//										restore_ble_print();
+										}
+									   if((!Network.isDataAvailable) && (sd_card_2.linecount()==0)){
+										   	sd_card_2.offsetPos=0;
+										    sd_card_2.handleOffset(sd_offset,to_string(sd_card_2.offsetPos));
+											sd_card_2.deletefile2(filename);
+
+											break;   //Exit after 3 retry
+										}
+									   if(!Network.isDataPushed){
+												Network.AWS_PUSH=0;
+													retry--;
+												if(!retry){
+												    updateline =((DWORD)json_sd.length()-(sd_card_2.linecount()+1));
+												    sd_card_2.readJsonLine(filename,updateline);//update the pointer
+													break;   //Exit after 3 retry
+												}
+
+										goto CONNECT;
+
+										}
+
+									}
+		}
+
 		fetch_reading();
 
-		SD_data = (char*)calloc(1024, sizeof(char));
-	    if (!SD_data) {
-	        // handle allocation failure
-	    	uart_send("\n************Memory allocation failed*****************\n");
-	    }
+//		SD_data = (char*)calloc(1024, sizeof(char));
+//	    if (!SD_data) {
+//	        // handle allocation failure
+//	    	uart_send("\n************Memory allocation failed*****************\n");
+//	    }
+
 		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
 		sample_count++;
 		if(sample_count==6){
@@ -271,20 +394,25 @@ int main(void) {
 		sample_count=0;
 		}
 
-	    if (!SD_data) {
-	        // handle allocation failure
-	    	uart_send("\n************Memory allocation failed*****************\n");
-	    }
-	    else{
-			main_encrypt_and_send(SD_data);
-			uart_send(encrypted_data);
-			neoway_publish_app("ASSET/CWMS");
-	    }
-	    free(SD_data);
+//	    if (!SD_data) {
+//	        // handle allocation failure
+//	    	uart_send("\n************Memory allocation failed*****************\n");
+//	    }
+//	    else{
+//			main_encrypt_and_send(SD_data);
+//			uart_send(encrypted_data);
+//			neoway_publish_app("ASSET/CWMS");
+//	    }
+//	    free(SD_data);
 
-		if (neo_control == $CONTINUE) {
-			GO_TO_SLEEP();
+		if(neo_control != $CONTINUE && sample_count==0){
+			both_debug.Print2("\n  data saved in SD CARD:"+SD_Data+"\n");
+			sd_card_2.write4(SD_Data,filename);
+			neo_control = $CONTINUE;
 		}
+
+        if(neo_control == $CONTINUE || !(sd_card_2.isEmpty(filename)))
+			GO_TO_SLEEP();
 
 #endif
 

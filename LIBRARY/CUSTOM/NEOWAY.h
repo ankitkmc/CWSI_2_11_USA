@@ -11,6 +11,9 @@
 /**
  * for definition of NEOWAY class used to define NEOWAY module used in AWS 2.0.
  */
+
+StatusFlags Network;
+
 class NEOWAY {
 
 	public:
@@ -427,8 +430,9 @@ class NEOWAY {
 		}
 
 		void INIT() {
-
-			SEND_RECIEVE("AT+CPIN?", { 5000 }, 5, { "OK" });
+			Network.GPRS_ON=0;
+			Network.SIM_IN=0;
+			Network.SIM_IN = (SEND_RECIEVE("AT+CPIN?", { 5000 }, 5, { "OK" }).find("OK") != string::npos);
 			SEND_RECIEVE("AT+CSQ", { 5000 }, 5, { "OK" });
 			SEND_RECIEVE("AT+CREG=2", { 5000 }, 5, { "OK" });
 			SEND_RECIEVE("AT+CREG?", { 5000 }, 5, { "2," });
@@ -437,7 +441,7 @@ class NEOWAY {
 //	neoway.SEND_RECIEVE("AT$MYSYSINFO", { 5000 }, 1, { "+CGATT: 1" }); 	//	SEND_RECIEVE("AT+NETAPN=\"move.dataxs.mobi\",\"\",\"\"", { 5000 }, 5, { "OK" });
 
 			SEND_RECIEVE("AT+XIIC=1", { 5000 }, 5, { "OK" });
-			SEND_RECIEVE("AT+XIIC?", { 5000 }, 5, { "+XIIC:    1" });
+			Network.GPRS_ON = (SEND_RECIEVE("AT+XIIC?", { 5000 }, 5, { "+XIIC:    1" }).find("+XIIC:    1") != string::npos);
 			delay(2 * ms_s);
 		}
 
