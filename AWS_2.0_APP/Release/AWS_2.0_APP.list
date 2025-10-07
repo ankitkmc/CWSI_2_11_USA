@@ -11883,8 +11883,8 @@ Disassembly of section .text:
  8026cc6:	f7fb ff1f 	bl	8022b08 <_ZN10UART_DEBUG6Print2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE>
  8026cca:	a80e      	add	r0, sp, #56	@ 0x38
  8026ccc:	f008 febf 	bl	802fa4e <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv>
- 8026cd0:	4638      	mov	r0, r7
- 8026cd2:	2107      	movs	r1, #7
+ 8026cd0:	4621      	mov	r1, r4
+ 8026cd2:	4638      	mov	r0, r7
  8026cd4:	f7fa fc30 	bl	8021538 <_ZN5RS4858SET_REDEEi>
  8026cd8:	48ba      	ldr	r0, [pc, #744]	@ (8026fc4 <_Z12object_setupv+0x34c>)
  8026cda:	2104      	movs	r1, #4
