@@ -1,2 +1,10 @@
 S:"6jnwkt47x3djv46m3cvneftqoi0unzcs.lambda-url.us-west-2.on.aws/?farmID=995&hardwareID=CWMS_1_1"
 R:AT+HTTPPARA=url,"6jnwkt47x3djv46m3cvneftqoi0unzcs.lambda-url.us-west-2.on.aws/?farmID=995&ha
+features added 
+1 - Negative temperature handeling
+2- Time stamp Added 
+3  Sample and average added 
+4- SD card integrated 
+5- Send 3k chunk of Json array
+6- Aes Files added but disabled
+7- RTC handleing to update time     

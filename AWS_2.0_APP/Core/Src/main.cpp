@@ -122,19 +122,19 @@ create_rs485(RS485, AIR_TPH_SENSOR);
 //create_rs485(RS485, GEMHO_LEAF);
 //create_rs485(RS485, GEMHO_ILLUMINOSITY);
 //create_rs485(RS485, GEMHO_4_1);// final copy to the master
-create_rs485(RS485, SENTEK_AIR_TP);//GEMHO_7_1 changed to SENTEK_AIR_TP Sentek Pressure
+create_rs485(RS485, AIR_PRESSURE);//GEMHO_7_1 changed to SENTEK_AIR_TP Sentek Pressure
 //create_rs485(RS485, GEMHO_AIR_TPH);// Added 3rd change
-create_rs485(RS485, SENTEK_AIR_TPH);
+create_rs485(RS485,  AIR_TH_LUX);
 create_rs485(RS485, CHANGE_ADD);
 
 create(ANALOG, BATTERY);
 create(ANALOG, SOLAR_PANEL);
 create(WIND_DIR, WIND_DIRECTION_SENSOR);
-create(WIND_DIR, MISOL_DIR);
+create(WIND_DIR, WIND_DIR1);
 create(IRROMETER, IRROMETER_PRIMARY);
 create(IRROMETER, IRROMETER_SECONDARY);
-create(WIND_SPEED, MISOL_SPEED);
-create(RAIN_GAUGE, MISOL_RAIN);
+create(WIND_SPEED, WIND_SPEED1);
+create(RAIN_GAUGE, RAINFALL);
 create_0(VARIABLES, SENSOR_ONLY);
 #endif
 //create_0(VARIABLES, ALARM_TIME);
@@ -253,7 +253,7 @@ int main(void) {
 		}
 
 		neoway.INIT();
-//		Get_save_time();
+		if(Network.GPRS_ON)Get_save_time();
 		PassAuthen();
 
 		initSDCard();
@@ -327,7 +327,7 @@ int main(void) {
 			Error_Handler();
 		}
 
-		sample_count=5;
+		//sample_count=5;
 		if(Network.GPRS_ON && sample_count==5 &&  Network.isSDcardInsrted==1){
 			Network.isDataAvailable=1;
 			neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
@@ -377,13 +377,13 @@ int main(void) {
 		}
 
 		fetch_reading();
-
-//		SD_data = (char*)calloc(1024, sizeof(char));
-//	    if (!SD_data) {
-//	        // handle allocation failure
-//	    	uart_send("\n************Memory allocation failed*****************\n");
-//	    }
-
+/*
+		SD_data = (char*)calloc(1024, sizeof(char));
+	    if (!SD_data) {
+	        // handle allocation failure
+	    	uart_send("\n************Memory allocation failed*****************\n");
+	    }
+*/
 		both_debug.Print2("\r\nSample count: "+d_t_s((double)sample_count));
 		sample_count++;
 		if(sample_count==6){
@@ -394,18 +394,18 @@ int main(void) {
 		sample_count=0;
 		}
 
-//	    if (!SD_data) {
-//	        // handle allocation failure
-//	    	uart_send("\n************Memory allocation failed*****************\n");
-//	    }
-//	    else{
-//			main_encrypt_and_send(SD_data);
-//			uart_send(encrypted_data);
-//			neoway_publish_app("ASSET/CWMS");
-//	    }
-//	    free(SD_data);
-
-		if(neo_control != $CONTINUE && sample_count==0){
+/*	    if (!SD_data) {
+	        // handle allocation failure
+	    	uart_send("\n************Memory allocation failed*****************\n");
+	    }
+	    else{
+			main_encrypt_and_send(SD_data);
+			uart_send(encrypted_data);
+			neoway_publish_app("ASSET/CWMS");
+	    }
+	    free(SD_data);
+*/
+		if(neo_control != $CONTINUE && sample_count==0 && Network.isSDcardInsrted==1){
 			both_debug.Print2("\n  data saved in SD CARD:"+SD_Data+"\n");
 			sd_card_2.write4(SD_Data,filename);
 			neo_control = $CONTINUE;

@@ -58,7 +58,7 @@ void MX_RTC_Init(void)
   }
 
   /* USER CODE BEGIN Check_RTC_BKUP */
-
+  if (__HAL_RCC_GET_FLAG(RCC_RESET_FLAG_PWR)){
   /* USER CODE END Check_RTC_BKUP */
 
   /** Initialize RTC and set the Time and Date
@@ -111,7 +111,9 @@ void MX_RTC_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN RTC_Init 2 */
-
+  }
+    // Clear reset flags after checking
+      __HAL_RCC_CLEAR_RESET_FLAGS();
   /* USER CODE END RTC_Init 2 */
 
 }
