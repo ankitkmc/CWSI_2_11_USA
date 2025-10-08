@@ -213,7 +213,7 @@ int main(void) {
 		}
 
 		neoway.INIT();
-		Get_save_time();
+		if(Network.GPRS_ON)Get_save_time();
 
 		PassAuthen();
 

@@ -193,6 +193,7 @@ class NEOWAY {
 				return accu_response;
 			} else {
 				debug.Print("\r\n\t\tSKIPPING : " + command);
+				refresh_counter();
 				return "";
 //				POWER_ON();
 			}
@@ -468,7 +469,7 @@ class NEOWAY {
 		 * @retval none
 		 */
 		void AWS_CON() {
-
+			Network.AWS_PUSH=0;
 			//	neoway_init();
 			//	neoway.SET_data_pub_topic("AWS/EKL/RTK/0");
 			//	neoway.SET_data_pub_topic("AWS/EKL/GEMHO/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
@@ -482,7 +483,7 @@ class NEOWAY {
 			SEND_RECIEVE("AT+AWSCONNPARAM=a1q2r34gpscepz-ats.iot.us-west-2.amazonaws.com:8883,1", { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSTLSCFG?", { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSAUTHPARAM=AWS_EKL,test,test", { 5000 }, 2, { "OK"});
-			SEND_RECIEVE("AT+AWSCONN=60,1,4", { 30000 }, 2, { "OK" });
+			Network.AWS_PUSH=(SEND_RECIEVE("AT+AWSCONN=60,1,4", { 30000 }, 2, { "OK" }).find("OK") != string::npos);
 
 		}
 

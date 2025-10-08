@@ -665,7 +665,7 @@ void Get_save_time() {
 	if (!neoway_time.empty() && neo_control == $CONTINUE) {
 		uint32_t indexes = neoway_time.find('"') + 1;
 		uint32_t indexes2 = neoway_time.find('/', indexes);
-		uint8_t temp_date = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+		uint8_t temp_year = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
 
 		indexes = indexes2 + 1;
 		indexes2 = neoway_time.find('/', indexes);
@@ -673,7 +673,7 @@ void Get_save_time() {
 
 		indexes = indexes2 + 1;
 		indexes2 = neoway_time.find(',', indexes);
-		uint8_t temp_year = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
+		uint8_t temp_date = s_t_d(neoway_time.substr(indexes, indexes2 - indexes));
 
 		indexes = indexes2 + 1;
 		indexes2 = neoway_time.find(':', indexes);
@@ -904,13 +904,13 @@ void object_setup() {
 	both_debug.Print2("\r\nOBJ_SETUP : ");
 
 //	GEMHO_AIR_TPH.SET_REDE(1);
-	SENTEK_AIR_TPH.SET_REDE(7);
+	 AIR_TH_LUX.SET_REDE(1);
 //	GEMHO_SOIL_TH.SET_REDE(2);
 //	GEMHO_SOIL_NPK.SET_REDE(3);
 	LEAF_SENSOR.SET_REDE(4);
 //	RAIN_GAUGE_SENSOR.SET_REDE(5);
 //	PRESSURE.SET_REDE(6);//add
-	SENTEK_AIR_TP.SET_REDE(6);
+	AIR_PRESSURE.SET_REDE(6);
 //	GEMHO_ILLUMINOSITY.SET_REDE(5);
 //	GEMHO_LEAF.SET_REDE(4);
 //	GEMHO_4_1.SET_REDE(7);
@@ -941,13 +941,13 @@ void object_setup() {
 		AIR_HT.ADD_PARA("LEAF_TEMP");
 		AIR_HT.SET_add_to_json(1);
 
-		SENTEK_AIR_TPH.SET_manual_baud(4800);
-		SENTEK_AIR_TPH.ADD_PARA("ATMOS_HUMIDITY");  // 0
-		SENTEK_AIR_TPH.ADD_PARA("ATMOS_TEMPERATURE");  // 1
-		SENTEK_AIR_TPH.ADD_PARA("SKIP", 1.0, 4);  // 2,3,4,5
-	//	SENTEK_AIR_TPH.ADD_PARA("ATMOS_PRESSURE", 1.0);  // 5
-		SENTEK_AIR_TPH.ADD_PARA("SOLAR_RADIATION", 1.0,2);  //6,7
-		SENTEK_AIR_TPH.SET_frame( { 0x01, 0x03, 0x01, 0xF4 });
+		 AIR_TH_LUX.SET_manual_baud(4800);
+		 AIR_TH_LUX.ADD_PARA("ATMOS_HUMIDITY");  // 0
+		 AIR_TH_LUX.ADD_PARA("ATMOS_TEMPERATURE");  // 1
+		 AIR_TH_LUX.ADD_PARA("SKIP", 1.0, 4);  // 2,3,4,5
+	//	 AIR_TH_LUX.ADD_PARA("ATMOS_PRESSURE", 1.0);  // 5
+		 AIR_TH_LUX.ADD_PARA("SOLAR_RADIATION", 1.0,2);  //6,7
+		 AIR_TH_LUX.SET_frame( { 0x01, 0x03, 0x01, 0xF4 });
 
 //	GEMHO_SOIL_TH.ADD_PARA("SOIL_TEMPERATURE", 100.0);
 //	GEMHO_SOIL_TH.ADD_PARA("SOIL_MOISTURE", 100.0);
@@ -959,8 +959,8 @@ void object_setup() {
 	GEMHO_SOIL_NPK.SET_frame( { 0x01, 0x03, 0x00, 0x1E });
 */
 
-	SENTEK_AIR_TP.SET_manual_baud(4800);
-	SENTEK_AIR_TP.ADD_PARA("ATMOS_PRESSURE",1.0);  // 06
+		AIR_PRESSURE.SET_manual_baud(4800);
+		AIR_PRESSURE.ADD_PARA("ATMOS_PRESSURE",1.0);  // 06
 //	GEMHO_7_1.ADD_PARA("SOIL_MOISTURE", 100.0);  // 07
 //	GEMHO_7_1.ADD_PARA("SOIL_CONDUC", 1.0);  // 08
 //	GEMHO_7_1.ADD_PARA("SOIL_PH", 100.0);  // 09
@@ -969,7 +969,7 @@ void object_setup() {
 //	GEMHO_7_1.ADD_PARA("PHOSPHORUS", 1.0);  // 1F
 //	GEMHO_7_1.ADD_PARA("POTASSIUM", 1.0);  // 20
 //	GEMHO_7_1.SET_frame( { 0x01, 0x03, 0x00, 0x06, });
-	SENTEK_AIR_TP.SET_frame( { 0x06, 0x03, 0x00, 0x00 });
+		AIR_PRESSURE.SET_frame( { 0x06, 0x03, 0x00, 0x00 });
 
 /*	GEMHO_LEAF.ADD_PARA("LEAF_TEMP", 100.0);
 	GEMHO_LEAF.ADD_PARA("LEAF_HUM", 100.0);
@@ -989,7 +989,7 @@ void object_setup() {
 
 	LEAF_SENSOR.SET_manual_baud(4800);
 	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
-//	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
+	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
 //	LEAF_SENSOR.ADD_PARA("LEAF_COND");
 	LEAF_SENSOR.SET_frame( { 0x04, 0x03, 0x00, 0x00 });
 
@@ -1024,12 +1024,12 @@ void object_setup() {
 	SOLAR_PANEL.SET_factor((3.3 / 4095) * 10.0908 * 1.06);
 	SOLAR_PANEL.SET_offset(-0.640);
 
-	MISOL_DIR.ADD_PARA("WIND_DIRECTION");
-	MISOL_DIR.SET_channel(ADC_CHANNEL_4);
-	MISOL_DIR.SET_factor(3.3 / 4095.0);
+	WIND_DIR1.ADD_PARA("WIND_DIRECTION");
+	WIND_DIR1.SET_channel(ADC_CHANNEL_4);
+	WIND_DIR1.SET_factor(3.3 / 4095.0);
 
-	MISOL_SPEED.ADD_PARA("WIND_SPEED");
-	MISOL_SPEED.SET_PIN(WS_M_IN_GPIO_Port, WS_M_IN_Pin);
+	WIND_SPEED1.ADD_PARA("WIND_SPEED");
+	WIND_SPEED1.SET_PIN(WS_M_IN_GPIO_Port, WS_M_IN_Pin);
 
 	IRROMETER_PRIMARY.ADD_PARA("IRROMETER_CB_PRIMARY");
 	IRROMETER_PRIMARY.SET_channel(ADC_CHANNEL_10);
@@ -1054,7 +1054,7 @@ void object_setup() {
 	//IRROMETER_SECONDARY.SET_soil_connected(GEMHO_SOIL_TH.GET_VAR_VALUE_CONN_PTR());
 	//IRROMETER_SECONDARY.SET_soil_temperature(&GEMHO_SOIL_TH.parameter.at(0)->value_double);
 
-	MISOL_RAIN.ADD_PARA("RAIN_INTENSITY");
+	RAINFALL.ADD_PARA("RAIN_INTENSITY");
 	both_debug.Print2("Done\r\n");
 	refresh_counter();
 }
@@ -1210,10 +1210,10 @@ void SENSOR_ONLY_FUNC() {
 		change_address_rs485();
 		LEAF_SENSOR.RS485_READ();
 //		GEMHO_SOIL_NPK.RS485_READ();
-		SENTEK_AIR_TP.RS485_READ();
+		AIR_PRESSURE.RS485_READ();
 //		GEMHO_4_1.RS485_READ();
 	//	GEMHO_AIR_TPH.RS485_READ();
-		SENTEK_AIR_TPH.RS485_READ();
+		 AIR_TH_LUX.RS485_READ();
 //		GEMHO_SOIL_TH.RS485_READ();
 //		GEMHO_ILLUMINOSITY.RS485_READ();
 //		GEMHO_LEAF.RS485_READ();
@@ -1230,9 +1230,9 @@ void SENSOR_ONLY_FUNC() {
 		IRROMETER_PRIMARY.IRRO_READ(10, 1);
 		IRROMETER_SECONDARY.IRRO_READ(10, 1);
 //
-		MISOL_DIR.DIRECTION_READ(1, 1);
-		MISOL_SPEED.SPEED_READ(5000, 1);
-		MISOL_RAIN.GET_READING(1);
+		WIND_DIR1.DIRECTION_READ(1, 1);
+		WIND_SPEED1.SPEED_READ(5000, 1);
+		RAINFALL.GET_READING(1);
 		if (both_debug.Both_read_check("Enter 1 to exit", 5, "1") == $EXPECTED_RESPONSE) {
 			break;
 		}
@@ -1251,10 +1251,10 @@ void fetch_reading() {
 	change_address_rs485();
 	LEAF_SENSOR.RS485_READ();
 //	GEMHO_SOIL_NPK.RS485_READ();
-	SENTEK_AIR_TP.RS485_READ();
+	AIR_PRESSURE.RS485_READ();
 //	GEMHO_4_1.RS485_READ();
 //	GEMHO_AIR_TPH.RS485_READ();
-	SENTEK_AIR_TPH.RS485_READ();
+	 AIR_TH_LUX.RS485_READ();
 //	GEMHO_SOIL_TH.RS485_READ();
 //	GEMHO_ILLUMINOSITY.RS485_READ();
 //	GEMHO_LEAF.RS485_READ();
@@ -1271,9 +1271,9 @@ void fetch_reading() {
 	IRROMETER_PRIMARY.IRRO_READ(10, 1);
 	IRROMETER_SECONDARY.IRRO_READ(10, 1);
 
-	MISOL_DIR.DIRECTION_READ(1, 1);
-	MISOL_SPEED.SPEED_READ(5000, 1);
-	MISOL_RAIN.GET_READING(1);
+	WIND_DIR1.DIRECTION_READ(1, 1);
+	WIND_SPEED1.SPEED_READ(5000, 1);
+	RAINFALL.GET_READING(1);
 
 	//AIR_HT.SET_VAR_VALUE_CONN(1);
 	I2CSensorREDE(&aht_temp,&aht_hum);
@@ -1282,7 +1282,7 @@ void fetch_reading() {
 
 	analog_index = 0;
 	V_12.SET(0);
-	if(sample_count==5)MISOL_RAIN.CLEAR_TIP();//reset the rain gauge
+	if(sample_count==5)RAINFALL.CLEAR_TIP();//reset the rain gauge
 	RTC_TimeTypeDef sTime = { 0 };/*adding time into json frame*/
 	RTC_DateTypeDef sDate = { 0 };
 	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
@@ -1301,7 +1301,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	if (GPIO_Pin == RG_M_INT_Pin) {
 		if (HAL_GPIO_ReadPin(RG_M_INT_GPIO_Port, RG_M_INT_Pin) == GPIO_PIN_SET) {
-			MISOL_RAIN.ADD_TIP();
+			RAINFALL.ADD_TIP();
 		}
 	}
 #if defined(UB1_ON)
@@ -1340,7 +1340,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
  */
 
 void HAL_RTCEx_AlarmBEventCallback(RTC_HandleTypeDef *hrtc) {
-	both_debug.Print2("\r\n SleepOnExit CALL ");
+//	both_debug.Print2("\r\n SleepOnExit CALL ");
 	HAL_PWR_DisableSleepOnExit();
 }
 #endif
@@ -1411,7 +1411,7 @@ RTC_TimeTypeDef ADD_seconds(RTC_TimeTypeDef &sTime_saved, RTC_DateTypeDef &sDate
 	if (ret_time.Hours + temp_hr > 23) {
 		ret_date.Date++;
 //#if defined(APP_CODE)
-//		MISOL_RAIN.CLEAR_TIP();// uncomment for Accumulative reading for 10
+//		RAINFALL.CLEAR_TIP();// uncomment for Accumulative reading for 10
 //#endif
 		ret_time.Hours += temp_hr - 24;
 	} else {

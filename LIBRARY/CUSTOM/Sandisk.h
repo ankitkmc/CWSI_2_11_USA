@@ -14,13 +14,13 @@
 //extern "C" {
 //#endif
 
-#include "string.h"
-#include "stdio.h"
-#include "gpio.h"
+//#include "string.h"
+//#include "stdio.h"
+//#include "gpio.h"
 #include "fatfs.h"
-#include "spi.h"
+//#include "spi.h"
 #include "fatfs_sd.h"
-#include "cstdio"
+//#include "cstdio"
 
 //#include "cstdio"
 
@@ -108,7 +108,9 @@ public:
                 if (f_gets(line, sizeof(line), &file)) {
                     jsonLine = string(line);
                     offsetPos = f_tell(&file);
+                    ble_cont = $BREAK;
                     both_debug.Print2(":" + jsonLine);
+                    ble_cont = $CONTINUE;
                 }
                 f_close(&file);
             }
@@ -170,7 +172,7 @@ public:
             if (f_open(&file, ("0:/" + filename).c_str(), FA_OPEN_APPEND | FA_WRITE) == FR_OK) {
                 f_lseek(&file, f_size(&file)); // move to end
                 string withNewline = data + "\n";
-                both_debug.Print2(filename + ":" + data+"\n");
+                both_debug.Print2(filename + ":" + withNewline);
                 f_write(&file, withNewline.c_str(), withNewline.size(), &bw);
                 f_close(&file);
             }

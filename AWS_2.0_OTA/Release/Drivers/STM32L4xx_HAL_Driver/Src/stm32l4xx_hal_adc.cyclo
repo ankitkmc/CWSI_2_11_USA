@@ -15,7 +15,7 @@
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:2231:6:HAL_ADC_IRQHandler	38
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:3555:6:ADC_DMAConvCplt	9
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:3651:6:ADC_DMAError	1
-../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:2701:19:HAL_ADC_ConfigChannel	38
+../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:2701:19:HAL_ADC_ConfigChannel	36
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:2964:19:HAL_ADC_AnalogWDGConfig	27
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:3224:10:HAL_ADC_GetState	1
 ../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c:3238:10:HAL_ADC_GetError	1

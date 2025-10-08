@@ -232,7 +232,17 @@ class RS485: public VARIABLES {
 
 					}
 //					both_debug.Print2("\n\r");
-					double double_value = value / *factor.at(index);
+					double double_value;
+					if (parameter.at(index)->name.find("TEMP") != std::string::npos) {
+					    // Cast the 2-byte value to signed 16-bit integer
+					    int16_t temp = static_cast<int16_t>(static_cast<uint16_t>(value));
+
+					    // Convert to double and apply scaling
+					    double_value = (static_cast<double>(temp))/ *factor.at(index);
+
+					}
+					else double_value = value / *factor.at(index);
+
 					if (SET_PARA_VALUE(index, double_value) != $OK) {
 						both_debug.Print2("PARA_SIZE_OUT");
 						return $PARA_SIZE_OUT;
