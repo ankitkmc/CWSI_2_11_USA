@@ -1051,7 +1051,7 @@ void object_setup() {
 	IRROMETER_PRIMARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());
 	IRROMETER_PRIMARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(1)->value_double);
 
-	//IRROMETER_SECONDARY.SET_soil_connected(GEMHO_SOIL_TH.GET_VAR_VALUE_CONN_PTR());
+	//IRROMETER_SECONDARY.SET_soil_connected(GEMHO_SOIL_TH.GET_VAR_VALUE_CONN_PTR());  final git
 	//IRROMETER_SECONDARY.SET_soil_temperature(&GEMHO_SOIL_TH.parameter.at(0)->value_double);
 
 	RAINFALL.ADD_PARA("RAIN_INTENSITY");

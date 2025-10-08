@@ -218,7 +218,7 @@ int main(void) {
 	  MX_SPI2_Init();
 	  MX_FATFS_Init();
 
-//	  initSDCard();
+//	  initSDCard(); final git
 
 	if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 5, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK) {
 		Error_Handler();
