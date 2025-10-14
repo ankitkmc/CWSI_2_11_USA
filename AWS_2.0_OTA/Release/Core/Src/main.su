@@ -98,7 +98,7 @@ D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:803:6:void httpget(
 D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:833:6:void https_file_download(std::string&)	8	static
 D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:415:8:void NEOWAY::POWER_ON()	168	static
 D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1906:6:void ALL_POWER_ON()	8	static
-D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:433:8:void NEOWAY::INIT()	264	static
+D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:433:8:void NEOWAY::INIT()	280	static
 D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:303:6:void write_file(std::string&, std::string)	248	static
 D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:336:6:void neoway_sub(std::string)	152	static
 D:/New folder/Rahul/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:424:6:void add_certificate(std::string, std::string*)	224	static

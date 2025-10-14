@@ -327,7 +327,7 @@ int main(void) {
 			Error_Handler();
 		}
 
-		//sample_count=5;
+//		sample_count=5;
 		if(Network.GPRS_ON && sample_count==5 &&  Network.isSDcardInsrted==1){
 			Network.isDataAvailable=1;
 			neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
