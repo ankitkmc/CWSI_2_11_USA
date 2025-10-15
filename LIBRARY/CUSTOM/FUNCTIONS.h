@@ -841,14 +841,19 @@ void https_file_download(string &link) {
  * @brief neoway publish test function
  * @retval string
  */
-void neoway_publish(string topic) {
+void neoway_publish(string topic,uint8_t datalog) {
 	neoway.SET_data_pub_topic(topic);
 	both_debug.Print2("\r\nPublishing data\r\n");
 	save_ble_print(0);
 	data_packet.MAKE_DATA_JSON(data_packet.$CLEAR_ALL, 1);
 	SD_Data = data_packet.GET_JSON_STRING();
+	if(datalog)// Added due to backend data sequence maintain
+	{
 	neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(data_packet.GET_JSON_STRING_LEN()), { 5000 }, 1, { ">" });
 	neoway.SEND_RECIEVE(data_packet.GET_JSON_STRING(), { 5000, 5000 }, 1, { "OK", "PUB" });
+	}else{
+		neo_control=$BREAK;
+	}
 	restore_ble_print();
 	data_packet.CLEAR();
 }

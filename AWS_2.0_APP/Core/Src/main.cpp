@@ -257,10 +257,10 @@ int main(void) {
 		PassAuthen();
 
 		initSDCard();
-/*
-		for(int i=0;i<300;i++){
+	/*	if (both_debug.Both_read_check("Enter 0 to add data in sd_card", 15, "0") != $EXPECTED_RESPONSE) {
+		for(int i=0;i<60;i++){
 		string	data=   "{\"WS\":537,\"DEVICE_ID\":" + to_string(i) +
-			        ",\"TIME\":\"29-09-0025 08:"+to_string(i)+":"+to_string(i)+"\",\"HT_LEF_HUM\":\"-1.000\",\"LEAF_TEMP\":\"-1.000\","
+			        ",\"TIME\":\"15/10/25 07:"+to_string(i)+":"+to_string(i)+"\",\"HT_LEF_HUM\":\"-1.000\",\"LEAF_TEMP\":\"-1.000\","
 			        "\"LEAF_HUM\":\"20.369\",\"SOIL_MOISTURE\":\"65.3125\",\"SOIL_TEMPERATURE\":\"26.2000\",\"ATMOS_PRESSURE\":\"950.6478\","
 			        "\"ATMOS_HUMIDITY\":\"76.000\",\"ATMOS_TEMPERATURE\":\"26.3561\",\"SOLAR_RADIATION\":\"56035.2310\",\"BATTERY_VOLTAGE\":\"13.4737\","
 			        "\"SOLAR_PANNEL_VOLTAGE\":\"20.3694\",\"WIND_DIRECTION\":\"W\",\"IRROMETER_CB_PRIMARY\":\"6.3564\",\"IRROMETER_CB_SECONDARY\":\"4.3561\","
@@ -268,7 +268,8 @@ int main(void) {
 
 			    sd_card_2.write4(data, filename);
 			}
-			*/
+	}
+	*/
 
 		if(Network.GPRS_ON)Get_save_time();
 		both_debug.Print2("\r\nNetwork.GPRS_ON:\t"+d_t_s((double)Network.GPRS_ON));
@@ -327,7 +328,7 @@ int main(void) {
 			Error_Handler();
 		}
 
-//		sample_count=5;
+ // 		sample_count=5;// for getting reading in every cycle
 		if(Network.GPRS_ON && sample_count==5 &&  Network.isSDcardInsrted==1){
 			Network.isDataAvailable=1;
 			neoway.SET_data_pub_topic("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
@@ -366,6 +367,7 @@ int main(void) {
 												if(!retry){
 												    updateline =((DWORD)json_sd.length()-(sd_card_2.linecount()+1));
 												    sd_card_2.readJsonLine(filename,updateline);//update the pointer
+													Network.isFileCleared=0;
 													break;   //Exit after 3 retry
 												}
 
@@ -389,7 +391,7 @@ int main(void) {
 		if(sample_count==6){
 		if (both_debug.Both_read_check("Enter 0 to skip sending data", 15, "0") != $EXPECTED_RESPONSE) {
 			neoway.AWS_CON();
-			neoway_publish("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0));
+			neoway_publish("AWS/EKL/CWMS/" + d_t_s(WS.GET_VAR_VALUE_CONN(), 0),	(uint8_t)Network.isFileCleared);
 		}
 		sample_count=0;
 		}

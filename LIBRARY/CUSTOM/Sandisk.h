@@ -175,6 +175,7 @@ public:
                 both_debug.Print2(filename + ":" + withNewline);
                 f_write(&file, withNewline.c_str(), withNewline.size(), &bw);
                 f_close(&file);
+                Network.isFileCleared=0;
             }
             unmountSD();
         }
@@ -238,10 +239,12 @@ public:
    		    if(fresult == FR_OK){
    		    both_debug.Print2("\n"+filename+": data is cleared. \n");
    		    	f_close(&file1);
+   		    	Network.isFileCleared=1;
    		    }
    		    else
    		    {
    		    	both_debug.Print2("\n Mount Error : File not Deleting.  \n");
+   		    	Network.isFileCleared=0;
    		    }
    		fresult = f_mount(NULL, "/", 1);
    	 }

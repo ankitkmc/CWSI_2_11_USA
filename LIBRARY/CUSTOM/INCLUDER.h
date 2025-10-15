@@ -55,7 +55,7 @@ typedef struct {
 	uint8_t isAWSConnected 	: 1; // reserved
 	uint8_t isDataPushed  	: 1; // reserved
 	uint8_t isSDcardInsrted	: 1; // reserved
-	uint8_t RES5	 		: 1; // reserved
+	uint8_t isFileCleared	: 1; // reserved
 
 } StatusFlags;
 
