@@ -295,6 +295,7 @@ Retry: 		char path[] = "0:";
     if (res != FR_OK) {
         both_debug.Print2("Mount failed with error: " + to_string(res));
         Network.isSDcardInsrted=0;
+        Network.isFileCleared=1;
     } else {
         both_debug.Print2("SD card mounted successfully\n");
         sd_card_2.offsetPos=sd_card_2.handleOffset(sd_offset,"");

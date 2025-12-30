@@ -291,7 +291,7 @@ int main(void) {
 
 #if defined(APP_CODE)
 
-		SET_WAKEUP_INTERVAL(WAKEUP_INT.GET_VAR_VALUE_CONN());
+	//	SET_WAKEUP_INTERVAL(WAKEUP_INT.GET_VAR_VALUE_CONN());
 		if (check_ota == 1 || CHECK_OTA.GET_VAR_VALUE_CONN() == 1) {
 
 			CHECK_OTA.SET_VAR_VALUE_CONN(0);
@@ -410,11 +410,20 @@ int main(void) {
 		if(neo_control != $CONTINUE && sample_count==0 && Network.isSDcardInsrted==1){
 			both_debug.Print2("\n  data saved in SD CARD:"+SD_Data+"\n");
 			sd_card_2.write4(SD_Data,filename);
+			SD_Data.clear();
 			neo_control = $CONTINUE;
 		}
-
+		SET_WAKEUP_INTERVAL(WAKEUP_INT.GET_VAR_VALUE_CONN());
         if(neo_control == $CONTINUE || !(sd_card_2.isEmpty(filename)))
 			GO_TO_SLEEP();
+
+        if(sample_count==0){
+        	both_debug.Print2("\n System reset for next reading.");
+        	HAL_PWR_EnableBkUpAccess();
+        	HAL_RTCEx_BKUPWrite(&hrtc, APP_RESET_FLAG_REG, APP_RESET_MAGIC);
+        	NVIC_SystemReset();
+        }
+
 
 #endif
 
@@ -479,6 +488,7 @@ void SystemClock_Config(void) {
 }
 
 /* USER CODE BEGIN 4 */
+
 /* USER CODE END 4 */
 
 /**

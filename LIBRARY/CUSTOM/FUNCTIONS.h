@@ -849,7 +849,13 @@ void neoway_publish(string topic,uint8_t datalog) {
 	SD_Data = data_packet.GET_JSON_STRING();
 	if(datalog)// Added due to backend data sequence maintain
 	{
-	neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(data_packet.GET_JSON_STRING_LEN()), { 5000 }, 1, { ">" });
+		char cmd[128]="\0";
+		snprintf(cmd, sizeof(cmd),
+		         "AT+AWSPUB=0,1,\"%s\",%lu",
+		         neoway.GET_data_pub_topic().c_str(),
+		         data_packet.GET_JSON_STRING_LEN());
+	 neoway.SEND_RECIEVE(cmd, { 5000 }, 1, { ">" });
+//	neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(data_packet.GET_JSON_STRING_LEN()), { 5000 }, 1, { ">" });// change due to reset
 	neoway.SEND_RECIEVE(data_packet.GET_JSON_STRING(), { 5000, 5000 }, 1, { "OK", "PUB" });
 	}else{
 		neo_control=$BREAK;
@@ -994,7 +1000,7 @@ void object_setup() {
 
 	LEAF_SENSOR.SET_manual_baud(4800);
 	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
-	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
+//	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
 //	LEAF_SENSOR.ADD_PARA("LEAF_COND");
 	LEAF_SENSOR.SET_frame( { 0x04, 0x03, 0x00, 0x00 });
 

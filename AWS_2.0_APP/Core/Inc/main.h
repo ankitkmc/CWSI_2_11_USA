@@ -126,6 +126,10 @@ void Error_Handler(void);
 #define RE4_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
+
+#define APP_RESET_FLAG_REG RTC_BKP_DR2
+#define APP_RESET_MAGIC   0xA5A55A5A
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

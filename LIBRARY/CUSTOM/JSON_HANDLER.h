@@ -16,8 +16,9 @@ class JSON_HANDLER {
 	public:
 		StaticJsonDocument<1200> data_json;  //!< Designates a static JSON packet with 1024 fields in total.
 		StaticJsonDocument<1200> meta_data_json;  //!< Designates a static JSON packet with 1024 fields in total.
-		string json_string = "";  //!< Designates a variable that stores JSON string
-		string meta_json_string = "";  //!< Designates a variable that stores JSON string
+		string json_string ;  //!< Designates a variable that stores JSON string
+		string meta_json_string;  //!< Designates a variable that stores JSON string
+
 		DynamicArray<VARIABLES*> &variables_pointer_2;
 		enum clear_enum {
 			$CLEAR_JSON,  //!<To clear JSON Packet
@@ -28,6 +29,8 @@ class JSON_HANDLER {
 
 		JSON_HANDLER(DynamicArray<VARIABLES*> &variables_pointer_3) :
 				variables_pointer_2(variables_pointer_3) {
+		    json_string.reserve(1200);// change due to reset
+		    meta_json_string.reserve(1200);// change due to reset
 		}
 		/**
 		 * @fn 	void MAKE_DATA_JSON(DynamicArray<VARIABLES*> variables_pointer_2, clear_enum clear_enum_temp = $CLEAR_NONE, bool serialize = 0)

@@ -91,8 +91,8 @@ all: main-build
 main-build: AWS_2.0_APP.elf secondary-outputs
 
 # Tool invocations
-AWS_2.0_APP.elf AWS_2.0_APP.map: $(OBJS) $(USER_OBJS) D:\New\ folder\Rahul\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "AWS_2.0_APP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\New folder\Rahul\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AWS_2.0_APP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+AWS_2.0_APP.elf AWS_2.0_APP.map: $(OBJS) $(USER_OBJS) D:\CWMS_BUG_UPDATE\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "AWS_2.0_APP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\CWMS_BUG_UPDATE\CWSI_2_11_USA\AWS_2.0_APP\STM32L433VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AWS_2.0_APP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

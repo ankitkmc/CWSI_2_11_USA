@@ -93,8 +93,8 @@ class NEOWAY {
 
 			if (neo_control == $CONTINUE) {
 				refresh_counter();
-				string accu_response(5000, ' ');  // accumulated response
-				string response(5000, ' ');
+				string accu_response(2000, ' ');  // accumulated response change 5000 to 2000
+				string response(2000, ' ');
 				string ble_temp;
 				accu_response.clear();
 //				string response;
@@ -440,7 +440,7 @@ class NEOWAY {
 			SEND_RECIEVE("AT+CGATT=1", { 5000 }, 5, { "OK" });
 			SEND_RECIEVE("AT+CGATT?", { 5000 }, 5, { "+CGATT: 1" });
 //	neoway.SEND_RECIEVE("AT$MYSYSINFO", { 5000 }, 1, { "+CGATT: 1" });
-			SEND_RECIEVE("AT+NETAPN=\"hologram\",\"\",\"\"", { 5000 }, 5, { "OK" });
+//			SEND_RECIEVE("AT+NETAPN=\"hologram\",\"\",\"\"", { 5000 }, 5, { "OK" });
 
 			SEND_RECIEVE("AT+XIIC=1", { 5000 }, 5, { "OK" });
 			Network.GPRS_ON = (SEND_RECIEVE("AT+XIIC?", { 5000 }, 5, { "+XIIC:    1" }).find("+XIIC:    1") != string::npos);

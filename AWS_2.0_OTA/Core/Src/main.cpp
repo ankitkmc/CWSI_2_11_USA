@@ -191,6 +191,8 @@ int main(void) {
 	while (1) {
 		/* USER CODE END WHILE */
 		/* USER CODE BEGIN 3 */
+			if(APP_Reset_check())
+				go2app(appadd);
 
 #if defined(UL1_ON)
 		LED_1.SET(1, 500);
@@ -291,6 +293,18 @@ void SystemClock_Config(void) {
 }
 
 /* USER CODE BEGIN 4 */
+bool APP_Reset_check() {
+		HAL_PWR_EnableBkUpAccess();
+		uint32_t tag = HAL_RTCEx_BKUPRead(&hrtc, APP_RESET_FLAG_REG);
+		if (tag == APP_RESET_MAGIC) {
+			HAL_RTCEx_BKUPWrite(&hrtc, APP_RESET_FLAG_REG, 0);
+			return true;
+		} else {
+			return false;  // Invalid or uninitialized — reset to 0
+		}
+
+	}
+
 /* USER CODE END 4 */
 
 /**
