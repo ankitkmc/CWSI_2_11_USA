@@ -26,6 +26,7 @@ D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJs
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Deserialization/../StringStorage/../StringStorage/StringCopier.hpp:15:8:void ArduinoJson::V6211HB::detail::StringCopier::startString()	0	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Deserialization/../StringStorage/../StringStorage/StringCopier.hpp:39:8:void ArduinoJson::V6211HB::detail::StringCopier::append(char)	8	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:72:6:void delay(uint32_t)	16	static
+D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:82:13:void refresh_counter()	0	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h:44:3:VARIABLES::VARIABLES(DynamicArray<VARIABLES*>*, std::string, bool)	24	static
 ../Core/Src/main.cpp:321:1:void __static_initialization_and_destruction_0()	88	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/PWR_PIN.h:34:8:void PWR_PIN::SET(bool, uint32_t)	8	static
@@ -70,7 +71,7 @@ C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.external
 C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/bits/basic_string.h:3607:5:std::__cxx11::basic_string<_CharT, _Traits, _Alloc> std::operator+(const __cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	24	static
 C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/bits/basic_string.h:3727:5:bool std::operator==(const __cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	16	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:292:17:NEOWAY_RETURN NEOWAY::CHECK_RESPONSE(std::string*, std::string*)	16	static
-D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:92:10:std::string NEOWAY::SEND_RECIEVE(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >)	248	static
+D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:92:10:std::string NEOWAY::SEND_RECIEVE(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >)	240	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:399:8:void NEOWAY::BLE_SEND(std::string)	224	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:29:8:void UART_DEBUG::Print2(std::string)	40	static
 ../Core/Src/main.cpp:64:6:void go2app(uint32_t)	56	static
@@ -89,7 +90,7 @@ D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1457:6:void SET_WAKE
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:202:8:void NEOWAY::SEND_RECIEVE_POINTER(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >, std::string&)	200	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1563:6:void ota_proc(std::string&, uint32_t)	328	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:383:10:std::string NEOWAY::BLE_READ(uint32_t)	144	static
-D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:137:10:std::string UART_DEBUG::Both_Read(uint32_t)	104	static
+D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:137:10:std::string UART_DEBUG::Both_Read(uint32_t)	96	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:443:8:std::string delete_certificate(std::string)	104	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:454:8:std::string check_certificate(std::string)	112	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:584:6:void https_setup()	224	static

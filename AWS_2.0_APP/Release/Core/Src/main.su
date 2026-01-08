@@ -27,6 +27,7 @@ D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJs
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Deserialization/../StringStorage/../StringStorage/StringCopier.hpp:15:8:void ArduinoJson::V6211HB::detail::StringCopier::startString()	0	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../ArduinoJson-6.x/src/ArduinoJson/Json/../Deserialization/../StringStorage/../StringStorage/StringCopier.hpp:39:8:void ArduinoJson::V6211HB::detail::StringCopier::append(char)	8	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:72:6:void delay(uint32_t)	16	static
+D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:82:13:void refresh_counter()	0	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:42:8:Parameter::Parameter()	8	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/VARIABLES.h:44:3:VARIABLES::VARIABLES(DynamicArray<VARIABLES*>*, std::string, bool)	24	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/INCLUDER.h:42:8:Parameter::~Parameter()	8	static
@@ -93,7 +94,7 @@ C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.external
 C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/c++/13.3.1/bits/basic_string.h:3727:5:bool std::operator==(const __cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]	16	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/WIND_DIR.h:72:17:SENSOR_RETURN WIND_DIR::SET_VALUE_STRING(uint16_t, std::string)	40	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:292:17:NEOWAY_RETURN NEOWAY::CHECK_RESPONSE(std::string*, std::string*)	16	static
-D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:92:10:std::string NEOWAY::SEND_RECIEVE(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >)	248	static
+D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:92:10:std::string NEOWAY::SEND_RECIEVE(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >)	240	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:399:8:void NEOWAY::BLE_SEND(std::string)	224	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:29:8:void UART_DEBUG::Print2(std::string)	40	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h:61:13:FRESULT SD2::mountSD()	40	static
@@ -103,7 +104,7 @@ D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h:264:6:void initSDCard(
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1546:6:void ota_break(bool, std::string)	32	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1767:6:void FLASH_ERASE2(uint32_t, uint32_t)	64	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1852:6:void STOPPER_1(std::string)	32	static
-D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h:92:12:std::string SD2::readJsonLine(const std::string&, DWORD)	1104	static
+D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h:92:12:std::string SD2::readJsonLine(const std::string&, DWORD)	1096	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h:128:12:std::string SD2::readJsonLine2k(const std::string&)	112	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/Sandisk.h:168:10:void SD2::write4(const std::string&, const std::string&)	96	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:56:6:void check_analog()	160	static
@@ -124,7 +125,7 @@ D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:66:8:void
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:202:8:void NEOWAY::SEND_RECIEVE_POINTER(std::string, std::initializer_list<long unsigned int>, uint16_t, std::initializer_list<std::__cxx11::basic_string<char> >, std::string&)	200	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:1563:6:void ota_proc(std::string&, uint32_t)	328	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/NEOWAY.h:383:10:std::string NEOWAY::BLE_READ(uint32_t)	144	static
-D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:137:10:std::string UART_DEBUG::Both_Read(uint32_t)	104	static
+D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/../CUSTOM/UART_DEBUG.h:137:10:std::string UART_DEBUG::Both_Read(uint32_t)	96	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:443:8:std::string delete_certificate(std::string)	104	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:454:8:std::string check_certificate(std::string)	112	static
 D:/CWMS_BUG_UPDATE/CWSI_2_11_USA/LIBRARY/CUSTOM/FUNCTIONS.h:584:6:void https_setup()	224	static

@@ -81,6 +81,7 @@ const uint32_t refresh_value = 300;  // 500 = 1 second
 
 inline void refresh_counter() {
 	watchdog_cont = $CONTINUE;
+	HAL_IWDG_Refresh(&hiwdg);
 }
 
 #include "../CUSTOM/VARIABLES.h"

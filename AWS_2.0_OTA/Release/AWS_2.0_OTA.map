@@ -144,6 +144,7 @@ Discarded input sections
  .group         0x00000000        0xc ./Core/Src/main.o
  .group         0x00000000        0xc ./Core/Src/main.o
  .group         0x00000000        0xc ./Core/Src/main.o
+ .group         0x00000000        0xc ./Core/Src/main.o
  .group         0x00000000        0x8 ./Core/Src/main.o
  .group         0x00000000        0xc ./Core/Src/main.o
  .group         0x00000000        0x8 ./Core/Src/main.o
@@ -1997,7 +1998,7 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x08000000                g_pfnVectors
                 0x0800018c                        . = ALIGN (0x4)
 
-.text           0x08000190     0xa9e4
+.text           0x08000190     0xa9bc
                 0x08000190                        . = ALIGN (0x4)
  *(.text)
  .text          0x08000190       0x40 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
@@ -2135,1126 +2136,1129 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .text._Z5delaym
                 0x08001c34       0x30 ./Core/Src/main.o
                 0x08001c34                delay(unsigned long)
+ .text._Z15refresh_counterv
+                0x08001c64       0x14 ./Core/Src/main.o
+                0x08001c64                refresh_counter()
  .text._ZN9VARIABLESC2EP12DynamicArrayIPS_ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb
-                0x08001c64       0xc8 ./Core/Src/main.o
-                0x08001c64                VARIABLES::VARIABLES(DynamicArray<VARIABLES*>*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool)
-                0x08001c64                VARIABLES::VARIABLES(DynamicArray<VARIABLES*>*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool)
+                0x08001c78       0xc8 ./Core/Src/main.o
+                0x08001c78                VARIABLES::VARIABLES(DynamicArray<VARIABLES*>*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool)
+                0x08001c78                VARIABLES::VARIABLES(DynamicArray<VARIABLES*>*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool)
  .text.startup._Z41__static_initialization_and_destruction_0v
-                0x08001d2c      0x360 ./Core/Src/main.o
+                0x08001d40      0x360 ./Core/Src/main.o
  .text._ZN7PWR_PIN3SETEbm
-                0x0800208c       0x18 ./Core/Src/main.o
-                0x0800208c                PWR_PIN::SET(bool, unsigned long)
+                0x080020a0       0x18 ./Core/Src/main.o
+                0x080020a0                PWR_PIN::SET(bool, unsigned long)
  .text._Z12is_any_printv
-                0x080020a4       0x1c ./Core/Src/main.o
-                0x080020a4                is_any_print()
+                0x080020b8       0x1c ./Core/Src/main.o
+                0x080020b8                is_any_print()
  .text._ZN12UART_PRINTER4ReadB5cxx11Em
-                0x080020c0       0x4c ./Core/Src/main.o
-                0x080020c0                UART_PRINTER::Read[abi:cxx11](unsigned long)
+                0x080020d4       0x4c ./Core/Src/main.o
+                0x080020d4                UART_PRINTER::Read[abi:cxx11](unsigned long)
  .text._ZN12UART_PRINTER5PrintENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x0800210c       0x2c ./Core/Src/main.o
-                0x0800210c                UART_PRINTER::Print(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x08002120       0x2c ./Core/Src/main.o
+                0x08002120                UART_PRINTER::Print(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
  .text.HAL_RTC_AlarmAEventCallback
-                0x08002138        0xc ./Core/Src/main.o
-                0x08002138                HAL_RTC_AlarmAEventCallback
+                0x0800214c        0xc ./Core/Src/main.o
+                0x0800214c                HAL_RTC_AlarmAEventCallback
  .text.HAL_RTCEx_AlarmBEventCallback
-                0x08002144        0x4 ./Core/Src/main.o
-                0x08002144                HAL_RTCEx_AlarmBEventCallback
+                0x08002158        0x4 ./Core/Src/main.o
+                0x08002158                HAL_RTCEx_AlarmBEventCallback
  .text.HAL_RTCEx_WakeUpTimerEventCallback
-                0x08002148       0x30 ./Core/Src/main.o
-                0x08002148                HAL_RTCEx_WakeUpTimerEventCallback
+                0x0800215c       0x30 ./Core/Src/main.o
+                0x0800215c                HAL_RTCEx_WakeUpTimerEventCallback
  .text._Z16check_cont_flagsv
-                0x08002178       0x20 ./Core/Src/main.o
-                0x08002178                check_cont_flags()
+                0x0800218c       0x20 ./Core/Src/main.o
+                0x0800218c                check_cont_flags()
  .text._Z15update_ota_contv
-                0x08002198       0x18 ./Core/Src/main.o
-                0x08002198                update_ota_cont()
+                0x080021ac       0x18 ./Core/Src/main.o
+                0x080021ac                update_ota_cont()
  .text._Z11if_in_rangeRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm
-                0x080021b0        0xe ./Core/Src/main.o
-                0x080021b0                if_in_range(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long)
+                0x080021c4        0xe ./Core/Src/main.o
+                0x080021c4                if_in_range(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long)
  .text._Z9str_to_64RNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm
-                0x080021be       0x50 ./Core/Src/main.o
-                0x080021be                str_to_64(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long)
- *fill*         0x0800220e        0x2 
+                0x080021d2       0x50 ./Core/Src/main.o
+                0x080021d2                str_to_64(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long)
+ *fill*         0x08002222        0x2 
  .text._Z18SystemClock_Configv
-                0x08002210       0x7c ./Core/Src/main.o
-                0x08002210                SystemClock_Config()
+                0x08002224       0x7c ./Core/Src/main.o
+                0x08002224                SystemClock_Config()
  .text.APP_Reset_check
-                0x0800228c       0x30 ./Core/Src/main.o
-                0x0800228c                APP_Reset_check
+                0x080022a0       0x30 ./Core/Src/main.o
+                0x080022a0                APP_Reset_check
  .text.Error_Handler
-                0x080022bc        0x4 ./Core/Src/main.o
-                0x080022bc                Error_Handler
+                0x080022d0        0x4 ./Core/Src/main.o
+                0x080022d0                Error_Handler
  .text._ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_RKS8_
-                0x080022c0       0x44 ./Core/Src/main.o
-                0x080022c0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+                0x080022d4       0x44 ./Core/Src/main.o
+                0x080022d4                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
  .text._Z7d_t_h_sB5cxx11m
-                0x08002304       0xb4 ./Core/Src/main.o
-                0x08002304                d_t_h_s[abi:cxx11](unsigned long)
+                0x08002318       0xb4 ./Core/Src/main.o
+                0x08002318                d_t_h_s[abi:cxx11](unsigned long)
  .text._ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_OS8_
-                0x080023b8       0x1a ./Core/Src/main.o
-                0x080023b8                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+                0x080023cc       0x1a ./Core/Src/main.o
+                0x080023cc                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
  .text._ZNK11ArduinoJson7V6211HB6detail10MemoryPool10findStringINS1_14SizedRamStringEEEPKcRKT_
-                0x080023d2       0x34 ./Core/Src/main.o
-                0x080023d2                char const* ArduinoJson::V6211HB::detail::MemoryPool::findString<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::SizedRamString const&) const
+                0x080023e6       0x34 ./Core/Src/main.o
+                0x080023e6                char const* ArduinoJson::V6211HB::detail::MemoryPool::findString<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::SizedRamString const&) const
  .text._ZN11ArduinoJson7V6211HB6detail10MemoryPool22saveStringFromFreeZoneEj
-                0x08002406       0x22 ./Core/Src/main.o
-                0x08002406                ArduinoJson::V6211HB::detail::MemoryPool::saveStringFromFreeZone(unsigned int)
+                0x0800241a       0x22 ./Core/Src/main.o
+                0x0800241a                ArduinoJson::V6211HB::detail::MemoryPool::saveStringFromFreeZone(unsigned int)
  .text._ZN12DynamicArrayIbE9push_backEb
-                0x08002428       0x3a ./Core/Src/main.o
-                0x08002428                DynamicArray<bool>::push_back(bool)
- *fill*         0x08002462        0x2 
+                0x0800243c       0x3a ./Core/Src/main.o
+                0x0800243c                DynamicArray<bool>::push_back(bool)
+ *fill*         0x08002476        0x2 
  .text._Z14save_ble_printb
-                0x08002464       0x1c ./Core/Src/main.o
-                0x08002464                save_ble_print(bool)
+                0x08002478       0x1c ./Core/Src/main.o
+                0x08002478                save_ble_print(bool)
  .text._Z15save_uart_printb
-                0x08002480       0x1c ./Core/Src/main.o
-                0x08002480                save_uart_print(bool)
+                0x08002494       0x1c ./Core/Src/main.o
+                0x08002494                save_uart_print(bool)
  .text._Z15save_both_printb
-                0x0800249c       0x12 ./Core/Src/main.o
-                0x0800249c                save_both_print(bool)
+                0x080024b0       0x12 ./Core/Src/main.o
+                0x080024b0                save_both_print(bool)
  .text._ZN12DynamicArrayIbE8pop_backEv
-                0x080024ae       0x3e ./Core/Src/main.o
-                0x080024ae                DynamicArray<bool>::pop_back()
+                0x080024c2       0x3e ./Core/Src/main.o
+                0x080024c2                DynamicArray<bool>::pop_back()
  .text._Z17restore_ble_printv
-                0x080024ec       0x18 ./Core/Src/main.o
-                0x080024ec                restore_ble_print()
+                0x08002500       0x18 ./Core/Src/main.o
+                0x08002500                restore_ble_print()
  .text._Z18restore_uart_printv
-                0x08002504       0x18 ./Core/Src/main.o
-                0x08002504                restore_uart_print()
+                0x08002518       0x18 ./Core/Src/main.o
+                0x08002518                restore_uart_print()
  .text._Z18restore_both_printv
-                0x0800251c        0xe ./Core/Src/main.o
-                0x0800251c                restore_both_print()
+                0x08002530        0xe ./Core/Src/main.o
+                0x08002530                restore_both_print()
  .text._ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EEOS8_S9_
-                0x0800252a       0x42 ./Core/Src/main.o
-                0x0800252a                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+                0x0800253e       0x42 ./Core/Src/main.o
+                0x0800253e                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
  .text._ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_SA_
-                0x0800256c       0x3a ./Core/Src/main.o
-                0x0800256c                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+                0x08002580       0x3a ./Core/Src/main.o
+                0x08002580                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
  .text._ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_
-                0x080025a6       0x42 ./Core/Src/main.o
-                0x080025a6                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+                0x080025ba       0x42 ./Core/Src/main.o
+                0x080025ba                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
  .text._ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_
-                0x080025e8       0x2e ./Core/Src/main.o
-                0x080025e8                bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
- *fill*         0x08002616        0x2 
+                0x080025fc       0x2e ./Core/Src/main.o
+                0x080025fc                bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+ *fill*         0x0800262a        0x2 
  .text._ZN6NEOWAY14CHECK_RESPONSEEPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_.isra.0
-                0x08002618       0x74 ./Core/Src/main.o
+                0x0800262c       0x74 ./Core/Src/main.o
  .text._ZN6NEOWAY12SEND_RECIEVEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt16initializer_listImEtS6_IS5_E
-                0x0800268c      0x414 ./Core/Src/main.o
-                0x0800268c                NEOWAY::SEND_RECIEVE(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::initializer_list<unsigned long>, unsigned short, std::initializer_list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >)
+                0x080026a0      0x408 ./Core/Src/main.o
+                0x080026a0                NEOWAY::SEND_RECIEVE(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::initializer_list<unsigned long>, unsigned short, std::initializer_list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >)
  .text._ZN6NEOWAY8BLE_SENDENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08002aa0      0x16c ./Core/Src/main.o
-                0x08002aa0                NEOWAY::BLE_SEND(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x08002aa8      0x16c ./Core/Src/main.o
+                0x08002aa8                NEOWAY::BLE_SEND(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
  .text._ZN10UART_DEBUG6Print2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08002c0c       0x3a ./Core/Src/main.o
-                0x08002c0c                UART_DEBUG::Print2(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
- *fill*         0x08002c46        0x2 
+                0x08002c14       0x3a ./Core/Src/main.o
+                0x08002c14                UART_DEBUG::Print2(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+ *fill*         0x08002c4e        0x2 
  .text._Z6go2appm
-                0x08002c48       0x98 ./Core/Src/main.o
-                0x08002c48                go2app(unsigned long)
+                0x08002c50       0x98 ./Core/Src/main.o
+                0x08002c50                go2app(unsigned long)
  .text._Z9ota_breakbNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08002ce0       0x34 ./Core/Src/main.o
-                0x08002ce0                ota_break(bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x08002ce8       0x34 ./Core/Src/main.o
+                0x08002ce8                ota_break(bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
  .text._Z12FLASH_ERASE2mm
-                0x08002d14       0x90 ./Core/Src/main.o
-                0x08002d14                FLASH_ERASE2(unsigned long, unsigned long)
+                0x08002d1c       0x8c ./Core/Src/main.o
+                0x08002d1c                FLASH_ERASE2(unsigned long, unsigned long)
  .text._ZN10UART_DEBUG10Json_printENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_b
-                0x08002da4       0xec ./Core/Src/main.o
-                0x08002da4                UART_DEBUG::Json_print(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool)
+                0x08002da8       0xec ./Core/Src/main.o
+                0x08002da8                UART_DEBUG::Json_print(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool)
  .text._Z14getcertificatePNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08002e90       0x8c ./Core/Src/main.o
-                0x08002e90                getcertificate(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)
+                0x08002e94       0x8c ./Core/Src/main.o
+                0x08002e94                getcertificate(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)
  .text._Z10print_timeNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt16initializer_listIhE
-                0x08002f1c      0x1c4 ./Core/Src/main.o
-                0x08002f1c                print_time(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::initializer_list<unsigned char>)
+                0x08002f20      0x1c4 ./Core/Src/main.o
+                0x08002f20                print_time(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::initializer_list<unsigned char>)
  .text._Z15Print_save_timev
-                0x080030e0       0x80 ./Core/Src/main.o
-                0x080030e0                Print_save_time()
+                0x080030e4       0x80 ./Core/Src/main.o
+                0x080030e4                Print_save_time()
  .text._Z13get_file_nameRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS4_
-                0x08003160       0x74 ./Core/Src/main.o
-                0x08003160                get_file_name(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x08003164       0x74 ./Core/Src/main.o
+                0x08003164                get_file_name(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._ZN6NEOWAY20SEND_RECIEVE_POINTERENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt16initializer_listImEtS6_IS5_ERS5_
-                0x080031d4      0x2e0 ./Core/Src/main.o
-                0x080031d4                NEOWAY::SEND_RECIEVE_POINTER(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::initializer_list<unsigned long>, unsigned short, std::initializer_list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x080031d8      0x2dc ./Core/Src/main.o
+                0x080031d8                NEOWAY::SEND_RECIEVE_POINTER(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::initializer_list<unsigned long>, unsigned short, std::initializer_list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._Z8ota_procRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm
-                0x080034b4      0x428 ./Core/Src/main.o
+                0x080034b4      0x420 ./Core/Src/main.o
                 0x080034b4                ota_proc(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned long)
  .text._ZN6NEOWAY8BLE_READB5cxx11Em
-                0x080038dc       0xd0 ./Core/Src/main.o
-                0x080038dc                NEOWAY::BLE_READ[abi:cxx11](unsigned long)
+                0x080038d4       0xd0 ./Core/Src/main.o
+                0x080038d4                NEOWAY::BLE_READ[abi:cxx11](unsigned long)
  .text._ZN10UART_DEBUG9Both_ReadB5cxx11Em
-                0x080039ac       0xb0 ./Core/Src/main.o
-                0x080039ac                UART_DEBUG::Both_Read[abi:cxx11](unsigned long)
+                0x080039a4       0x9c ./Core/Src/main.o
+                0x080039a4                UART_DEBUG::Both_Read[abi:cxx11](unsigned long)
  .text._Z18delete_certificateNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08003a5c       0x68 ./Core/Src/main.o
-                0x08003a5c                delete_certificate(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x08003a40       0x68 ./Core/Src/main.o
+                0x08003a40                delete_certificate(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
  .text._Z11https_setupv
-                0x08003ac4      0x184 ./Core/Src/main.o
-                0x08003ac4                https_setup()
+                0x08003aa8      0x184 ./Core/Src/main.o
+                0x08003aa8                https_setup()
  .text._Z9https_reqNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEt
-                0x08003c48      0x184 ./Core/Src/main.o
-                0x08003c48                https_req(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned short)
+                0x08003c2c      0x184 ./Core/Src/main.o
+                0x08003c2c                https_req(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned short)
  .text._Z7httpgetRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08003dcc      0x15c ./Core/Src/main.o
-                0x08003dcc                httpget(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+                0x08003db0      0x15c ./Core/Src/main.o
+                0x08003db0                httpget(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
  .text._Z19https_file_downloadRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08003f28       0x18 ./Core/Src/main.o
-                0x08003f28                https_file_download(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x08003f0c       0x18 ./Core/Src/main.o
+                0x08003f0c                https_file_download(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._ZN6NEOWAY8POWER_ONEv
-                0x08003f40      0x15c ./Core/Src/main.o
-                0x08003f40                NEOWAY::POWER_ON()
+                0x08003f24      0x15c ./Core/Src/main.o
+                0x08003f24                NEOWAY::POWER_ON()
  .text._Z12ALL_POWER_ONv
-                0x0800409c       0x1c ./Core/Src/main.o
-                0x0800409c                ALL_POWER_ON()
+                0x08004080       0x1c ./Core/Src/main.o
+                0x08004080                ALL_POWER_ON()
  .text._ZN6NEOWAY4INITEv
-                0x080040b8      0x30c ./Core/Src/main.o
-                0x080040b8                NEOWAY::INIT()
+                0x0800409c      0x30c ./Core/Src/main.o
+                0x0800409c                NEOWAY::INIT()
  .text._Z10write_fileRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES4_
-                0x080043c4      0x13c ./Core/Src/main.o
-                0x080043c4                write_file(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x080043a8      0x13c ./Core/Src/main.o
+                0x080043a8                write_file(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
  .text._Z15add_certificateNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPS4_
-                0x08004500      0x17c ./Core/Src/main.o
-                0x08004500                add_certificate(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)
+                0x080044e4      0x17c ./Core/Src/main.o
+                0x080044e4                add_certificate(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)
  .text._Z13Get_save_timev
-                0x0800467c      0x30c ./Core/Src/main.o
-                0x0800467c                Get_save_time()
+                0x08004660      0x30c ./Core/Src/main.o
+                0x08004660                Get_save_time()
  .text._Z13get_file_sizeRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08004988      0x160 ./Core/Src/main.o
-                0x08004988                get_file_size(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x0800496c      0x160 ./Core/Src/main.o
+                0x0800496c                get_file_size(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._Z18neoway_delete_fileRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08004ae8      0x13c ./Core/Src/main.o
-                0x08004ae8                neoway_delete_file(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x08004acc      0x13c ./Core/Src/main.o
+                0x08004acc                neoway_delete_file(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._ZN6NEOWAY8BLE_NAMEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08004c24       0xfc ./Core/Src/main.o
-                0x08004c24                NEOWAY::BLE_NAME(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x08004c08       0xfc ./Core/Src/main.o
+                0x08004c08                NEOWAY::BLE_NAME(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
  .text._ZN6NEOWAY9BLE_SETUPENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08004d20      0x234 ./Core/Src/main.o
-                0x08004d20                NEOWAY::BLE_SETUP(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+                0x08004d04      0x234 ./Core/Src/main.o
+                0x08004d04                NEOWAY::BLE_SETUP(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
  .text._ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_
-                0x08004f54       0x24 ./Core/Src/main.o
-                0x08004f54                bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+                0x08004f38       0x24 ./Core/Src/main.o
+                0x08004f38                bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
  .text._ZN10UART_DEBUG13Both_Get_passB5cxx11EmPi
-                0x08004f78       0xb4 ./Core/Src/main.o
-                0x08004f78                UART_DEBUG::Both_Get_pass[abi:cxx11](unsigned long, int*)
+                0x08004f5c       0xb4 ./Core/Src/main.o
+                0x08004f5c                UART_DEBUG::Both_Get_pass[abi:cxx11](unsigned long, int*)
  .text._Z10PassAuthenv
-                0x0800502c       0xd8 ./Core/Src/main.o
-                0x0800502c                PassAuthen()
+                0x08005010       0xd0 ./Core/Src/main.o
+                0x08005010                PassAuthen()
  .text._ZN10UART_DEBUG15Both_read_checkENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEmS5_PS5_
-                0x08005104      0x110 ./Core/Src/main.o
-                0x08005104                UART_DEBUG::Both_read_check(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)
+                0x080050e0      0x110 ./Core/Src/main.o
+                0x080050e0                UART_DEBUG::Both_read_check(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*)
  .text._ZN12DynamicArrayIP9VARIABLESE2atEm
-                0x08005214       0x16 ./Core/Src/main.o
-                0x08005214                DynamicArray<VARIABLES*>::at(unsigned long)
+                0x080051f0       0x16 ./Core/Src/main.o
+                0x080051f0                DynamicArray<VARIABLES*>::at(unsigned long)
  .text._ZN11ArduinoJson7V6211HB6detail10MemoryPool10saveStringINS1_14SizedRamStringEEEPKcT_
-                0x0800522a       0x4e ./Core/Src/main.o
-                0x0800522a                char const* ArduinoJson::V6211HB::detail::MemoryPool::saveString<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::SizedRamString)
+                0x08005206       0x4e ./Core/Src/main.o
+                0x08005206                char const* ArduinoJson::V6211HB::detail::MemoryPool::saveString<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::SizedRamString)
  .text._ZNK11ArduinoJson7V6211HB6detail11VariantData9getMemberINS1_14SizedRamStringEEEPS2_T_
-                0x08005278       0x30 ./Core/Src/main.o
-                0x08005278                ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::VariantData::getMember<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::SizedRamString) const
+                0x08005254       0x30 ./Core/Src/main.o
+                0x08005254                ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::VariantData::getMember<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::SizedRamString) const
  .text._ZNK11ArduinoJson7V6211HB6detail11VariantData9getMemberINS1_19StaticStringAdapterEEEPS2_T_
-                0x080052a8       0x12 ./Core/Src/main.o
-                0x080052a8                ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::VariantData::getMember<ArduinoJson::V6211HB::detail::StaticStringAdapter>(ArduinoJson::V6211HB::detail::StaticStringAdapter) const
+                0x08005284       0x12 ./Core/Src/main.o
+                0x08005284                ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::VariantData::getMember<ArduinoJson::V6211HB::detail::StaticStringAdapter>(ArduinoJson::V6211HB::detail::StaticStringAdapter) const
  .text._ZN11ArduinoJson7V6211HB6detail17arithmeticCompareIdEENS1_13CompareResultERKT_S6_
-                0x080052ba       0x32 ./Core/Src/main.o
-                0x080052ba                ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::arithmeticCompare<double>(double const&, double const&)
+                0x08005296       0x32 ./Core/Src/main.o
+                0x08005296                ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::arithmeticCompare<double>(double const&, double const&)
  .text._ZN11ArduinoJson7V6211HB6detail15VariantComparer10visitFloatEd
-                0x080052ec       0x84 ./Core/Src/main.o
-                0x080052ec                ArduinoJson::V6211HB::detail::VariantComparer::visitFloat(double)
+                0x080052c8       0x84 ./Core/Src/main.o
+                0x080052c8                ArduinoJson::V6211HB::detail::VariantComparer::visitFloat(double)
  .text._ZN11ArduinoJson7V6211HB6detail17arithmeticCompareIyEENS1_13CompareResultERKT_S6_
-                0x08005370       0x24 ./Core/Src/main.o
-                0x08005370                ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::arithmeticCompare<unsigned long long>(unsigned long long const&, unsigned long long const&)
+                0x0800534c       0x24 ./Core/Src/main.o
+                0x0800534c                ArduinoJson::V6211HB::detail::CompareResult ArduinoJson::V6211HB::detail::arithmeticCompare<unsigned long long>(unsigned long long const&, unsigned long long const&)
  .text._ZN11ArduinoJson7V6211HB6detail15VariantComparer20visitUnsignedIntegerEy
-                0x08005394       0x80 ./Core/Src/main.o
-                0x08005394                ArduinoJson::V6211HB::detail::VariantComparer::visitUnsignedInteger(unsigned long long)
+                0x08005370       0x80 ./Core/Src/main.o
+                0x08005370                ArduinoJson::V6211HB::detail::VariantComparer::visitUnsignedInteger(unsigned long long)
  .text._ZNK11ArduinoJson7V6211HB6detail11VariantData6acceptINS1_8ComparerIbvEEEENT_11result_typeERS6_
-                0x08005414       0x8a ./Core/Src/main.o
-                0x08005414                ArduinoJson::V6211HB::detail::Comparer<bool, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<bool, void> >(ArduinoJson::V6211HB::detail::Comparer<bool, void>&) const
+                0x080053f0       0x8a ./Core/Src/main.o
+                0x080053f0                ArduinoJson::V6211HB::detail::Comparer<bool, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<bool, void> >(ArduinoJson::V6211HB::detail::Comparer<bool, void>&) const
  .text._ZN11ArduinoJson7V6211HB6detail15VariantComparer12visitBooleanEb
-                0x0800549e       0x24 ./Core/Src/main.o
-                0x0800549e                ArduinoJson::V6211HB::detail::VariantComparer::visitBoolean(bool)
+                0x0800547a       0x24 ./Core/Src/main.o
+                0x0800547a                ArduinoJson::V6211HB::detail::VariantComparer::visitBoolean(bool)
  .text._ZNK11ArduinoJson7V6211HB6detail11VariantData6acceptINS1_8ComparerIxvEEEENT_11result_typeERS6_
-                0x080054c2       0x88 ./Core/Src/main.o
-                0x080054c2                ArduinoJson::V6211HB::detail::Comparer<long long, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<long long, void> >(ArduinoJson::V6211HB::detail::Comparer<long long, void>&) const
+                0x0800549e       0x88 ./Core/Src/main.o
+                0x0800549e                ArduinoJson::V6211HB::detail::Comparer<long long, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<long long, void> >(ArduinoJson::V6211HB::detail::Comparer<long long, void>&) const
  .text._ZN11ArduinoJson7V6211HB6detail15VariantComparer18visitSignedIntegerEx
-                0x0800554a       0x24 ./Core/Src/main.o
-                0x0800554a                ArduinoJson::V6211HB::detail::VariantComparer::visitSignedInteger(long long)
+                0x08005526       0x24 ./Core/Src/main.o
+                0x08005526                ArduinoJson::V6211HB::detail::VariantComparer::visitSignedInteger(long long)
  .text._ZNK11ArduinoJson7V6211HB6detail11VariantData6acceptINS1_8ComparerINS0_16JsonVariantConstEvEEEENT_11result_typeERS7_
-                0x0800556e       0x96 ./Core/Src/main.o
-                0x0800556e                ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::JsonVariantConst, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::JsonVariantConst, void> >(ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::JsonVariantConst, void>&) const
+                0x0800554a       0x96 ./Core/Src/main.o
+                0x0800554a                ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::JsonVariantConst, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::JsonVariantConst, void> >(ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::JsonVariantConst, void>&) const
  .text._ZN11ArduinoJson7V6211HB6detail15VariantComparer11visitObjectERKNS1_14CollectionDataE
-                0x08005604       0xb6 ./Core/Src/main.o
-                0x08005604                ArduinoJson::V6211HB::detail::VariantComparer::visitObject(ArduinoJson::V6211HB::detail::CollectionData const&)
+                0x080055e0       0xb6 ./Core/Src/main.o
+                0x080055e0                ArduinoJson::V6211HB::detail::VariantComparer::visitObject(ArduinoJson::V6211HB::detail::CollectionData const&)
  .text._ZN11ArduinoJson7V6211HB6detail15VariantComparer10visitArrayERKNS1_14CollectionDataE
-                0x080056ba       0x4c ./Core/Src/main.o
-                0x080056ba                ArduinoJson::V6211HB::detail::VariantComparer::visitArray(ArduinoJson::V6211HB::detail::CollectionData const&)
+                0x08005696       0x4c ./Core/Src/main.o
+                0x08005696                ArduinoJson::V6211HB::detail::VariantComparer::visitArray(ArduinoJson::V6211HB::detail::CollectionData const&)
  .text._ZNK11ArduinoJson7V6211HB6detail11VariantData6acceptINS1_8ComparerINS0_18StaticJsonDocumentILj1200EEEvEEEENT_11result_typeERS8_
-                0x08005706       0x96 ./Core/Src/main.o
-                0x08005706                ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200u>, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200u>, void> >(ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200u>, void>&) const
+                0x080056e2       0x96 ./Core/Src/main.o
+                0x080056e2                ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200u>, void>::result_type ArduinoJson::V6211HB::detail::VariantData::accept<ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200u>, void> >(ArduinoJson::V6211HB::detail::Comparer<ArduinoJson::V6211HB::StaticJsonDocument<1200u>, void>&) const
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE7currentEv
-                0x0800579c       0x24 ./Core/Src/main.o
-                0x0800579c                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::current()
+                0x08005778       0x24 ./Core/Src/main.o
+                0x08005778                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::current()
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE21skipSpacesAndCommentsEv
-                0x080057c0       0x3c ./Core/Src/main.o
-                0x080057c0                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::skipSpacesAndComments()
+                0x0800579c       0x3c ./Core/Src/main.o
+                0x0800579c                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::skipSpacesAndComments()
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE11skipKeywordEPKc
-                0x080057fc       0x2a ./Core/Src/main.o
-                0x080057fc                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::skipKeyword(char const*)
- *fill*         0x08005826        0x2 
+                0x080057d8       0x2a ./Core/Src/main.o
+                0x080057d8                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::skipKeyword(char const*)
+ *fill*         0x08005802        0x6 
  .text._ZN11ArduinoJson7V6211HB6detail10FloatPartsIdEC2Ed
-                0x08005828      0x1b4 ./Core/Src/main.o
-                0x08005828                ArduinoJson::V6211HB::detail::FloatParts<double>::FloatParts(double)
-                0x08005828                ArduinoJson::V6211HB::detail::FloatParts<double>::FloatParts(double)
+                0x08005808      0x1b4 ./Core/Src/main.o
+                0x08005808                ArduinoJson::V6211HB::detail::FloatParts<double>::FloatParts(double)
+                0x08005808                ArduinoJson::V6211HB::detail::FloatParts<double>::FloatParts(double)
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE3eatEc
-                0x080059dc       0x18 ./Core/Src/main.o
-                0x080059dc                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::eat(char)
+                0x080059bc       0x18 ./Core/Src/main.o
+                0x080059bc                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::eat(char)
  .text._ZN11ArduinoJson7V6211HB6detail17CountingDecoratorINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEE5writeEPKhj
-                0x080059f4       0x14 ./Core/Src/main.o
-                0x080059f4                ArduinoJson::V6211HB::detail::CountingDecorator<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::write(unsigned char const*, unsigned int)
+                0x080059d4       0x14 ./Core/Src/main.o
+                0x080059d4                ArduinoJson::V6211HB::detail::CountingDecorator<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::write(unsigned char const*, unsigned int)
  .text._ZN11ArduinoJson7V6211HB6detail13TextFormatterINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEE8writeRawEPKc
-                0x08005a08       0x18 ./Core/Src/main.o
-                0x08005a08                ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeRaw(char const*)
+                0x080059e8       0x18 ./Core/Src/main.o
+                0x080059e8                ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeRaw(char const*)
  .text._ZN11ArduinoJson7V6211HB6detail13TextFormatterINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEE12writeIntegerIyEENS1_9enable_ifIXsrNS1_11is_unsignedIT_EE5valueEvE4typeESF_
-                0x08005a20       0x46 ./Core/Src/main.o
-                0x08005a20                ArduinoJson::V6211HB::detail::enable_if<ArduinoJson::V6211HB::detail::is_unsigned<unsigned long long>::value, void>::type ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeInteger<unsigned long long>(unsigned long long)
+                0x08005a00       0x46 ./Core/Src/main.o
+                0x08005a00                ArduinoJson::V6211HB::detail::enable_if<ArduinoJson::V6211HB::detail::is_unsigned<unsigned long long>::value, void>::type ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeInteger<unsigned long long>(unsigned long long)
  .text._ZN11ArduinoJson7V6211HB6detail21variantGetOrAddMemberINS1_14SizedRamStringEEEPNS1_11VariantDataES5_T_PNS1_10MemoryPoolE
-                0x08005a66       0xb6 ./Core/Src/main.o
-                0x08005a66                ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::variantGetOrAddMember<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::VariantData*, ArduinoJson::V6211HB::detail::SizedRamString, ArduinoJson::V6211HB::detail::MemoryPool*)
+                0x08005a46       0xb6 ./Core/Src/main.o
+                0x08005a46                ArduinoJson::V6211HB::detail::VariantData* ArduinoJson::V6211HB::detail::variantGetOrAddMember<ArduinoJson::V6211HB::detail::SizedRamString>(ArduinoJson::V6211HB::detail::VariantData*, ArduinoJson::V6211HB::detail::SizedRamString, ArduinoJson::V6211HB::detail::MemoryPool*)
  .text._ZN11ArduinoJson7V6211HB6detail4Utf815encodeCodepointINS1_12StringCopierEEEvmRT_
-                0x08005b1c       0x8c ./Core/Src/main.o
-                0x08005b1c                void ArduinoJson::V6211HB::detail::Utf8::encodeCodepoint<ArduinoJson::V6211HB::detail::StringCopier>(unsigned long, ArduinoJson::V6211HB::detail::StringCopier&)
+                0x08005afc       0x8c ./Core/Src/main.o
+                0x08005afc                void ArduinoJson::V6211HB::detail::Utf8::encodeCodepoint<ArduinoJson::V6211HB::detail::StringCopier>(unsigned long, ArduinoJson::V6211HB::detail::StringCopier&)
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE17parseQuotedStringEv
-                0x08005ba8       0xe0 ./Core/Src/main.o
-                0x08005ba8                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::parseQuotedString()
+                0x08005b88       0xe0 ./Core/Src/main.o
+                0x08005b88                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::parseQuotedString()
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE22canBeInNonQuotedStringEc
-                0x08005c88       0x26 ./Core/Src/main.o
-                0x08005c88                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::canBeInNonQuotedString(char)
+                0x08005c68       0x26 ./Core/Src/main.o
+                0x08005c68                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::canBeInNonQuotedString(char)
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE8parseKeyEv
-                0x08005cae       0x56 ./Core/Src/main.o
-                0x08005cae                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::parseKey()
+                0x08005c8e       0x56 ./Core/Src/main.o
+                0x08005c8e                ArduinoJson::V6211HB::detail::JsonDeserializer<ArduinoJson::V6211HB::detail::Reader<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void>, ArduinoJson::V6211HB::detail::StringCopier>::parseKey()
  .text._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE12parseVariantINS1_14AllowAllFilterEEENS0_20DeserializationError4CodeERNS1_11VariantDataET_NS0_21DeserializationOption12NestingLimitE.isra.0
-                0x08005d04      0x26c ./Core/Src/main.o
+                0x08005ce4      0x26c ./Core/Src/main.o
  .text._ZN11ArduinoJson7V6211HB6detail11deserializeINS1_16JsonDeserializerERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEJEvEENS0_20DeserializationErrorERNS0_12JsonDocumentEOT0_DpT1_
-                0x08005f70       0x48 ./Core/Src/main.o
-                0x08005f70                ArduinoJson::V6211HB::DeserializationError ArduinoJson::V6211HB::detail::deserialize<ArduinoJson::V6211HB::detail::JsonDeserializer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, , void>(ArduinoJson::V6211HB::JsonDocument&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x08005f50       0x48 ./Core/Src/main.o
+                0x08005f50                ArduinoJson::V6211HB::DeserializationError ArduinoJson::V6211HB::detail::deserialize<ArduinoJson::V6211HB::detail::JsonDeserializer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, , void>(ArduinoJson::V6211HB::JsonDocument&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._Z14JSON_EXTRACTERPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPN11ArduinoJson7V6211HB18StaticJsonDocumentILj1200EEE
-                0x08005fb8       0x84 ./Core/Src/main.o
-                0x08005fb8                JSON_EXTRACTER(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, ArduinoJson::V6211HB::StaticJsonDocument<1200u>*)
+                0x08005f98       0x84 ./Core/Src/main.o
+                0x08005f98                JSON_EXTRACTER(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, ArduinoJson::V6211HB::StaticJsonDocument<1200u>*)
  .text._ZN11ArduinoJson7V6211HB6detail17CountingDecoratorINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEE5writeEh
-                0x0800603c       0x12 ./Core/Src/main.o
-                0x0800603c                ArduinoJson::V6211HB::detail::CountingDecorator<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::write(unsigned char)
- *fill*         0x0800604e        0x2 
+                0x0800601c       0x12 ./Core/Src/main.o
+                0x0800601c                ArduinoJson::V6211HB::detail::CountingDecorator<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::write(unsigned char)
+ *fill*         0x0800602e        0x2 
  .text._ZN11ArduinoJson7V6211HB6detail13TextFormatterINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEE10writeFloatIdEEvT_
-                0x08006050      0x12c ./Core/Src/main.o
-                0x08006050                void ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeFloat<double>(double)
+                0x08006030      0x12c ./Core/Src/main.o
+                0x08006030                void ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeFloat<double>(double)
  .text._ZN11ArduinoJson7V6211HB6detail13TextFormatterINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEE9writeCharEc
-                0x0800617c       0x3c ./Core/Src/main.o
-                0x0800617c                ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeChar(char)
+                0x0800615c       0x3c ./Core/Src/main.o
+                0x0800615c                ArduinoJson::V6211HB::detail::TextFormatter<ArduinoJson::V6211HB::detail::Writer<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void> >::writeChar(char)
  .text._ZNK11ArduinoJson7V6211HB6detail11VariantData6acceptINS1_14JsonSerializerINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEEEEENT_11result_typeERSE_.isra.0
-                0x080061b8      0x144 ./Core/Src/main.o
+                0x08006198      0x144 ./Core/Src/main.o
  .text._ZN11ArduinoJson7V6211HB13serializeJsonINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEjNS0_16JsonVariantConstERT_.isra.0
-                0x080062fc       0x24 ./Core/Src/main.o
+                0x080062dc       0x24 ./Core/Src/main.o
  .text._ZN11ArduinoJson7V6211HB15convertFromJsonENS0_16JsonVariantConstERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-                0x08006320       0x38 ./Core/Src/main.o
-                0x08006320                ArduinoJson::V6211HB::convertFromJson(ArduinoJson::V6211HB::JsonVariantConst, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x08006300       0x38 ./Core/Src/main.o
+                0x08006300                ArduinoJson::V6211HB::convertFromJson(ArduinoJson::V6211HB::JsonVariantConst, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._Z9GET_LINKSRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_.part.0
-                0x08006358      0x340 ./Core/Src/main.o
+                0x08006338      0x340 ./Core/Src/main.o
  .text._Z9GET_LINKSRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_
-                0x08006698       0x38 ./Core/Src/main.o
-                0x08006698                GET_LINKS(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+                0x08006678       0x38 ./Core/Src/main.o
+                0x08006678                GET_LINKS(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
  .text._Z13UPDATE_CONFIGRKN11ArduinoJson7V6211HB18StaticJsonDocumentILj1200EEE
-                0x080066d0       0x98 ./Core/Src/main.o
-                0x080066d0                UPDATE_CONFIG(ArduinoJson::V6211HB::StaticJsonDocument<1200u> const&)
+                0x080066b0       0x98 ./Core/Src/main.o
+                0x080066b0                UPDATE_CONFIG(ArduinoJson::V6211HB::StaticJsonDocument<1200u> const&)
  .text._Z11config_filev
-                0x08006768       0xf8 ./Core/Src/main.o
-                0x08006768                config_file()
+                0x08006748       0xf8 ./Core/Src/main.o
+                0x08006748                config_file()
  .text._Z8cert_addv
-                0x08006860      0x2cc ./Core/Src/main.o
-                0x08006860                cert_add()
+                0x08006840      0x2cc ./Core/Src/main.o
+                0x08006840                cert_add()
  .text._Z22check_all_certificatesv.part.0
-                0x08006b2c      0x1c4 ./Core/Src/main.o
+                0x08006b0c      0x1c4 ./Core/Src/main.o
  .text._Z22check_all_certificatesv
-                0x08006cf0       0x24 ./Core/Src/main.o
-                0x08006cf0                check_all_certificates()
+                0x08006cd0       0x24 ./Core/Src/main.o
+                0x08006cd0                check_all_certificates()
  .text._ZN12JSON_HANDLER14MAKE_META_JSONENS_10clear_enumEb
-                0x08006d14       0xd4 ./Core/Src/main.o
-                0x08006d14                JSON_HANDLER::MAKE_META_JSON(JSON_HANDLER::clear_enum, bool)
+                0x08006cf4       0xd4 ./Core/Src/main.o
+                0x08006cf4                JSON_HANDLER::MAKE_META_JSON(JSON_HANDLER::clear_enum, bool)
  .text._Z10MENU_PRINTb
-                0x08006de8      0x4bc ./Core/Src/main.o
-                0x08006de8                MENU_PRINT(bool)
+                0x08006dc8      0x4b4 ./Core/Src/main.o
+                0x08006dc8                MENU_PRINT(bool)
  .text._Z16save_meta_neowayv
-                0x080072a4       0x34 ./Core/Src/main.o
-                0x080072a4                save_meta_neoway()
+                0x0800727c       0x34 ./Core/Src/main.o
+                0x0800727c                save_meta_neoway()
  .text._Z12OTA_FUNCTIONv
-                0x080072d8      0x298 ./Core/Src/main.o
-                0x080072d8                OTA_FUNCTION()
+                0x080072b0      0x298 ./Core/Src/main.o
+                0x080072b0                OTA_FUNCTION()
  .text.startup.main
-                0x08007570      0x12c ./Core/Src/main.o
-                0x08007570                main
+                0x08007548      0x12c ./Core/Src/main.o
+                0x08007548                main
  .text.startup._GLOBAL__sub_I_neo_control
-                0x0800769c        0x4 ./Core/Src/main.o
+                0x08007674        0x4 ./Core/Src/main.o
  .text.exit._GLOBAL__sub_D_neo_control
-                0x080076a0       0xec ./Core/Src/main.o
+                0x08007678       0xec ./Core/Src/main.o
  .text.MX_RTC_Init
-                0x0800778c       0xfc ./Core/Src/rtc.o
-                0x0800778c                MX_RTC_Init
+                0x08007764       0xfc ./Core/Src/rtc.o
+                0x08007764                MX_RTC_Init
  .text.HAL_RTC_MspInit
-                0x08007888       0x6c ./Core/Src/rtc.o
-                0x08007888                HAL_RTC_MspInit
+                0x08007860       0x6c ./Core/Src/rtc.o
+                0x08007860                HAL_RTC_MspInit
  .text.HAL_MspInit
-                0x080078f4       0x4c ./Core/Src/stm32l4xx_hal_msp.o
-                0x080078f4                HAL_MspInit
+                0x080078cc       0x4c ./Core/Src/stm32l4xx_hal_msp.o
+                0x080078cc                HAL_MspInit
  .text.NMI_Handler
-                0x08007940        0x2 ./Core/Src/stm32l4xx_it.o
-                0x08007940                NMI_Handler
+                0x08007918        0x2 ./Core/Src/stm32l4xx_it.o
+                0x08007918                NMI_Handler
  .text.HardFault_Handler
-                0x08007942        0x2 ./Core/Src/stm32l4xx_it.o
-                0x08007942                HardFault_Handler
+                0x0800791a        0x2 ./Core/Src/stm32l4xx_it.o
+                0x0800791a                HardFault_Handler
  .text.MemManage_Handler
-                0x08007944        0x2 ./Core/Src/stm32l4xx_it.o
-                0x08007944                MemManage_Handler
+                0x0800791c        0x2 ./Core/Src/stm32l4xx_it.o
+                0x0800791c                MemManage_Handler
  .text.BusFault_Handler
-                0x08007946        0x2 ./Core/Src/stm32l4xx_it.o
-                0x08007946                BusFault_Handler
+                0x0800791e        0x2 ./Core/Src/stm32l4xx_it.o
+                0x0800791e                BusFault_Handler
  .text.UsageFault_Handler
-                0x08007948        0x2 ./Core/Src/stm32l4xx_it.o
-                0x08007948                UsageFault_Handler
+                0x08007920        0x2 ./Core/Src/stm32l4xx_it.o
+                0x08007920                UsageFault_Handler
  .text.SVC_Handler
-                0x0800794a        0x2 ./Core/Src/stm32l4xx_it.o
-                0x0800794a                SVC_Handler
+                0x08007922        0x2 ./Core/Src/stm32l4xx_it.o
+                0x08007922                SVC_Handler
  .text.DebugMon_Handler
-                0x0800794c        0x2 ./Core/Src/stm32l4xx_it.o
-                0x0800794c                DebugMon_Handler
+                0x08007924        0x2 ./Core/Src/stm32l4xx_it.o
+                0x08007924                DebugMon_Handler
  .text.PendSV_Handler
-                0x0800794e        0x2 ./Core/Src/stm32l4xx_it.o
-                0x0800794e                PendSV_Handler
+                0x08007926        0x2 ./Core/Src/stm32l4xx_it.o
+                0x08007926                PendSV_Handler
  .text.SysTick_Handler
-                0x08007950        0x4 ./Core/Src/stm32l4xx_it.o
-                0x08007950                SysTick_Handler
+                0x08007928        0x4 ./Core/Src/stm32l4xx_it.o
+                0x08007928                SysTick_Handler
  .text.RTC_WKUP_IRQHandler
-                0x08007954        0xc ./Core/Src/stm32l4xx_it.o
-                0x08007954                RTC_WKUP_IRQHandler
+                0x0800792c        0xc ./Core/Src/stm32l4xx_it.o
+                0x0800792c                RTC_WKUP_IRQHandler
  .text.RCC_IRQHandler
-                0x08007960        0x2 ./Core/Src/stm32l4xx_it.o
-                0x08007960                RCC_IRQHandler
+                0x08007938        0x2 ./Core/Src/stm32l4xx_it.o
+                0x08007938                RCC_IRQHandler
  .text.EXTI9_5_IRQHandler
-                0x08007962        0x8 ./Core/Src/stm32l4xx_it.o
-                0x08007962                EXTI9_5_IRQHandler
- *fill*         0x0800796a        0x2 
+                0x0800793a        0x8 ./Core/Src/stm32l4xx_it.o
+                0x0800793a                EXTI9_5_IRQHandler
+ *fill*         0x08007942        0x2 
  .text.RTC_Alarm_IRQHandler
-                0x0800796c        0xc ./Core/Src/stm32l4xx_it.o
-                0x0800796c                RTC_Alarm_IRQHandler
- .text._getpid  0x08007978        0x4 ./Core/Src/syscalls.o
-                0x08007978                _getpid
- .text._kill    0x0800797c       0x10 ./Core/Src/syscalls.o
-                0x0800797c                _kill
- .text._exit    0x0800798c        0xc ./Core/Src/syscalls.o
-                0x0800798c                _exit
- .text._sbrk    0x08007998       0x40 ./Core/Src/sysmem.o
-                0x08007998                _sbrk
+                0x08007944        0xc ./Core/Src/stm32l4xx_it.o
+                0x08007944                RTC_Alarm_IRQHandler
+ .text._getpid  0x08007950        0x4 ./Core/Src/syscalls.o
+                0x08007950                _getpid
+ .text._kill    0x08007954       0x10 ./Core/Src/syscalls.o
+                0x08007954                _kill
+ .text._exit    0x08007964        0xc ./Core/Src/syscalls.o
+                0x08007964                _exit
+ .text._sbrk    0x08007970       0x40 ./Core/Src/sysmem.o
+                0x08007970                _sbrk
  .text.SystemInit
-                0x080079d8       0x14 ./Core/Src/system_stm32l4xx.o
-                0x080079d8                SystemInit
+                0x080079b0       0x14 ./Core/Src/system_stm32l4xx.o
+                0x080079b0                SystemInit
  .text.MX_LPUART1_UART_Init
-                0x080079ec       0x38 ./Core/Src/usart.o
-                0x080079ec                MX_LPUART1_UART_Init
+                0x080079c4       0x38 ./Core/Src/usart.o
+                0x080079c4                MX_LPUART1_UART_Init
  .text.MX_USART1_UART_Init
-                0x08007a24       0x3c ./Core/Src/usart.o
-                0x08007a24                MX_USART1_UART_Init
+                0x080079fc       0x3c ./Core/Src/usart.o
+                0x080079fc                MX_USART1_UART_Init
  .text.MX_USART2_UART_Init
-                0x08007a60       0x3c ./Core/Src/usart.o
-                0x08007a60                MX_USART2_UART_Init
+                0x08007a38       0x3c ./Core/Src/usart.o
+                0x08007a38                MX_USART2_UART_Init
  .text.HAL_UART_MspInit
-                0x08007a9c      0x150 ./Core/Src/usart.o
-                0x08007a9c                HAL_UART_MspInit
+                0x08007a74      0x150 ./Core/Src/usart.o
+                0x08007a74                HAL_UART_MspInit
  .text.Reset_Handler
-                0x08007bec       0x50 ./Core/Startup/startup_stm32l433vctx.o
-                0x08007bec                Reset_Handler
+                0x08007bc4       0x50 ./Core/Startup/startup_stm32l433vctx.o
+                0x08007bc4                Reset_Handler
  .text.Default_Handler
-                0x08007c3c        0x2 ./Core/Startup/startup_stm32l433vctx.o
-                0x08007c3c                EXTI2_IRQHandler
-                0x08007c3c                TIM1_CC_IRQHandler
-                0x08007c3c                TSC_IRQHandler
-                0x08007c3c                TAMP_STAMP_IRQHandler
-                0x08007c3c                EXTI3_IRQHandler
-                0x08007c3c                LPTIM2_IRQHandler
-                0x08007c3c                I2C3_ER_IRQHandler
-                0x08007c3c                EXTI0_IRQHandler
-                0x08007c3c                I2C2_EV_IRQHandler
-                0x08007c3c                CAN1_RX0_IRQHandler
-                0x08007c3c                FPU_IRQHandler
-                0x08007c3c                TIM1_UP_TIM16_IRQHandler
-                0x08007c3c                SPI1_IRQHandler
-                0x08007c3c                TIM6_DAC_IRQHandler
-                0x08007c3c                DMA2_Channel2_IRQHandler
-                0x08007c3c                DMA1_Channel4_IRQHandler
-                0x08007c3c                ADC1_IRQHandler
-                0x08007c3c                USART3_IRQHandler
-                0x08007c3c                DMA1_Channel7_IRQHandler
-                0x08007c3c                CAN1_RX1_IRQHandler
-                0x08007c3c                LCD_IRQHandler
-                0x08007c3c                DMA2_Channel1_IRQHandler
-                0x08007c3c                QUADSPI_IRQHandler
-                0x08007c3c                I2C1_EV_IRQHandler
-                0x08007c3c                DMA1_Channel6_IRQHandler
-                0x08007c3c                DMA2_Channel4_IRQHandler
-                0x08007c3c                TIM1_TRG_COM_IRQHandler
-                0x08007c3c                DMA1_Channel1_IRQHandler
-                0x08007c3c                Default_Handler
-                0x08007c3c                DMA2_Channel7_IRQHandler
-                0x08007c3c                EXTI15_10_IRQHandler
-                0x08007c3c                TIM7_IRQHandler
-                0x08007c3c                SDMMC1_IRQHandler
-                0x08007c3c                I2C3_EV_IRQHandler
-                0x08007c3c                USB_IRQHandler
-                0x08007c3c                PVD_PVM_IRQHandler
-                0x08007c3c                SPI2_IRQHandler
-                0x08007c3c                CAN1_TX_IRQHandler
-                0x08007c3c                DMA2_Channel5_IRQHandler
-                0x08007c3c                CRS_IRQHandler
-                0x08007c3c                DMA1_Channel5_IRQHandler
-                0x08007c3c                EXTI4_IRQHandler
-                0x08007c3c                RNG_IRQHandler
-                0x08007c3c                DMA1_Channel3_IRQHandler
-                0x08007c3c                COMP_IRQHandler
-                0x08007c3c                WWDG_IRQHandler
-                0x08007c3c                LPUART1_IRQHandler
-                0x08007c3c                DMA2_Channel6_IRQHandler
-                0x08007c3c                TIM2_IRQHandler
-                0x08007c3c                EXTI1_IRQHandler
-                0x08007c3c                USART2_IRQHandler
-                0x08007c3c                I2C2_ER_IRQHandler
-                0x08007c3c                DMA1_Channel2_IRQHandler
-                0x08007c3c                CAN1_SCE_IRQHandler
-                0x08007c3c                FLASH_IRQHandler
-                0x08007c3c                USART1_IRQHandler
-                0x08007c3c                SPI3_IRQHandler
-                0x08007c3c                I2C1_ER_IRQHandler
-                0x08007c3c                SWPMI1_IRQHandler
-                0x08007c3c                LPTIM1_IRQHandler
-                0x08007c3c                SAI1_IRQHandler
-                0x08007c3c                DMA2_Channel3_IRQHandler
-                0x08007c3c                TIM1_BRK_TIM15_IRQHandler
- *fill*         0x08007c3e        0x2 
+                0x08007c14        0x2 ./Core/Startup/startup_stm32l433vctx.o
+                0x08007c14                EXTI2_IRQHandler
+                0x08007c14                TIM1_CC_IRQHandler
+                0x08007c14                TSC_IRQHandler
+                0x08007c14                TAMP_STAMP_IRQHandler
+                0x08007c14                EXTI3_IRQHandler
+                0x08007c14                LPTIM2_IRQHandler
+                0x08007c14                I2C3_ER_IRQHandler
+                0x08007c14                EXTI0_IRQHandler
+                0x08007c14                I2C2_EV_IRQHandler
+                0x08007c14                CAN1_RX0_IRQHandler
+                0x08007c14                FPU_IRQHandler
+                0x08007c14                TIM1_UP_TIM16_IRQHandler
+                0x08007c14                SPI1_IRQHandler
+                0x08007c14                TIM6_DAC_IRQHandler
+                0x08007c14                DMA2_Channel2_IRQHandler
+                0x08007c14                DMA1_Channel4_IRQHandler
+                0x08007c14                ADC1_IRQHandler
+                0x08007c14                USART3_IRQHandler
+                0x08007c14                DMA1_Channel7_IRQHandler
+                0x08007c14                CAN1_RX1_IRQHandler
+                0x08007c14                LCD_IRQHandler
+                0x08007c14                DMA2_Channel1_IRQHandler
+                0x08007c14                QUADSPI_IRQHandler
+                0x08007c14                I2C1_EV_IRQHandler
+                0x08007c14                DMA1_Channel6_IRQHandler
+                0x08007c14                DMA2_Channel4_IRQHandler
+                0x08007c14                TIM1_TRG_COM_IRQHandler
+                0x08007c14                DMA1_Channel1_IRQHandler
+                0x08007c14                Default_Handler
+                0x08007c14                DMA2_Channel7_IRQHandler
+                0x08007c14                EXTI15_10_IRQHandler
+                0x08007c14                TIM7_IRQHandler
+                0x08007c14                SDMMC1_IRQHandler
+                0x08007c14                I2C3_EV_IRQHandler
+                0x08007c14                USB_IRQHandler
+                0x08007c14                PVD_PVM_IRQHandler
+                0x08007c14                SPI2_IRQHandler
+                0x08007c14                CAN1_TX_IRQHandler
+                0x08007c14                DMA2_Channel5_IRQHandler
+                0x08007c14                CRS_IRQHandler
+                0x08007c14                DMA1_Channel5_IRQHandler
+                0x08007c14                EXTI4_IRQHandler
+                0x08007c14                RNG_IRQHandler
+                0x08007c14                DMA1_Channel3_IRQHandler
+                0x08007c14                COMP_IRQHandler
+                0x08007c14                WWDG_IRQHandler
+                0x08007c14                LPUART1_IRQHandler
+                0x08007c14                DMA2_Channel6_IRQHandler
+                0x08007c14                TIM2_IRQHandler
+                0x08007c14                EXTI1_IRQHandler
+                0x08007c14                USART2_IRQHandler
+                0x08007c14                I2C2_ER_IRQHandler
+                0x08007c14                DMA1_Channel2_IRQHandler
+                0x08007c14                CAN1_SCE_IRQHandler
+                0x08007c14                FLASH_IRQHandler
+                0x08007c14                USART1_IRQHandler
+                0x08007c14                SPI3_IRQHandler
+                0x08007c14                I2C1_ER_IRQHandler
+                0x08007c14                SWPMI1_IRQHandler
+                0x08007c14                LPTIM1_IRQHandler
+                0x08007c14                SAI1_IRQHandler
+                0x08007c14                DMA2_Channel3_IRQHandler
+                0x08007c14                TIM1_BRK_TIM15_IRQHandler
+ *fill*         0x08007c16        0x2 
  .text.HAL_InitTick
-                0x08007c40       0x4c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x08007c40                HAL_InitTick
+                0x08007c18       0x4c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x08007c18                HAL_InitTick
  .text.HAL_Init
-                0x08007c8c       0x1e ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x08007c8c                HAL_Init
- *fill*         0x08007caa        0x2 
+                0x08007c64       0x1e ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x08007c64                HAL_Init
+ *fill*         0x08007c82        0x2 
  .text.HAL_IncTick
-                0x08007cac       0x18 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x08007cac                HAL_IncTick
+                0x08007c84       0x18 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x08007c84                HAL_IncTick
  .text.HAL_GetTick
-                0x08007cc4        0xc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x08007cc4                HAL_GetTick
+                0x08007c9c        0xc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x08007c9c                HAL_GetTick
  .text.HAL_Delay
-                0x08007cd0       0x28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x08007cd0                HAL_Delay
+                0x08007ca8       0x28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x08007ca8                HAL_Delay
  .text.HAL_SYSCFG_VREFBUF_HighImpedanceConfig
-                0x08007cf8       0x14 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x08007cf8                HAL_SYSCFG_VREFBUF_HighImpedanceConfig
+                0x08007cd0       0x14 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x08007cd0                HAL_SYSCFG_VREFBUF_HighImpedanceConfig
  .text.HAL_SYSCFG_DisableVREFBUF
-                0x08007d0c       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x08007d0c                HAL_SYSCFG_DisableVREFBUF
+                0x08007ce4       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x08007ce4                HAL_SYSCFG_DisableVREFBUF
  .text.LL_ADC_SetChannelSamplingTime
-                0x08007d1c       0x20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
+                0x08007cf4       0x20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
  .text.LL_ADC_REG_IsConversionOngoing
-                0x08007d3c        0x8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
+                0x08007d14        0x8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
  .text.HAL_ADC_Init
-                0x08007d44      0x198 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
-                0x08007d44                HAL_ADC_Init
+                0x08007d1c      0x198 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
+                0x08007d1c                HAL_ADC_Init
  .text.HAL_ADC_ConfigChannel
-                0x08007edc      0x364 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
-                0x08007edc                HAL_ADC_ConfigChannel
+                0x08007eb4      0x364 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
+                0x08007eb4                HAL_ADC_ConfigChannel
  .text.HAL_NVIC_SetPriorityGrouping
-                0x08008240       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
-                0x08008240                HAL_NVIC_SetPriorityGrouping
+                0x08008218       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+                0x08008218                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x08008264       0x64 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
-                0x08008264                HAL_NVIC_SetPriority
+                0x0800823c       0x64 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+                0x0800823c                HAL_NVIC_SetPriority
  .text.HAL_NVIC_EnableIRQ
-                0x080082c8       0x1c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
-                0x080082c8                HAL_NVIC_EnableIRQ
+                0x080082a0       0x1c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+                0x080082a0                HAL_NVIC_EnableIRQ
  .text.HAL_SYSTICK_Config
-                0x080082e4       0x28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
-                0x080082e4                HAL_SYSTICK_Config
+                0x080082bc       0x28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+                0x080082bc                HAL_SYSTICK_Config
  .text.FLASH_Program_Fast
-                0x0800830c       0x2c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
+                0x080082e4       0x2c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
  .text.HAL_FLASH_Unlock
-                0x08008338       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
-                0x08008338                HAL_FLASH_Unlock
+                0x08008310       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
+                0x08008310                HAL_FLASH_Unlock
  .text.HAL_FLASH_Lock
-                0x0800835c       0x14 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
-                0x0800835c                HAL_FLASH_Lock
+                0x08008334       0x14 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
+                0x08008334                HAL_FLASH_Lock
  .text.FLASH_WaitForLastOperation
-                0x08008370       0x54 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
-                0x08008370                FLASH_WaitForLastOperation
+                0x08008348       0x54 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
+                0x08008348                FLASH_WaitForLastOperation
  .text.HAL_FLASH_Program
-                0x080083c4       0xa4 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
-                0x080083c4                HAL_FLASH_Program
+                0x0800839c       0xa4 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o
+                0x0800839c                HAL_FLASH_Program
  .text.FLASH_MassErase
-                0x08008468       0x20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
+                0x08008440       0x20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
  .text.FLASH_PageErase
-                0x08008488       0x28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
-                0x08008488                FLASH_PageErase
+                0x08008460       0x28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
+                0x08008460                FLASH_PageErase
  .text.FLASH_FlushCaches
-                0x080084b0       0x60 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
-                0x080084b0                FLASH_FlushCaches
+                0x08008488       0x60 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
+                0x08008488                FLASH_FlushCaches
  .text.HAL_FLASHEx_Erase
-                0x08008510       0xdc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
-                0x08008510                HAL_FLASHEx_Erase
+                0x080084e8       0xdc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o
+                0x080084e8                HAL_FLASHEx_Erase
  .text.HAL_GPIO_Init
-                0x080085ec      0x188 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
-                0x080085ec                HAL_GPIO_Init
+                0x080085c4      0x188 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+                0x080085c4                HAL_GPIO_Init
  .text.HAL_GPIO_WritePin
-                0x08008774        0xa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
-                0x08008774                HAL_GPIO_WritePin
+                0x0800874c        0xa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+                0x0800874c                HAL_GPIO_WritePin
  .text.HAL_GPIO_EXTI_Callback
-                0x0800877e        0x2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
-                0x0800877e                HAL_GPIO_EXTI_Callback
+                0x08008756        0x2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+                0x08008756                HAL_GPIO_EXTI_Callback
  .text.HAL_GPIO_EXTI_IRQHandler
-                0x08008780       0x18 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
-                0x08008780                HAL_GPIO_EXTI_IRQHandler
+                0x08008758       0x18 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+                0x08008758                HAL_GPIO_EXTI_IRQHandler
  .text.HAL_IWDG_Init
-                0x08008798       0x5a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_iwdg.o
-                0x08008798                HAL_IWDG_Init
+                0x08008770       0x5a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_iwdg.o
+                0x08008770                HAL_IWDG_Init
  .text.HAL_IWDG_Refresh
-                0x080087f2        0xc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_iwdg.o
-                0x080087f2                HAL_IWDG_Refresh
- *fill*         0x080087fe        0x2 
+                0x080087ca        0xc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_iwdg.o
+                0x080087ca                HAL_IWDG_Refresh
+ *fill*         0x080087d6        0x2 
  .text.HAL_PWR_EnableBkUpAccess
-                0x08008800       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o
-                0x08008800                HAL_PWR_EnableBkUpAccess
+                0x080087d8       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o
+                0x080087d8                HAL_PWR_EnableBkUpAccess
  .text.HAL_PWR_DisableSleepOnExit
-                0x08008810       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o
-                0x08008810                HAL_PWR_DisableSleepOnExit
+                0x080087e8       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o
+                0x080087e8                HAL_PWR_DisableSleepOnExit
  .text.HAL_PWREx_GetVoltageRange
-                0x08008820       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
-                0x08008820                HAL_PWREx_GetVoltageRange
+                0x080087f8       0x10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+                0x080087f8                HAL_PWREx_GetVoltageRange
  .text.HAL_PWREx_ControlVoltageScaling
-                0x08008830       0x6c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
-                0x08008830                HAL_PWREx_ControlVoltageScaling
+                0x08008808       0x6c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+                0x08008808                HAL_PWREx_ControlVoltageScaling
  .text.RCC_SetFlashLatencyFromMSIRange
-                0x0800889c       0x84 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+                0x08008874       0x84 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
  .text.HAL_RCC_GetSysClockFreq
-                0x08008920       0x8c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
-                0x08008920                HAL_RCC_GetSysClockFreq
+                0x080088f8       0x8c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+                0x080088f8                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_OscConfig
-                0x080089ac      0x544 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
-                0x080089ac                HAL_RCC_OscConfig
+                0x08008984      0x544 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+                0x08008984                HAL_RCC_OscConfig
  .text.HAL_RCC_ClockConfig
-                0x08008ef0      0x154 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
-                0x08008ef0                HAL_RCC_ClockConfig
+                0x08008ec8      0x154 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+                0x08008ec8                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetPCLK1Freq
-                0x08009044       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
-                0x08009044                HAL_RCC_GetPCLK1Freq
+                0x0800901c       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+                0x0800901c                HAL_RCC_GetPCLK1Freq
  .text.HAL_RCC_GetPCLK2Freq
-                0x08009068       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
-                0x08009068                HAL_RCC_GetPCLK2Freq
+                0x08009040       0x24 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+                0x08009040                HAL_RCC_GetPCLK2Freq
  .text.RCCEx_PLLSAI1_Config
-                0x0800908c      0x10c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+                0x08009064      0x10c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
  .text.HAL_RCCEx_PeriphCLKConfig
-                0x08009198      0x318 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
-                0x08009198                HAL_RCCEx_PeriphCLKConfig
+                0x08009170      0x318 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+                0x08009170                HAL_RCCEx_PeriphCLKConfig
  .text.HAL_RTC_AlarmIRQHandler
-                0x080094b0       0x54 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x080094b0                HAL_RTC_AlarmIRQHandler
+                0x08009488       0x54 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x08009488                HAL_RTC_AlarmIRQHandler
  .text.HAL_RTC_WaitForSynchro
-                0x08009504       0x30 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x08009504                HAL_RTC_WaitForSynchro
+                0x080094dc       0x30 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x080094dc                HAL_RTC_WaitForSynchro
  .text.RTC_EnterInitMode
-                0x08009534       0x48 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x08009534                RTC_EnterInitMode
+                0x0800950c       0x48 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x0800950c                RTC_EnterInitMode
  .text.RTC_ExitInitMode
-                0x0800957c       0x44 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x0800957c                RTC_ExitInitMode
+                0x08009554       0x44 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x08009554                RTC_ExitInitMode
  .text.HAL_RTC_Init
-                0x080095c0       0x9a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x080095c0                HAL_RTC_Init
+                0x08009598       0x9a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x08009598                HAL_RTC_Init
  .text.RTC_ByteToBcd2
-                0x0800965a       0x16 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x0800965a                RTC_ByteToBcd2
+                0x08009632       0x16 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x08009632                RTC_ByteToBcd2
  .text.HAL_RTC_SetTime
-                0x08009670       0xc2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x08009670                HAL_RTC_SetTime
+                0x08009648       0xc2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x08009648                HAL_RTC_SetTime
  .text.HAL_RTC_SetDate
-                0x08009732       0x98 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x08009732                HAL_RTC_SetDate
- *fill*         0x080097ca        0x2 
+                0x0800970a       0x98 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x0800970a                HAL_RTC_SetDate
+ *fill*         0x080097a2        0x2 
  .text.HAL_RTC_SetAlarm_IT
-                0x080097cc      0x170 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x080097cc                HAL_RTC_SetAlarm_IT
+                0x080097a4      0x170 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x080097a4                HAL_RTC_SetAlarm_IT
  .text.RTC_Bcd2ToByte
-                0x0800993c       0x12 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x0800993c                RTC_Bcd2ToByte
+                0x08009914       0x12 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x08009914                RTC_Bcd2ToByte
  .text.HAL_RTC_GetTime
-                0x0800994e       0x46 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x0800994e                HAL_RTC_GetTime
+                0x08009926       0x46 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x08009926                HAL_RTC_GetTime
  .text.HAL_RTC_GetDate
-                0x08009994       0x3a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x08009994                HAL_RTC_GetDate
+                0x0800996c       0x3a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x0800996c                HAL_RTC_GetDate
  .text.HAL_RTC_GetAlarm
-                0x080099ce       0x7a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
-                0x080099ce                HAL_RTC_GetAlarm
+                0x080099a6       0x7a ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc.o
+                0x080099a6                HAL_RTC_GetAlarm
  .text.HAL_RTCEx_SetWakeUpTimer_IT
-                0x08009a48       0xbc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
-                0x08009a48                HAL_RTCEx_SetWakeUpTimer_IT
+                0x08009a20       0xbc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
+                0x08009a20                HAL_RTCEx_SetWakeUpTimer_IT
  .text.HAL_RTCEx_WakeUpTimerIRQHandler
-                0x08009b04       0x30 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
-                0x08009b04                HAL_RTCEx_WakeUpTimerIRQHandler
+                0x08009adc       0x30 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
+                0x08009adc                HAL_RTCEx_WakeUpTimerIRQHandler
  .text.HAL_RTCEx_BKUPWrite
-                0x08009b34       0x18 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
-                0x08009b34                HAL_RTCEx_BKUPWrite
+                0x08009b0c       0x18 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
+                0x08009b0c                HAL_RTCEx_BKUPWrite
  .text.HAL_RTCEx_BKUPRead
-                0x08009b4c        0xa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
-                0x08009b4c                HAL_RTCEx_BKUPRead
+                0x08009b24        0xa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rtc_ex.o
+                0x08009b24                HAL_RTCEx_BKUPRead
  .text.UART_EndRxTransfer
-                0x08009b56       0x50 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
- *fill*         0x08009ba6        0x2 
+                0x08009b2e       0x50 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+ *fill*         0x08009b7e        0x2 
  .text.UART_SetConfig
-                0x08009ba8      0x1cc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
-                0x08009ba8                UART_SetConfig
+                0x08009b80      0x1cc ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+                0x08009b80                UART_SetConfig
  .text.UART_AdvFeatureConfig
-                0x08009d74       0xa8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
-                0x08009d74                UART_AdvFeatureConfig
+                0x08009d4c       0xa8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+                0x08009d4c                UART_AdvFeatureConfig
  .text.UART_WaitOnFlagUntilTimeout
-                0x08009e1c       0x88 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
-                0x08009e1c                UART_WaitOnFlagUntilTimeout
+                0x08009df4       0x88 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+                0x08009df4                UART_WaitOnFlagUntilTimeout
  .text.HAL_UART_Transmit
-                0x08009ea4       0xa2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
-                0x08009ea4                HAL_UART_Transmit
+                0x08009e7c       0xa2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+                0x08009e7c                HAL_UART_Transmit
  .text.UART_CheckIdleState
-                0x08009f46       0xb2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
-                0x08009f46                UART_CheckIdleState
+                0x08009f1e       0xb2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+                0x08009f1e                UART_CheckIdleState
  .text.HAL_UART_Init
-                0x08009ff8       0x5c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
-                0x08009ff8                HAL_UART_Init
- .text._ZdaPv   0x0800a054        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_opv.o)
-                0x0800a054                operator delete[](void*)
+                0x08009fd0       0x5c ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+                0x08009fd0                HAL_UART_Init
+ .text._ZdaPv   0x0800a02c        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_opv.o)
+                0x0800a02c                operator delete[](void*)
  .text.__cxa_guard_acquire
-                0x0800a058       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(guard.o)
-                0x0800a058                __cxa_guard_acquire
+                0x0800a030       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(guard.o)
+                0x0800a030                __cxa_guard_acquire
  .text.__cxa_guard_release
-                0x0800a070        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(guard.o)
-                0x0800a070                __cxa_guard_release
- .text._Znaj    0x0800a076        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(new_opv.o)
-                0x0800a076                operator new[](unsigned int)
+                0x0800a048        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(guard.o)
+                0x0800a048                __cxa_guard_release
+ .text._Znaj    0x0800a04e        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(new_opv.o)
+                0x0800a04e                operator new[](unsigned int)
  .text.unlikely._ZSt17__throw_bad_allocv
-                0x0800a07a        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
-                0x0800a07a                std::__throw_bad_alloc()
+                0x0800a052        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
+                0x0800a052                std::__throw_bad_alloc()
  .text.unlikely._ZSt19__throw_logic_errorPKc
-                0x0800a080        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
-                0x0800a080                std::__throw_logic_error(char const*)
+                0x0800a058        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
+                0x0800a058                std::__throw_logic_error(char const*)
  .text.unlikely._ZSt20__throw_length_errorPKc
-                0x0800a086        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
-                0x0800a086                std::__throw_length_error(char const*)
+                0x0800a05e        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
+                0x0800a05e                std::__throw_length_error(char const*)
  .text.unlikely._ZSt24__throw_out_of_range_fmtPKcz
-                0x0800a08c        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
-                0x0800a08c                std::__throw_out_of_range_fmt(char const*, ...)
+                0x0800a064        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(functexcept.o)
+                0x0800a064                std::__throw_out_of_range_fmt(char const*, ...)
  .text._ZNSt11char_traitsIcE4copyEPcPKcj.isra.0
-                0x0800a094        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a06c        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .text._ZNSt11char_traitsIcE4findEPKcjRS1_.isra.0
-                0x0800a09c       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a074       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .text._ZNSt11char_traitsIcE7compareEPKcS2_j
-                0x0800a0ac        0xa C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a0ac                std::char_traits<char>::compare(char const*, char const*, unsigned int)
+                0x0800a084        0xa C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a084                std::char_traits<char>::compare(char const*, char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_S_allocateERS3_j
-                0x0800a0b6       0x12 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a0b6                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned int)
+                0x0800a08e       0x12 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a08e                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_allocate(std::allocator<char>&, unsigned int)
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_M_is_localEv
-                0x0800a0c8        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a0c8                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const
+                0x0800a0a0        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a0a0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERjj
-                0x0800a0d4       0x3c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a0d4                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned int&, unsigned int)
+                0x0800a0ac       0x3c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a0ac                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned int&, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_destroyEj
-                0x0800a110        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a110                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned int)
+                0x0800a0e8        0x6 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a0e8                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv
-                0x0800a116       0x14 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a116                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()
- *fill*         0x0800a12a        0x2 
+                0x0800a0ee       0x14 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a0ee                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()
+ *fill*         0x0800a102        0x2 
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8_M_checkEjPKc
-                0x0800a12c       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a12c                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check(unsigned int, char const*) const
+                0x0800a104       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a104                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check(unsigned int, char const*) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE15_M_check_lengthEjjPKc
-                0x0800a148       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a148                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned int, unsigned int, char const*) const
+                0x0800a120       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a120                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned int, unsigned int, char const*) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_M_disjunctEPKc
-                0x0800a160       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a160                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const
+                0x0800a138       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a138                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_S_copyEPcPKcj
-                0x0800a178       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a178                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned int)
+                0x0800a150       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a150                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_S_moveEPcPKcj
-                0x0800a190       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a190                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_move(char*, char const*, unsigned int)
+                0x0800a168       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a168                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_move(char*, char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_S_assignEPcjc
-                0x0800a1a8       0x22 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a1a8                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_assign(char*, unsigned int, char)
+                0x0800a180       0x22 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a180                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_assign(char*, unsigned int, char)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructEjc
-                0x0800a1ca       0x34 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a1ca                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned int, char)
+                0x0800a1a2       0x34 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a1a2                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned int, char)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_S_copy_charsEPcS5_S5_
-                0x0800a1fe        0xa C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a1fe                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char*, char*)
+                0x0800a1d6        0xa C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a1d6                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char*, char*)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_S_copy_charsEPcPKcS7_
-                0x0800a208        0xa C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a208                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char const*, char const*)
+                0x0800a1e0        0xa C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a1e0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char const*, char const*)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8_M_eraseEjj
-                0x0800a212       0x2a C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a212                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_erase(unsigned int, unsigned int)
+                0x0800a1ea       0x2a C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a1ea                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_erase(unsigned int, unsigned int)
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8capacityEv
-                0x0800a23c       0x12 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a23c                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const
+                0x0800a214       0x12 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a214                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_assignERKS4_
-                0x0800a24e       0x4a C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a24e                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+                0x0800a226       0x4a C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a226                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_mutateEjjPKcj
-                0x0800a298       0x70 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a298                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned int, unsigned int, char const*, unsigned int)
+                0x0800a270       0x70 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a270                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned int, unsigned int, char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7reserveEj
-                0x0800a308       0x36 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a308                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned int)
- *fill*         0x0800a33e        0x2 
+                0x0800a2e0       0x36 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a2e0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned int)
+ *fill*         0x0800a316        0x2 
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE2atEj
-                0x0800a340       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a340                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::at(unsigned int)
+                0x0800a318       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a318                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::at(unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9push_backEc
-                0x0800a358       0x32 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a358                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)
+                0x0800a330       0x32 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a330                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8pop_backEv
-                0x0800a38a        0xe C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a38a                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::pop_back()
+                0x0800a362        0xe C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a362                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::pop_back()
  .text.unlikely._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE15_M_replace_coldEPcjPKcjj
-                0x0800a398       0x7e C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a398                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace_cold(char*, unsigned int, char const*, unsigned int, unsigned int)
- *fill*         0x0800a416        0x2 
+                0x0800a370       0x7e C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a370                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace_cold(char*, unsigned int, char const*, unsigned int, unsigned int)
+ *fill*         0x0800a3ee        0x2 
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEjjPKcj
-                0x0800a418       0x9c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a418                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned int, unsigned int, char const*, unsigned int)
+                0x0800a3f0       0x9c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a3f0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned int, unsigned int, char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7replaceEjjPKcj
-                0x0800a4b4       0x30 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a4b4                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned int, unsigned int, char const*, unsigned int)
+                0x0800a48c       0x30 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a48c                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned int, unsigned int, char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6insertEjRKS4_
-                0x0800a4e4       0x14 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a4e4                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+                0x0800a4bc       0x14 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a4bc                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6insertEjPKc
-                0x0800a4f8       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a4f8                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned int, char const*)
+                0x0800a4d0       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a4d0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned int, char const*)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_appendEPKcj
-                0x0800a518       0x48 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a518                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned int)
+                0x0800a4f0       0x48 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a4f0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendEPKcj
-                0x0800a560       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a560                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(char const*, unsigned int)
+                0x0800a538       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a538                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(char const*, unsigned int)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendERKS4_
-                0x0800a580        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a580                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+                0x0800a558        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a558                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendEPKc
-                0x0800a58c       0x2c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a58c                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(char const*)
+                0x0800a564       0x2c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a564                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(char const*)
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4findEPKcjj
-                0x0800a5b8       0x5e C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a5b8                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned int, unsigned int) const
+                0x0800a590       0x5e C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a590                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned int, unsigned int) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4findERKS4_j
-                0x0800a616        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a616                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int) const
+                0x0800a5ee        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a5ee                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4findEPKcj
-                0x0800a622       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a622                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned int) const
+                0x0800a5fa       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a5fa                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned int) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4findEcj
-                0x0800a63e       0x22 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a63e                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char, unsigned int) const
+                0x0800a616       0x22 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a616                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char, unsigned int) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5rfindEcj
-                0x0800a660       0x2a C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a660                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::rfind(char, unsigned int) const
+                0x0800a638       0x2a C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a638                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::rfind(char, unsigned int) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12find_last_ofEPKcjj
-                0x0800a68a       0x30 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a68a                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_of(char const*, unsigned int, unsigned int) const
+                0x0800a662       0x30 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a662                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_of(char const*, unsigned int, unsigned int) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12find_last_ofERKS4_j
-                0x0800a6ba        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a6ba                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_of(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int) const
+                0x0800a692        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a692                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_of(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int) const
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12find_last_ofEPKcj
-                0x0800a6c6       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a6c6                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_of(char const*, unsigned int) const
+                0x0800a69e       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a69e                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_of(char const*, unsigned int) const
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag
-                0x0800a6e2       0x36 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a6e2                void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag)
+                0x0800a6ba       0x36 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a6ba                void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag)
  .text._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2ERKS4_jj
-                0x0800a718       0x44 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a718                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int, unsigned int)
-                0x0800a718                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int, unsigned int)
+                0x0800a6f0       0x44 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a6f0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int, unsigned int)
+                0x0800a6f0                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int, unsigned int)
  .text._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6substrEjj
-                0x0800a75c       0x28 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800a75c                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::substr(unsigned int, unsigned int) const
- .text._ZdlPv   0x0800a784        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_op.o)
-                0x0800a784                operator delete(void*)
- .text._Znwj    0x0800a788       0x22 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(new_op.o)
-                0x0800a788                operator new(unsigned int)
- *fill*         0x0800a7aa        0x2 
+                0x0800a734       0x28 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800a734                std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::substr(unsigned int, unsigned int) const
+ .text._ZdlPv   0x0800a75c        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_op.o)
+                0x0800a75c                operator delete(void*)
+ .text._Znwj    0x0800a760       0x22 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(new_op.o)
+                0x0800a760                operator new(unsigned int)
+ *fill*         0x0800a782        0x2 
  .text._ZSt15get_new_handlerv
-                0x0800a7ac       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(new_handler.o)
-                0x0800a7ac                std::get_new_handler()
- .text.abort    0x0800a7bc        0xe C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-abort.o)
-                0x0800a7bc                abort
- *fill*         0x0800a7ca        0x2 
- .text.malloc   0x0800a7cc       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-malloc.o)
-                0x0800a7cc                malloc
- .text.free     0x0800a7dc       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-malloc.o)
-                0x0800a7dc                free
+                0x0800a784       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(new_handler.o)
+                0x0800a784                std::get_new_handler()
+ .text.abort    0x0800a794        0xe C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-abort.o)
+                0x0800a794                abort
+ *fill*         0x0800a7a2        0x2 
+ .text.malloc   0x0800a7a4       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-malloc.o)
+                0x0800a7a4                malloc
+ .text.free     0x0800a7b4       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-malloc.o)
+                0x0800a7b4                free
  .text.sbrk_aligned
-                0x0800a7ec       0x44 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x0800a7c4       0x44 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
  .text._malloc_r
-                0x0800a830      0x100 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
-                0x0800a830                _malloc_r
+                0x0800a808      0x100 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x0800a808                _malloc_r
  .text.__malloc_lock
-                0x0800a930        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
-                0x0800a930                __malloc_lock
+                0x0800a908        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
+                0x0800a908                __malloc_lock
  .text.__malloc_unlock
-                0x0800a93c        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
-                0x0800a93c                __malloc_unlock
- .text.memcmp   0x0800a948       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcmp.o)
-                0x0800a948                memcmp
- .text.memmove  0x0800a968       0x34 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memmove.o)
-                0x0800a968                memmove
- .text.memset   0x0800a99c       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
-                0x0800a99c                memset
+                0x0800a914        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
+                0x0800a914                __malloc_unlock
+ .text.memcmp   0x0800a920       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcmp.o)
+                0x0800a920                memcmp
+ .text.memmove  0x0800a940       0x34 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memmove.o)
+                0x0800a940                memmove
+ .text.memset   0x0800a974       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
+                0x0800a974                memset
  .text._raise_r
-                0x0800a9ac       0x50 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signal.o)
-                0x0800a9ac                _raise_r
- .text.raise    0x0800a9fc       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signal.o)
-                0x0800a9fc                raise
- .text._kill_r  0x0800aa0c       0x24 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o)
-                0x0800aa0c                _kill_r
+                0x0800a984       0x50 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signal.o)
+                0x0800a984                _raise_r
+ .text.raise    0x0800a9d4       0x10 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signal.o)
+                0x0800a9d4                raise
+ .text._kill_r  0x0800a9e4       0x24 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o)
+                0x0800a9e4                _kill_r
  .text._getpid_r
-                0x0800aa30        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o)
-                0x0800aa30                _getpid_r
- .text._sbrk_r  0x0800aa34       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-sbrkr.o)
-                0x0800aa34                _sbrk_r
- .text.__errno  0x0800aa54        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-errno.o)
-                0x0800aa54                __errno
+                0x0800aa08        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o)
+                0x0800aa08                _getpid_r
+ .text._sbrk_r  0x0800aa0c       0x20 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-sbrkr.o)
+                0x0800aa0c                _sbrk_r
+ .text.__errno  0x0800aa2c        0xc C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-errno.o)
+                0x0800aa2c                __errno
  .text.__libc_init_array
-                0x0800aa60       0x48 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
-                0x0800aa60                __libc_init_array
+                0x0800aa38       0x48 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+                0x0800aa38                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x0800aaa8        0x2 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x0800aaa8                __retarget_lock_acquire_recursive
+                0x0800aa80        0x2 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x0800aa80                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x0800aaaa        0x2 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x0800aaaa                __retarget_lock_release_recursive
- .text.memcpy   0x0800aaac       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
-                0x0800aaac                memcpy
- .text._free_r  0x0800aac8       0x94 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-freer.o)
-                0x0800aac8                _free_r
+                0x0800aa82        0x2 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x0800aa82                __retarget_lock_release_recursive
+ .text.memcpy   0x0800aa84       0x1c C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
+                0x0800aa84                memcpy
+ .text._free_r  0x0800aaa0       0x94 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-freer.o)
+                0x0800aaa0                _free_r
  *(.glue_7)
- .glue_7        0x0800ab5c        0x0 linker stubs
+ .glue_7        0x0800ab34        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800ab5c        0x0 linker stubs
+ .glue_7t       0x0800ab34        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0800ab5c        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x0800ab34        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x0800ab5c        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x0800ab5c                _init
- .init          0x0800ab60        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x0800ab34        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x0800ab34                _init
+ .init          0x0800ab38        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x0800ab68        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x0800ab68                _fini
- .fini          0x0800ab6c        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
-                0x0800ab74                        . = ALIGN (0x4)
-                0x0800ab74                        _etext = .
+ .fini          0x0800ab40        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x0800ab40                _fini
+ .fini          0x0800ab44        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+                0x0800ab4c                        . = ALIGN (0x4)
+                0x0800ab4c                        _etext = .
 
-.vfp11_veneer   0x0800ab74        0x0
- .vfp11_veneer  0x0800ab74        0x0 linker stubs
+.vfp11_veneer   0x0800ab4c        0x0
+ .vfp11_veneer  0x0800ab4c        0x0 linker stubs
 
-.v4_bx          0x0800ab74        0x0
- .v4_bx         0x0800ab74        0x0 linker stubs
+.v4_bx          0x0800ab4c        0x0
+ .v4_bx         0x0800ab4c        0x0 linker stubs
 
-.iplt           0x0800ab74        0x0
- .iplt          0x0800ab74        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x0800ab4c        0x0
+ .iplt          0x0800ab4c        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x0800ab78      0xc48
-                0x0800ab78                        . = ALIGN (0x4)
+.rodata         0x0800ab50      0xc48
+                0x0800ab50                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x0800ab78        0xc ./Core/Src/main.o
+ .rodata        0x0800ab50        0xc ./Core/Src/main.o
  *(.rodata*)
  .rodata._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2EPKcRKS3_.isra.0.str1.1
-                0x0800ab84      0xb5a ./Core/Src/main.o
+                0x0800ab5c      0xb5a ./Core/Src/main.o
                                  0x32 (size before relaxing)
  .rodata._Z5d_t_sB5cxx11dib.str1.1
-                0x0800b6de       0xcf ./Core/Src/main.o
+                0x0800b6b6       0xcf ./Core/Src/main.o
  .rodata._ZN9VARIABLESC2EP12DynamicArrayIPS_ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb.str1.1
-                0x0800b6de        0x1 ./Core/Src/main.o
+                0x0800b6b6        0x1 ./Core/Src/main.o
  .rodata._Z41__static_initialization_and_destruction_0v.str1.1
-                0x0800b6de       0x77 ./Core/Src/main.o
+                0x0800b6b6       0x77 ./Core/Src/main.o
  .rodata._Z7d_t_h_sB5cxx11m.str1.1
-                0x0800b6de       0x11 ./Core/Src/main.o
+                0x0800b6b6       0x11 ./Core/Src/main.o
  .rodata._Z10timestringB5cxx11St16initializer_listIhE.str1.1
-                0x0800b6de        0x7 ./Core/Src/main.o
+                0x0800b6b6        0x7 ./Core/Src/main.o
  .rodata._ZN6NEOWAY14CHECK_RESPONSEEPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_.isra.0.str1.1
-                0x0800b6de        0x6 ./Core/Src/main.o
+                0x0800b6b6        0x6 ./Core/Src/main.o
  .rodata._ZN6NEOWAY12SEND_RECIEVEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt16initializer_listImEtS6_IS5_E.str1.1
-                0x0800b6de       0x68 ./Core/Src/main.o
+                0x0800b6b6       0x68 ./Core/Src/main.o
  .rodata._ZN6NEOWAY8BLE_SENDENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de       0x27 ./Core/Src/main.o
+                0x0800b6b6       0x27 ./Core/Src/main.o
  .rodata._Z6go2appm.str1.1
-                0x0800b6de       0x3d ./Core/Src/main.o
+                0x0800b6b6       0x3d ./Core/Src/main.o
  .rodata._Z9ota_breakbNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de       0x15 ./Core/Src/main.o
+                0x0800b6b6       0x15 ./Core/Src/main.o
  .rodata._Z12FLASH_ERASE2mm.str1.1
-                0x0800b6de       0x48 ./Core/Src/main.o
+                0x0800b6b6       0x48 ./Core/Src/main.o
  .rodata._ZN10UART_DEBUG10Json_printENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_b.str1.1
-                0x0800b6de       0x13 ./Core/Src/main.o
+                0x0800b6b6       0x13 ./Core/Src/main.o
  .rodata._Z14getcertificatePNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de       0x1c ./Core/Src/main.o
+                0x0800b6b6       0x1c ./Core/Src/main.o
  .rodata._Z10print_timeNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt16initializer_listIhE.str1.1
-                0x0800b6de        0x4 ./Core/Src/main.o
+                0x0800b6b6        0x4 ./Core/Src/main.o
  .rodata._Z15Print_save_timev.str1.1
-                0x0800b6de        0x8 ./Core/Src/main.o
+                0x0800b6b6        0x8 ./Core/Src/main.o
  .rodata._Z13get_file_nameRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS4_.str1.1
-                0x0800b6de       0x14 ./Core/Src/main.o
+                0x0800b6b6       0x14 ./Core/Src/main.o
  .rodata._Z8ota_procRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm.str1.1
-                0x0800b6de       0x97 ./Core/Src/main.o
+                0x0800b6b6       0x97 ./Core/Src/main.o
  .rodata._Z18delete_certificateNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de        0xc ./Core/Src/main.o
+                0x0800b6b6        0xc ./Core/Src/main.o
  .rodata._Z11https_setupv.str1.1
-                0x0800b6de       0x5e ./Core/Src/main.o
+                0x0800b6b6       0x5e ./Core/Src/main.o
  .rodata._Z9https_reqNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEt.str1.1
-                0x0800b6de       0x47 ./Core/Src/main.o
+                0x0800b6b6       0x47 ./Core/Src/main.o
  .rodata._Z7httpgetRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de       0x1f ./Core/Src/main.o
+                0x0800b6b6       0x1f ./Core/Src/main.o
  .rodata._ZN6NEOWAY8POWER_ONEv.str1.1
-                0x0800b6de        0x8 ./Core/Src/main.o
+                0x0800b6b6        0x8 ./Core/Src/main.o
  .rodata._ZN6NEOWAY4INITEv.str1.1
-                0x0800b6de       0x64 ./Core/Src/main.o
+                0x0800b6b6       0x64 ./Core/Src/main.o
  .rodata._Z10write_fileRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES4_.str1.1
-                0x0800b6de       0x16 ./Core/Src/main.o
+                0x0800b6b6       0x16 ./Core/Src/main.o
  .rodata._Z15add_certificateNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPS4_.str1.1
-                0x0800b6de       0x38 ./Core/Src/main.o
+                0x0800b6b6       0x38 ./Core/Src/main.o
  .rodata._Z13Get_save_timev.str1.1
-                0x0800b6de       0x28 ./Core/Src/main.o
+                0x0800b6b6       0x28 ./Core/Src/main.o
  .rodata._Z13get_file_sizeRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de       0x3b ./Core/Src/main.o
+                0x0800b6b6       0x3b ./Core/Src/main.o
  .rodata._Z18neoway_delete_fileRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de        0xc ./Core/Src/main.o
+                0x0800b6b6        0xc ./Core/Src/main.o
  .rodata._ZN6NEOWAY8BLE_NAMEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de       0x26 ./Core/Src/main.o
+                0x0800b6b6       0x26 ./Core/Src/main.o
  .rodata._ZN6NEOWAY9BLE_SETUPENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.str1.1
-                0x0800b6de       0x4a ./Core/Src/main.o
+                0x0800b6b6       0x4a ./Core/Src/main.o
  .rodata._Z10PassAuthenv.str1.1
-                0x0800b6de       0x41 ./Core/Src/main.o
+                0x0800b6b6       0x41 ./Core/Src/main.o
  .rodata._ZN10UART_DEBUG15Both_read_checkENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEmS5_PS5_.str1.1
-                0x0800b6de       0x21 ./Core/Src/main.o
+                0x0800b6b6       0x21 ./Core/Src/main.o
  .rodata._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE17parseQuotedStringEv.str1.1
-                0x0800b6de       0x11 ./Core/Src/main.o
+                0x0800b6b6       0x11 ./Core/Src/main.o
  .rodata._ZN11ArduinoJson7V6211HB6detail16JsonDeserializerINS1_6ReaderINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEENS1_12StringCopierEE12parseVariantINS1_14AllowAllFilterEEENS0_20DeserializationError4CodeERNS1_11VariantDataET_NS0_21DeserializationOption12NestingLimitE.isra.0.str1.1
-                0x0800b6de       0x10 ./Core/Src/main.o
+                0x0800b6b6       0x10 ./Core/Src/main.o
  .rodata._Z14JSON_EXTRACTERPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPN11ArduinoJson7V6211HB18StaticJsonDocumentILj1200EEE.str1.1
-                0x0800b6de        0xa ./Core/Src/main.o
+                0x0800b6b6        0xa ./Core/Src/main.o
  .rodata._ZN11ArduinoJson7V6211HB6detail13TextFormatterINS1_6WriterINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEvEEE9writeCharEc.str1.1
-                0x0800b6de        0x7 ./Core/Src/main.o
+                0x0800b6b6        0x7 ./Core/Src/main.o
  .rodata._Z9GET_LINKSRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_.part.0.str1.1
-                0x0800b6de       0xda ./Core/Src/main.o
+                0x0800b6b6       0xda ./Core/Src/main.o
  .rodata._Z9GET_LINKSRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_.str1.1
-                0x0800b6de        0x8 ./Core/Src/main.o
+                0x0800b6b6        0x8 ./Core/Src/main.o
  .rodata._Z11config_filev.str1.1
-                0x0800b6de       0x20 ./Core/Src/main.o
+                0x0800b6b6       0x20 ./Core/Src/main.o
  .rodata._Z8cert_addv.str1.1
-                0x0800b6de       0xa0 ./Core/Src/main.o
+                0x0800b6b6       0xa0 ./Core/Src/main.o
  .rodata._Z22check_all_certificatesv.part.0.str1.1
-                0x0800b6de       0xce ./Core/Src/main.o
+                0x0800b6b6       0xce ./Core/Src/main.o
  .rodata._Z10MENU_PRINTb.str1.1
-                0x0800b6de       0xb9 ./Core/Src/main.o
+                0x0800b6b6       0xb9 ./Core/Src/main.o
  .rodata._Z12OTA_FUNCTIONv.str1.1
-                0x0800b6de       0x91 ./Core/Src/main.o
+                0x0800b6b6       0x91 ./Core/Src/main.o
  .rodata.main.str1.1
-                0x0800b6de       0x35 ./Core/Src/main.o
- *fill*         0x0800b6de        0x2 
+                0x0800b6b6       0x35 ./Core/Src/main.o
+ *fill*         0x0800b6b6        0x2 
  .rodata._ZZN11ArduinoJson7V6211HB6detail11FloatTraitsIdLj8EE25negativeBinaryPowersOfTenEvE7factors
-                0x0800b6e0       0x48 ./Core/Src/main.o
-                0x0800b6e0                ArduinoJson::V6211HB::detail::FloatTraits<double, 8u>::negativeBinaryPowersOfTen()::factors
+                0x0800b6b8       0x48 ./Core/Src/main.o
+                0x0800b6b8                ArduinoJson::V6211HB::detail::FloatTraits<double, 8u>::negativeBinaryPowersOfTen()::factors
  .rodata._ZZN11ArduinoJson7V6211HB6detail11FloatTraitsIdLj8EE25positiveBinaryPowersOfTenEvE7factors
-                0x0800b728       0x48 ./Core/Src/main.o
-                0x0800b728                ArduinoJson::V6211HB::detail::FloatTraits<double, 8u>::positiveBinaryPowersOfTen()::factors
+                0x0800b700       0x48 ./Core/Src/main.o
+                0x0800b700                ArduinoJson::V6211HB::detail::FloatTraits<double, 8u>::positiveBinaryPowersOfTen()::factors
  .rodata.MSIRangeTable
-                0x0800b770       0x30 ./Core/Src/system_stm32l4xx.o
-                0x0800b770                MSIRangeTable
+                0x0800b748       0x30 ./Core/Src/system_stm32l4xx.o
+                0x0800b748                MSIRangeTable
  .rodata.APBPrescTable
-                0x0800b7a0        0x8 ./Core/Src/system_stm32l4xx.o
-                0x0800b7a0                APBPrescTable
+                0x0800b778        0x8 ./Core/Src/system_stm32l4xx.o
+                0x0800b778                APBPrescTable
  .rodata.AHBPrescTable
-                0x0800b7a8       0x10 ./Core/Src/system_stm32l4xx.o
-                0x0800b7a8                AHBPrescTable
+                0x0800b780       0x10 ./Core/Src/system_stm32l4xx.o
+                0x0800b780                AHBPrescTable
  .rodata.CSWTCH.92
-                0x0800b7b8        0x8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
+                0x0800b790        0x8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o
  .rodata._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERjj.str1.1
-                0x0800b7c0       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b798       0x18 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .rodata._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8_M_checkEjPKc.str1.1
-                0x0800b7c0       0x37 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b798       0x37 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .rodata._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE2atEj.str1.1
-                0x0800b7c0       0x44 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b798       0x44 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .rodata._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7replaceEjjjc.str1.1
-                0x0800b7c0       0x16 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b798       0x16 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .rodata._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEjjPKcj.str1.1
-                0x0800b7c0       0x19 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b798       0x19 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .rodata._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendEPKcj.str1.1
-                0x0800b7c0       0x15 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b798       0x15 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .rodata._ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2ERKS4_jRKS3_.str1.1
-                0x0800b7c0       0x1b C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b798       0x1b C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
  .rodata._ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6substrEjj.str1.1
-                0x0800b7c0       0x15 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
-                0x0800b804                        . = ALIGN (0x4)
+                0x0800b798       0x15 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(string-inst.o)
+                0x0800b7dc                        . = ALIGN (0x4)
 
-.ARM.extab      0x0800b7c0        0x0
-                0x0800b7c0                        . = ALIGN (0x4)
+.ARM.extab      0x0800b798        0x0
+                0x0800b798                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800b7c0                        . = ALIGN (0x4)
+                0x0800b798                        . = ALIGN (0x4)
 
-.ARM            0x0800b7c0        0x8
-                0x0800b7c0                        . = ALIGN (0x4)
-                0x0800b7c0                        __exidx_start = .
+.ARM            0x0800b798        0x8
+                0x0800b798                        . = ALIGN (0x4)
+                0x0800b798                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0800b7c0        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
- .ARM.exidx     0x0800b7c8        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strlen.o)
+ .ARM.exidx     0x0800b798        0x8 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
+ .ARM.exidx     0x0800b7a0        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strlen.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x0800b7c8        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x0800b7a0        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
                                   0x8 (size before relaxing)
-                0x0800b7c8                        __exidx_end = .
-                0x0800b7c8                        . = ALIGN (0x4)
+                0x0800b7a0                        __exidx_end = .
+                0x0800b7a0                        . = ALIGN (0x4)
 
-.rel.dyn        0x0800b7c8        0x0
- .rel.iplt      0x0800b7c8        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x0800b7a0        0x0
+ .rel.iplt      0x0800b7a0        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.preinit_array  0x0800b7c8        0x0
-                0x0800b7c8                        . = ALIGN (0x4)
-                0x0800b7c8                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0800b7a0        0x0
+                0x0800b7a0                        . = ALIGN (0x4)
+                0x0800b7a0                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x0800b7c8                        PROVIDE (__preinit_array_end = .)
-                0x0800b7c8                        . = ALIGN (0x4)
+                0x0800b7a0                        PROVIDE (__preinit_array_end = .)
+                0x0800b7a0                        . = ALIGN (0x4)
 
-.init_array     0x0800b7c8        0x8
-                0x0800b7c8                        . = ALIGN (0x4)
-                0x0800b7c8                        PROVIDE (__init_array_start = .)
+.init_array     0x0800b7a0        0x8
+                0x0800b7a0                        . = ALIGN (0x4)
+                0x0800b7a0                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x0800b7c8        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
- .init_array    0x0800b7cc        0x4 ./Core/Src/main.o
-                0x0800b7d0                        PROVIDE (__init_array_end = .)
-                0x0800b7d0                        . = ALIGN (0x4)
+ .init_array    0x0800b7a0        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .init_array    0x0800b7a4        0x4 ./Core/Src/main.o
+                0x0800b7a8                        PROVIDE (__init_array_end = .)
+                0x0800b7a8                        . = ALIGN (0x4)
 
-.fini_array     0x0800b7d0        0x8
-                0x0800b7d0                        . = ALIGN (0x4)
+.fini_array     0x0800b7a8        0x8
+                0x0800b7a8                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x0800b7d0        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
- .fini_array    0x0800b7d4        0x4 ./Core/Src/main.o
+ .fini_array    0x0800b7a8        0x4 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .fini_array    0x0800b7ac        0x4 ./Core/Src/main.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x0800b7d8                        . = ALIGN (0x4)
-                0x0800b7d8                        _sidata = LOADADDR (.data)
+                0x0800b7b0                        . = ALIGN (0x4)
+                0x0800b7b0                        _sidata = LOADADDR (.data)
 
-.data           0x20000000       0x80 load address 0x0800b7d8
+.data           0x20000000       0x80 load address 0x0800b7b0
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -3294,11 +3298,11 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x20000080                        . = ALIGN (0x4)
                 0x20000080                        _edata = .
 
-.igot.plt       0x20000080        0x0 load address 0x0800b858
+.igot.plt       0x20000080        0x0 load address 0x0800b830
  .igot.plt      0x20000080        0x0 C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 0x20000080                        . = ALIGN (0x4)
 
-.bss            0x20000080     0x1170 load address 0x0800b858
+.bss            0x20000080     0x1170 load address 0x0800b830
                 0x20000080                        _sbss = .
                 0x20000080                        __bss_start__ = _sbss
  *(.bss)
@@ -3428,7 +3432,7 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x200011f0                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x200011f0      0x600 load address 0x0800b858
+                0x200011f0      0x600 load address 0x0800b830
                 0x200011f0                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
                 0x200011f0                        PROVIDE (_end = .)
