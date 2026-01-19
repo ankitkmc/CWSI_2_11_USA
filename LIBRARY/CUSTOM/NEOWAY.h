@@ -484,7 +484,7 @@ class NEOWAY {
 			SEND_RECIEVE("AT+AWSCONNPARAM=a1q2r34gpscepz-ats.iot.us-west-2.amazonaws.com:8883,1", { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSTLSCFG?", { 5000 }, 2, { "OK" });
 			SEND_RECIEVE("AT+AWSAUTHPARAM=AWS_EKL,test,test", { 5000 }, 2, { "OK"});
-			Network.AWS_PUSH=(SEND_RECIEVE("AT+AWSCONN=60,1,4", { 30000 }, 2, { "OK" }).find("OK") != string::npos);
+			Network.AWS_PUSH=(SEND_RECIEVE("AT+AWSCONN=60,1,4", { 10000 }, 2, { "OK" }).find("OK") != string::npos);
 
 		}
 

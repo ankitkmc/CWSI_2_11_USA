@@ -915,19 +915,25 @@ void object_setup() {
 	both_debug.Print2("\r\nOBJ_SETUP : ");
 
 //	GEMHO_AIR_TPH.SET_REDE(1);
+#if defined(SENTEK_TPH)
 	 AIR_TH_LUX.SET_REDE(1);
+	 AIR_PRESSURE.SET_REDE(6);
+#endif
 //	GEMHO_SOIL_TH.SET_REDE(2);
 //	GEMHO_SOIL_NPK.SET_REDE(3);
 	LEAF_SENSOR.SET_REDE(4);
 //	RAIN_GAUGE_SENSOR.SET_REDE(5);
 //	PRESSURE.SET_REDE(6);//add
-	AIR_PRESSURE.SET_REDE(6);
-//	GEMHO_ILLUMINOSITY.SET_REDE(5);
+
+#if defined(GEMHO_TPH)
+	GEMHO_ILLUMINOSITY.SET_REDE(5);
+	AIR_TPH_SENSOR.SET_REDE(1);
+#endif
 //	GEMHO_LEAF.SET_REDE(4);
 //	GEMHO_4_1.SET_REDE(7);
 	NPK_SENSOR.SET_REDE(3);
 	SOIL_SENSOR.SET_REDE(2);
- 	AIR_TPH_SENSOR.SET_REDE(1);
+
 
 	/**
 	 *	For OBJ.ADD_PARA("Name to be sent in json packet", < Factor of multiplication after converting from hex >,< No of bytes to be recieved for parameter >) // For RS485 Address the parameter refers after starting from address mentioned in frame
@@ -948,10 +954,10 @@ void object_setup() {
 //	GEMHO_AIR_TPH.ADD_PARA("ATMOS_PRESSURE", 1.0);  // 5
 //	GEMHO_AIR_TPH.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
 
-		AIR_HT.ADD_PARA("HT_LEF_HUM");
-		AIR_HT.ADD_PARA("LEAF_TEMP");
-		AIR_HT.SET_add_to_json(1);
-
+//		AIR_HT.ADD_PARA("HT_LEF_HUM");
+//		AIR_HT.ADD_PARA("LEAF_TEMP");
+//		AIR_HT.SET_add_to_json(1);
+#if defined (SENTEK_TPH)
 		 AIR_TH_LUX.SET_manual_baud(4800);
 		 AIR_TH_LUX.ADD_PARA("ATMOS_HUMIDITY");  // 0
 		 AIR_TH_LUX.ADD_PARA("ATMOS_TEMPERATURE");  // 1
@@ -960,6 +966,20 @@ void object_setup() {
 		 AIR_TH_LUX.ADD_PARA("SOLAR_RADIATION", 1.0,2);  //6,7
 		 AIR_TH_LUX.SET_frame( { 0x01, 0x03, 0x01, 0xF4 });
 
+		 AIR_PRESSURE.SET_manual_baud(4800);
+		 AIR_PRESSURE.ADD_PARA("ATMOS_PRESSURE",1.0);  // 06
+		 AIR_PRESSURE.SET_frame( { 0x06, 0x03, 0x00, 0x00 });
+#elif defined(GEMHO_TPH)
+		AIR_TPH_SENSOR.SET_manual_baud(9600);
+		AIR_TPH_SENSOR.ADD_PARA("ATMOS_TEMPERATURE");
+		AIR_TPH_SENSOR.ADD_PARA("ATMOS_HUMIDITY");
+		AIR_TPH_SENSOR.ADD_PARA("ATMOS_PRESSURE");
+		AIR_TPH_SENSOR.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
+
+		GEMHO_ILLUMINOSITY.SET_manual_baud(9600);
+		GEMHO_ILLUMINOSITY.ADD_PARA("SOLAR_RADIATION", 1.0, 2);  // 2
+		GEMHO_ILLUMINOSITY.SET_frame( { 0x01, 0x03, 0x00, 0x02 });
+#endif
 //	GEMHO_SOIL_TH.ADD_PARA("SOIL_TEMPERATURE", 100.0);
 //	GEMHO_SOIL_TH.ADD_PARA("SOIL_MOISTURE", 100.0);
 //	GEMHO_SOIL_TH.SET_frame( { 0x01, 0x03, 0x00, 0x06 });
@@ -970,8 +990,7 @@ void object_setup() {
 	GEMHO_SOIL_NPK.SET_frame( { 0x01, 0x03, 0x00, 0x1E });
 */
 
-		AIR_PRESSURE.SET_manual_baud(4800);
-		AIR_PRESSURE.ADD_PARA("ATMOS_PRESSURE",1.0);  // 06
+
 //	GEMHO_7_1.ADD_PARA("SOIL_MOISTURE", 100.0);  // 07
 //	GEMHO_7_1.ADD_PARA("SOIL_CONDUC", 1.0);  // 08
 //	GEMHO_7_1.ADD_PARA("SOIL_PH", 100.0);  // 09
@@ -980,40 +999,85 @@ void object_setup() {
 //	GEMHO_7_1.ADD_PARA("PHOSPHORUS", 1.0);  // 1F
 //	GEMHO_7_1.ADD_PARA("POTASSIUM", 1.0);  // 20
 //	GEMHO_7_1.SET_frame( { 0x01, 0x03, 0x00, 0x06, });
-		AIR_PRESSURE.SET_frame( { 0x06, 0x03, 0x00, 0x00 });
+
 
 /*	GEMHO_LEAF.ADD_PARA("LEAF_TEMP", 100.0);
 	GEMHO_LEAF.ADD_PARA("LEAF_HUM", 100.0);
 	GEMHO_LEAF.SET_frame( { 0x01, 0x03, 0x00, 0x41 });
-
-	GEMHO_ILLUMINOSITY.ADD_PARA("SOLAR_RADIATION", 1.0, 2);  // 2
-	GEMHO_ILLUMINOSITY.SET_frame( { 0x01, 0x03, 0x00, 0x02 });
 */
+
+
 //	PRESSURE.ADD_PARA("ATMOS_PRESSURE");
 //	PRESSURE.SET_frame( { 0x01, 0x03, 0x00, 0x05 });
 
-	NPK_SENSOR.SET_manual_baud(4800);
+
 	NPK_SENSOR.ADD_PARA("NITROGEN");
 	NPK_SENSOR.ADD_PARA("PHOSPHORUS");
 	NPK_SENSOR.ADD_PARA("POTASSIUM");
+#if defined(GEMHO_NPK)
+	NPK_SENSOR.SET_manual_baud(9600);
+	NPK_SENSOR.SET_frame( { 0x01, 0x03, 0x00, 0x1E });
+#elif defined(SENTEK_NPK)
+	NPK_SENSOR.SET_manual_baud(4800);
 	NPK_SENSOR.SET_frame( { 0x03, 0x03, 0x00, 0x1E });
-
-	LEAF_SENSOR.SET_manual_baud(4800);
-	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
+#endif
+//	LEAF_SENSOR.SET_manual_baud(4800);
+//	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
 //	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
 //	LEAF_SENSOR.ADD_PARA("LEAF_COND");
-	LEAF_SENSOR.SET_frame( { 0x04, 0x03, 0x00, 0x00 });
+//	LEAF_SENSOR.SET_frame( { 0x04, 0x03, 0x00, 0x00 });
+#if defined(GEMHO_LEAF)
+	/* GEMHO LEAF */
+	LEAF_SENSOR.SET_manual_baud(9600);
+	LEAF_SENSOR.ADD_PARA("LEAF_TEMP", 100.0);
+	LEAF_SENSOR.ADD_PARA("LEAF_HUM", 100.0);
+	LEAF_SENSOR.SET_frame({ 0x01, 0x03, 0x00, 0x41 });
+//
+#elif defined(RENKE_LEAF)
 
-	SOIL_SENSOR.SET_manual_baud(4800);
-	SOIL_SENSOR.ADD_PARA("SOIL_MOISTURE");
-	SOIL_SENSOR.ADD_PARA("SOIL_TEMPERATURE");
-	SOIL_SENSOR.SET_frame( { 0x02, 0x03, 0x00, 0x00 });
+	/* NIBOL LEAF */
+	LEAF_SENSOR.SET_manual_baud(4800);      // change if needed
+	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
+	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
+	LEAF_SENSOR.SET_frame({ 0x01, 0x03, 0x00, 0x00 });
 
-	AIR_TPH_SENSOR.SET_manual_baud(9600);
-	AIR_TPH_SENSOR.ADD_PARA("ATMOS_TEMPERATURE");
-	AIR_TPH_SENSOR.ADD_PARA("ATMOS_HUMIDITY");
-	AIR_TPH_SENSOR.ADD_PARA("ATMOS_PRESSURE");
-	AIR_TPH_SENSOR.SET_frame( { 0x01, 0x03, 0x00, 0x00 });
+#elif defined(SENTEK_LEAF)
+
+	/* SENTEK LEAF (DEFAULT) */
+	LEAF_SENSOR.SET_manual_baud(4800);
+	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
+	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
+	LEAF_SENSOR.ADD_PARA("LEAF_CONT");
+	LEAF_SENSOR.SET_frame({ 0x04, 0x03, 0x00, 0x00 });
+
+	AIR_HT.ADD_PARA("HT_LEF_HUM");
+	AIR_HT.ADD_PARA("LEAF_TEMP");
+	AIR_HT.SET_add_to_json(1);
+
+#endif
+
+
+//	SOIL_SENSOR.SET_manual_baud(4800);
+//	SOIL_SENSOR.ADD_PARA("SOIL_MOISTURE");
+//	SOIL_SENSOR.ADD_PARA("SOIL_TEMPERATURE");
+//	SOIL_SENSOR.SET_frame( { 0x02, 0x03, 0x00, 0x00 });
+
+#if defined(GEMHO_SHT)
+    SOIL_SENSOR.ADD_PARA("SOIL_TEMPERATURE", 100.0);
+    SOIL_SENSOR.ADD_PARA("SOIL_MOISTURE",    100.0);
+    SOIL_SENSOR.SET_frame({ 0x01, 0x03, 0x00, 0x06 });
+
+#elif defined(SENTEK_SHT)  // SENTEK is default
+
+    SOIL_SENSOR.SET_manual_baud(4800);
+    SOIL_SENSOR.ADD_PARA("SOIL_MOISTURE");
+    SOIL_SENSOR.ADD_PARA("SOIL_TEMPERATURE");
+    SOIL_SENSOR.SET_frame({ 0x02, 0x03, 0x00, 0x00 });
+
+#endif
+
+
+
 
 //	RAIN_GAUGE_SENSOR.SET_manual_baud(9600);
 //	RAIN_GAUGE_SENSOR.ADD_PARA("RAIN_INTENSITY");
@@ -1047,24 +1111,26 @@ void object_setup() {
 	IRROMETER_PRIMARY.SET_PIN1(IRRO1_1_GPIO_Port, IRRO1_1_Pin);
 	IRROMETER_PRIMARY.SET_PIN2(IRRO1_2_GPIO_Port, IRRO1_2_Pin);
 	IRROMETER_PRIMARY.SET_factor(3.3 / 4095);
+#if defined(GEMHO_TH)
+	IRROMETER_PRIMARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());
+	IRROMETER_PRIMARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(0)->value_double);
+#elif(SENTEK_TH)
 	IRROMETER_PRIMARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());
 	IRROMETER_PRIMARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(1)->value_double);
-
-//	IRROMETER_PRIMARY.SET_soil_connected(GEMHO_SOIL_TH.GET_VAR_VALUE_CONN_PTR());
-//	IRROMETER_PRIMARY.SET_soil_temperature(&GEMHO_SOIL_TH.parameter.at(0)->value_double);
+#endif
 
 	IRROMETER_SECONDARY.ADD_PARA("IRROMETER_CB_SECONDARY");
 	IRROMETER_SECONDARY.SET_channel(ADC_CHANNEL_11);
 	IRROMETER_SECONDARY.SET_PIN1(IRRO2_1_GPIO_Port, IRRO2_1_Pin);
 	IRROMETER_SECONDARY.SET_PIN2(IRRO2_2_GPIO_Port, IRRO2_2_Pin);
 	IRROMETER_SECONDARY.SET_factor(3.3 / 4095);
-
-	IRROMETER_PRIMARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());
-	IRROMETER_PRIMARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(1)->value_double);
-
-	//IRROMETER_SECONDARY.SET_soil_connected(GEMHO_SOIL_TH.GET_VAR_VALUE_CONN_PTR());  final git
-	//IRROMETER_SECONDARY.SET_soil_temperature(&GEMHO_SOIL_TH.parameter.at(0)->value_double);
-
+#if defined(GEMHO_TH)
+	IRROMETER_SECONDARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());
+	IRROMETER_SECONDARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(1)->value_double);
+#elif(SENTEK_TH)
+	IRROMETER_SECONDARY.SET_soil_connected(SOIL_SENSOR.GET_VAR_VALUE_CONN_PTR());  //final git
+	IRROMETER_SECONDARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(0)->value_double);
+#endif
 	RAINFALL.ADD_PARA("RAIN_INTENSITY");
 	both_debug.Print2("Done\r\n");
 	refresh_counter();
@@ -1221,17 +1287,18 @@ void SENSOR_ONLY_FUNC() {
 		change_address_rs485();
 		LEAF_SENSOR.RS485_READ();
 //		GEMHO_SOIL_NPK.RS485_READ();
-		AIR_PRESSURE.RS485_READ();
+//		AIR_PRESSURE.RS485_READ();
 //		GEMHO_4_1.RS485_READ();
 	//	GEMHO_AIR_TPH.RS485_READ();
-		 AIR_TH_LUX.RS485_READ();
+//		 AIR_TH_LUX.RS485_READ();
 //		GEMHO_SOIL_TH.RS485_READ();
 //		GEMHO_ILLUMINOSITY.RS485_READ();
 //		GEMHO_LEAF.RS485_READ();
 //		PRESSURE.RS485_READ();
 		NPK_SENSOR.RS485_READ();
 		SOIL_SENSOR.RS485_READ();
- 		AIR_TPH_SENSOR.RS485_READ();
+
+// 		AIR_TPH_SENSOR.RS485_READ();
 //		RAIN_GAUGE_SENSOR.RS485_READ();
 
 		BATTERY.ANALOG_CONVERT_AVERAGE(20, 1);
@@ -1258,21 +1325,29 @@ void SENSOR_ONLY_FUNC() {
 void fetch_reading() {
 	V_12.SET(1, 15 * us_s);
 
+
+
 	both_debug.Print2("\r\n_______");
 	change_address_rs485();
 	LEAF_SENSOR.RS485_READ();
 //	GEMHO_SOIL_NPK.RS485_READ();
+#if defined(SENTEK_TPH)
 	AIR_PRESSURE.RS485_READ();
+	AIR_TH_LUX.RS485_READ();
+#endif
 //	GEMHO_4_1.RS485_READ();
 //	GEMHO_AIR_TPH.RS485_READ();
-	 AIR_TH_LUX.RS485_READ();
+
 //	GEMHO_SOIL_TH.RS485_READ();
-//	GEMHO_ILLUMINOSITY.RS485_READ();
+#if defined(GEMHO_TPH)
+	GEMHO_ILLUMINOSITY.RS485_READ();
+	AIR_TPH_SENSOR.RS485_READ();
+#endif
 //	GEMHO_LEAF.RS485_READ();
 //	PRESSURE.RS485_READ();
 	NPK_SENSOR.RS485_READ();
 	SOIL_SENSOR.RS485_READ();
- 	AIR_TPH_SENSOR.RS485_READ();
+
 //	RAIN_GAUGE_SENSOR.RS485_READ();
 
 	BATTERY.ANALOG_CONVERT_AVERAGE(50, 1);
@@ -1285,12 +1360,12 @@ void fetch_reading() {
 	WIND_DIR1.DIRECTION_READ(1, 1);
 	WIND_SPEED1.SPEED_READ(5000, 1);
 	RAINFALL.GET_READING(1);
-
+#if defined(SENTEK_LEAF)
 	//AIR_HT.SET_VAR_VALUE_CONN(1);
 	I2CSensorREDE(&aht_temp,&aht_hum);
 	AIR_HT.SET_PARA_VALUE(0,aht_hum,3);
 	AIR_HT.SET_PARA_VALUE(1,aht_temp,3);
-
+#endif
 	analog_index = 0;
 	V_12.SET(0);
 	if(sample_count==5)RAINFALL.CLEAR_TIP();//reset the rain gauge
@@ -1947,6 +2022,49 @@ void GO_TO_SLEEP() {
 		start_sec = HAL_GetTick();
 	}
 
+}
+#endif
+#if defined(APP_CODE)
+void Sensortype(void){
+both_debug.Print2(
+    "SHT:"
+#if defined(GEMHO_SHT)
+    "GEMHO"
+#elif defined(SENTEK_SHT)
+    "SENTEK"
+#else
+    "NA"
+#endif
+    " | NPK:"
+#if defined(GEMHO_NPK)
+    "GEMHO"
+#elif defined(SENTEK_NPK)
+    "SENTEK"
+#elif defined(NIBOL_NPK)
+    "NIBOL"
+#else
+    "NA"
+#endif
+    " | LEAF:"
+#if defined(GEMHO_LEAF)
+    "GEMHO"
+#elif defined(RENKE_LEAF)
+    "RENKE"
+#elif defined(SENTEK_LEAF)
+    "SENTEK"
+#else
+    "NA"
+#endif
+    " | AIR_TPH:"
+#if defined(GEMHO_TPH)
+    "GEMHO"
+#elif defined(SENTEK_TPH)
+    "SENTEK"
+#else
+    "NA"
+#endif
+    "\r\n"
+);
 }
 #endif
 

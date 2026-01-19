@@ -37,6 +37,57 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 
+// comment only one sensor at a time
+
+//#define GEMHO_SHT
+#define SENTEK_SHT
+
+//#define GEMHO_NPK
+#define SENTEK_NPK
+//#define NIBOL_NPK
+
+//#define GEMHO_LEAF
+//#define RENKE_LEAF
+#define SENTEK_LEAF
+
+
+#define SENTEK_TPH
+//#define GEMHO_TPH
+
+
+
+/* ---------- SHT ---------- */
+#if (defined(GEMHO_SHT) + defined(SENTEK_SHT)) > 1
+#error "Only ONE SHT sensor make allowed"
+#endif
+#if !defined(GEMHO_SHT) && !defined(SENTEK_SHT)
+#error "SHT sensor make NOT selected"
+#endif
+
+/* ---------- NPK ---------- */
+#if (defined(GEMHO_NPK) + defined(SENTEK_NPK) + defined(NIBOL_NPK)) > 1
+#error "Only ONE NPK sensor make allowed"
+#endif
+#if !defined(GEMHO_NPK) && !defined(SENTEK_NPK) && !defined(NIBOL_NPK)
+#error "NPK sensor make NOT selected"
+#endif
+
+/* ---------- LEAF ---------- */
+#if (defined(GEMHO_LEAF) + defined(RENKE_LEAF) + defined(SENTEK_LEAF)) > 1
+#error "Only ONE LEAF sensor make allowed"
+#endif
+#if !defined(GEMHO_LEAF) && !defined(RENKE_LEAF) && !defined(SENTEK_LEAF)
+#error "LEAF sensor make NOT selected"
+#endif
+
+/* ---------- AIR-TPH ---------- */
+#if (defined(GEMHO_TPH) + defined(SENTEK_TPH)) > 1
+#error "Only ONE AIR-TPH sensor make allowed"
+#endif
+#if !defined(GEMHO_TPH) && !defined(SENTEK_TPH)
+#error "AIR-TPH sensor make NOT selected"
+#endif
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

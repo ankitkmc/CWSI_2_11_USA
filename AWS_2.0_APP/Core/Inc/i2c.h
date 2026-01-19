@@ -41,7 +41,9 @@ extern I2C_HandleTypeDef hi2c1;
 void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+#if defined(SENTEK_LEAF)
 void I2CSensorREDE(float* temp, float* hum);
+#endif
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

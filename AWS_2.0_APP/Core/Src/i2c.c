@@ -141,6 +141,7 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
 }
 
 /* USER CODE BEGIN 1 */
+#if defined(SENTEK_LEAF)
 void I2CSensorREDE(float* temp, float* hum){
 		RH=0;
 		TH=0;
@@ -165,4 +166,5 @@ void I2CSensorREDE(float* temp, float* hum){
 		 }
 //	 HAL_Delay(100);
 }
+#endif
 /* USER CODE END 1 */

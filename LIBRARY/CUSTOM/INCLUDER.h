@@ -29,9 +29,9 @@ volatile LOOP_CONT ble_cont = $BREAK;
 #include "../CUSTOM/DYNAMIC_ARRAY.h"
 #include "../CUSTOM/M_USART.h"
 #include "../ArduinoJson-6.x/ArduinoJson.h"
-double analog_value[100];
+//double analog_value[100];
 uint32_t analog_index = 0;
-string direction_return = "";
+//string direction_return = "";
 
 struct Meta {
 		double value_double;
@@ -58,6 +58,8 @@ typedef struct {
 	uint8_t isFileCleared	: 1; // reserved
 
 } StatusFlags;
+
+
 
 string config_file_name = "config.json";
 

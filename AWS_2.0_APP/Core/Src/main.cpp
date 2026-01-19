@@ -53,10 +53,11 @@
 /**
  * @brief The Address App jumps to after BOOTLOADER
  */
-float aht_temp,aht_hum;
+
 const uint32_t appadd = 0x801F000;
 uint8_t sample_count=0;
 string filename = "file131.txt"; // new added
+string filename2 = "sample_read.txt"; // new added
 /**
  * @brief Pointer to reset handler
  */
@@ -110,21 +111,29 @@ create(VARIABLES, U_TIME);
 create_0(VARIABLES, FIRMWARE_VERSION);
 create_0(VARIABLES, LON);
 create_0(VARIABLES, LAT);
+#if defined (SENTEK_LEAF)
+float aht_temp,aht_hum;
 create(VARIABLES,AIR_HT);
+#endif
 create_rs485(RS485, NPK_SENSOR);
 create_rs485(RS485, LEAF_SENSOR);
 create_rs485(RS485, SOIL_SENSOR);
-create_rs485(RS485, AIR_TPH_SENSOR);
+
 //create_rs485(RS485, RAIN_GAUGE_SENSOR);
 //create_rs485(RS485, PRESSURE); hi this is git change
 //create_rs485(RS485, GEMHO_SOIL_NPK);
 //create_rs485(RS485, GEMHO_SOIL_TH); higit 2 change
 //create_rs485(RS485, GEMHO_LEAF);
-//create_rs485(RS485, GEMHO_ILLUMINOSITY);
-//create_rs485(RS485, GEMHO_4_1);// final copy to the master
-create_rs485(RS485, AIR_PRESSURE);//GEMHO_7_1 changed to SENTEK_AIR_TP Sentek Pressure
-//create_rs485(RS485, GEMHO_AIR_TPH);// Added 3rd change
+#if defined (GEMHO_TPH)
+create_rs485(RS485, AIR_TPH_SENSOR);
+create_rs485(RS485, GEMHO_ILLUMINOSITY);
+#elif defined(SENTEK_TPH)
+create_rs485(RS485, AIR_PRESSURE);
 create_rs485(RS485,  AIR_TH_LUX);
+#endif
+//create_rs485(RS485, GEMHO_AIR_TPH);// Added 3rd change
+//create_rs485(RS485, GEMHO_4_1);// final copy to the master
+
 create_rs485(RS485, CHANGE_ADD);
 
 create(ANALOG, BATTERY);
@@ -151,48 +160,7 @@ PWR_PIN V_12(EN_12V_GPIO_Port, EN_12V_Pin);
 
 SD2 sd_card_2;
 
-//void initSDCard() {
-//	uint8_t retries = 0;
-//	bool hasRetried = false;
-//Retry: 		char path[] = "0:";
-//     // Optional: Unlink in case it's already linked
-//    FATFS_UnLinkDriver(path);
-//    HAL_Delay(100); // Give SD card time to stabilize
-//    // Link the SD driver
-//       if (FATFS_LinkDriver(&SD_Driver, path) != 0) {
-//           both_debug.Print2("Driver link failed\n");
-//           return;
-//       }
-//       HAL_Delay(100); // Give SD card time to stabilize
-//
-//       FRESULT res;
-//
-//          do {
-//              res = f_mount(&sd_card_2.fs, path, 1);
-//              if (res == FR_OK) break;
-//              HAL_Delay(10);
-//              retries++;
-//          } while (retries < 5);
-//
-//          if (retries == 5 && res != FR_OK && !hasRetried) goto Retry;
-//
-//
-////    	  both_debug.Print2("SD card mounted successfully\n");
-//
-//    // Mount the SD card
-//     res = f_mount(&sd_card_2.fs, path, 1);
-//
-//    if (res != FR_OK) {
-//        both_debug.Print2("Mount failed with error: " + to_string(res));
-//        Network.isSDcardInsrted=1;
-//    } else {
-//        both_debug.Print2("SD card mounted successfully\n");
-//        sd_card_2.offsetPos=sd_card_2.handleOffset(sd_offset,"");
-//        Network.isSDcardInsrted=1;
-//    }
-//
-//
-//}
+
 
 #include "FUNCTIONS.h"
 
@@ -218,7 +186,6 @@ int main(void) {
 	  MX_SPI2_Init();
 	  MX_FATFS_Init();
 
-//	  initSDCard(); final git
 
 	if (HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 5, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK) {
 		Error_Handler();
@@ -345,7 +312,7 @@ int main(void) {
 
 					CONNECT:		  if(!Network.AWS_PUSH){
 											neo_control = $CONTINUE;
-											Network.AWS_PUSH=(neoway.SEND_RECIEVE("AT+AWSCONN=120,1,4", { 30000 }, 3, { "OK" }).find("OK") != string::npos);
+											Network.AWS_PUSH=(neoway.SEND_RECIEVE("AT+AWSCONN=120,1,4", { 7000 }, 3, { "OK" }).find("OK") != string::npos);
 										}
 										ble_cont = $BREAK;
 										neoway.SEND_RECIEVE("AT+AWSPUB=0,1,\"" + neoway.GET_data_pub_topic() + "\"," + to_string(json_sd.length()), { 5000 }, 1, { ">" });
@@ -378,7 +345,10 @@ int main(void) {
 									}
 		}
 
+		Sensortype();
 		fetch_reading();
+
+
 /*
 		SD_data = (char*)calloc(1024, sizeof(char));
 	    if (!SD_data) {
@@ -488,6 +458,7 @@ void SystemClock_Config(void) {
 }
 
 /* USER CODE BEGIN 4 */
+
 
 /* USER CODE END 4 */
 
