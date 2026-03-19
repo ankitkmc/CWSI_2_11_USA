@@ -1,2 +1,5 @@
 # AWS_2.0_APP
-use rtc backup register to identy reset 
+1. use rtc backup register to identy reset 
+2. Included all sensor configurations and controlling by #defined in main.h
+
+

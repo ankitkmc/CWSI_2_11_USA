@@ -42,17 +42,17 @@ extern "C" {
 //#define GEMHO_SHT
 #define SENTEK_SHT
 
-//#define GEMHO_NPK
-#define SENTEK_NPK
+#define GEMHO_NPK
+//#define SENTEK_NPK
 //#define NIBOL_NPK
 
 //#define GEMHO_LEAF
-//#define RENKE_LEAF
-#define SENTEK_LEAF
+#define RENKE_LEAF
+//#define SENTEK_LEAF
 
 
-#define SENTEK_TPH
-//#define GEMHO_TPH
+//#define SENTEK_TPH
+#define GEMHO_TPH
 
 
 

@@ -1037,8 +1037,8 @@ void object_setup() {
 
 	/* NIBOL LEAF */
 	LEAF_SENSOR.SET_manual_baud(4800);      // change if needed
-	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
 	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
+	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
 	LEAF_SENSOR.SET_frame({ 0x01, 0x03, 0x00, 0x00 });
 
 #elif defined(SENTEK_LEAF)
@@ -1046,8 +1046,8 @@ void object_setup() {
 	/* SENTEK LEAF (DEFAULT) */
 	LEAF_SENSOR.SET_manual_baud(4800);
 	LEAF_SENSOR.ADD_PARA("LEAF_HUM");
-	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
-	LEAF_SENSOR.ADD_PARA("LEAF_CONT");
+//	LEAF_SENSOR.ADD_PARA("LEAF_TEMP");
+//	LEAF_SENSOR.ADD_PARA("LEAF_CONT");
 	LEAF_SENSOR.SET_frame({ 0x04, 0x03, 0x00, 0x00 });
 
 	AIR_HT.ADD_PARA("HT_LEF_HUM");
@@ -1132,6 +1132,7 @@ void object_setup() {
 	IRROMETER_SECONDARY.SET_soil_temperature(&SOIL_SENSOR.parameter.at(0)->value_double);
 #endif
 	RAINFALL.ADD_PARA("RAIN_INTENSITY");
+
 	both_debug.Print2("Done\r\n");
 	refresh_counter();
 }
@@ -1365,6 +1366,8 @@ void fetch_reading() {
 	I2CSensorREDE(&aht_temp,&aht_hum);
 	AIR_HT.SET_PARA_VALUE(0,aht_hum,3);
 	AIR_HT.SET_PARA_VALUE(1,aht_temp,3);
+	both_debug.Print2(d_t_s(aht_temp,3));
+	both_debug.Print2(d_t_s(aht_hum,3));
 #endif
 	analog_index = 0;
 	V_12.SET(0);

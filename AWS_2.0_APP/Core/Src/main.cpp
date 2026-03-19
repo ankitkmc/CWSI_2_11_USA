@@ -57,7 +57,7 @@
 const uint32_t appadd = 0x801F000;
 uint8_t sample_count=0;
 string filename = "file131.txt"; // new added
-string filename2 = "sample_read.txt"; // new added
+//string filename2 = "sample_read.txt"; // new added
 /**
  * @brief Pointer to reset handler
  */
@@ -208,6 +208,8 @@ int main(void) {
 		neoway.POWER_ON();
 
 		config_file();
+
+		RAINFALL.SET_VAR_VALUE_CONN(1); //539 RAINFALL VALUE -1
 
 #if defined(BLE_ON)
 		neoway.BLE_SETUP(d_t_s(WS.GET_VAR_VALUE_CONN()));
