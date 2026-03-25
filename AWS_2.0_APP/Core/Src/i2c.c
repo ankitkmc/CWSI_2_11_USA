@@ -158,8 +158,8 @@ void I2CSensorREDE(float* temp, float* hum){
 		 if((TH!=0)||(RH!=0)){
 		 *hum = (float)RH / (1 << 20) * 100;
 		 *temp = ((float)TH / (1 << 20)) * 200 - 50;
-		 both_debug.Print2(d_t_s(*hum,3));
-		 both_debug.Print2(d_t_s(*temp,3));
+//		 both_debug.Print2(d_t_s(*hum,3));
+//		 both_debug.Print2(d_t_s(*temp,3));
 		 }
 		 else
 		 {

@@ -1366,6 +1366,7 @@ void fetch_reading() {
 	I2CSensorREDE(&aht_temp,&aht_hum);
 	AIR_HT.SET_PARA_VALUE(0,aht_hum,3);
 	AIR_HT.SET_PARA_VALUE(1,aht_temp,3);
+	both_debug.Print2("AHT_Sensor with Leaf sensor \r\n");
 	both_debug.Print2(d_t_s(aht_temp,3));
 	both_debug.Print2(d_t_s(aht_hum,3));
 #endif
